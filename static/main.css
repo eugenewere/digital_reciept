@@ -79,6 +79,46 @@ textarea:focus, input:focus{
     font-size: 25px;
     color: black;
 }
-.header_bottom_boder{
-    border-bottom: 1px double #575757;
+.input_title{
+    font-size: 25px;
+    color: black;
 }
+.input_title_sm::placeholder{
+    font-size: 19px;
+    color: black;
+}
+.input_title_sm{
+    font-size: 19px;
+    color: black;
+}
+.text-bold-placehoder, .text-bold-placehoder::placeholder{
+    font-weight: bold;
+}
+
+
+.header_bottom_boder{
+    border-bottom: 1px dotted #575757;
+}
+
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

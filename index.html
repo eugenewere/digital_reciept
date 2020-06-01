@@ -19,8 +19,8 @@
         <div class="row py-4">
             <div class="col-sm-12 col-md-12 col-lg-10 p-5 mx-auto bg-whitee receipt_wrapper">
                 <div class="row" style="padding: 0 14px;">
-                    <div class="col-sm-12 row mx-auto header_bottom_boder">
-                        <div class="col-sm-12 col-md-3">
+                    <div class="col-sm-12 row mx-auto header_bottom_boder pb-4">
+                        <div class="col-sm-12 col-md-4">
                             <div class="form-group w-100 img_wrapper" style="">
                                 <label id="img_label" data-toggle="tooltip" data-placement="right" title="Click to add image" for="vmimg"><i class="far fa-plus-square"></i></label>
                                 <input required id="vmimg" name="image" type="file" onchange="readURL(this);" />
@@ -52,17 +52,17 @@
 
 
                         </div>
-                        <div class="col-sm-12 col-md-3">
+                        <div class="col-sm-12 col-md-2">
                             <h3 class="text-muted text-right">Receipt</h3>
                         </div>
                     </div>
                     <div class="col-sm-12 row mx-auto py-5">
                         <div class="col-sm-12 col-md-6 row">
-                            <div class="col-sm-12 col-md-6">
+                            <div class="col-sm-12 col-md-4">
                                 <label for="bs_billingto" class="no-label"></label>
-                                <input type="text" class="form-control no-border input_title" id="bs_billingto" placeholder="Billing To: ">
+                                <input type="text" class="form-control no-border input_title_sm" id="bs_billingto" placeholder="Billing To: ">
                             </div>
-                            <div class="col-sm-12 col-md-6">
+                            <div class="col-sm-12 col-md-8">
                                 <label for="bs_Client" class="no-label"></label>
                                 <input type="text" class="form-control no-border " id="bs_Client" placeholder="[ Client Name ]">
 
@@ -80,9 +80,98 @@
 
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6 row">
-
+                        <div id="clone_me"  class="col-sm-12 col-md-6 ">
+                            <div class="row ">
+                                <div class="col-sm-6 text-right">
+                                    <label for="bs_invoice_no" class="no-label"></label>
+                                    <input type="text" class="form-control no-border input_title_sm text-right " id="bs_invoice_no" placeholder="Invoice Number: ">
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <label for="bs_invoice_no_text" class="no-label"></label>
+                                    <input type="text" class="form-control no-border text-right" id="bs_invoice_no_text" placeholder="Invoice Number: ">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 text-right">
+                                    <label for="bs_datw" class="no-label"></label>
+                                    <input type="text" class="form-control no-border input_title_sm text-right" id="bs_datw" placeholder="Date: ">
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <label for="bs_date_no_text" class="no-label"></label>
+                                    <input value="" type="date" class="form-control no-border text-right" id="bs_date_no_text" >
+                                </div>
+                            </div>
+                            <i id="invoice_add" class="fas fa-plus-square text-success" data-toggle="tooltip" data-placement="left" title="Add another row"></i>
+                            <i style="display:none;" id="invoice_delete" class="fas fa-trash text-danger " data-toggle="tooltip" data-placement="right" title="Delete last row"></i>
                         </div>
+                    </div>
+                    <div class="col-sm-12 row mx-auto py-5">
+                        <table class="table table-bordered" id="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Description</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Unit Price</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="t_row1" class="tab_row">
+                                    <th scope="row">
+                                        <label for="bs_description" class="no-label"></label>
+                                        <input value="" type="text" class="form-control no-border" id="bs_description" placeholder="Service 1 Description">
+                                    </th>
+                                    <th scope="row">
+                                        <label for="bs_quantity" class="no-label"></label>
+                                        <input value="5" type="number" class="form-control no-border" id="bs_quantity" placeholder="1">
+                                    </th>
+                                    <th scope="row">
+                                        <label for="bs_unit_price" class="no-label"></label>
+                                        <input value="100" type="number" class="form-control no-border" id="bs_unit_price" placeholder="20">
+                                    </th>
+                                    <th scope="row">
+                                        <span>Ksh </span><span> 100.00</span>
+                                    </th>
+                                    <th scope="row">
+
+                                    </th>
+                                </tr>
+
+
+                                <tr>
+                                    <td colspan="2" rowspan="3">
+                                        <button id="addrow" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="left" title="Add another row"><i class="fas fa-plus-square" ></i> Add row</button>
+                                    </td>
+                                    <td class="py-0">
+                                        <label for="bs_Total" class="no-label"></label>
+                                        <input type="text" class="form-control no-border input_title_sm text-bold-placehoder" id="bs_Total" placeholder="Total: ">
+                                    </td>
+                                    <td colspan="2">
+                                        <span>Ksh</span><span>10000</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-0">
+                                        <label for="bs_paid_amount" class="no-label"></label>
+                                        <input type="text" class="form-control no-border input_title_sm text-bold-placehoder" id="bs_paid_amount" placeholder="Paid Amount: ">
+                                    </td>
+                                    <td colspan="2">
+                                        Ksh 120000
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-0">
+                                        <label for="bs_paid_balance" class="no-label"></label>
+                                        <input type="text" class="form-control no-border input_title_sm text-bold-placehoder" id="bs_paid_balance" placeholder="Balance Due: ">
+                                    </td>
+                                    <td colspan="2">
+                                        Ksh 120000
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
