@@ -28,7 +28,7 @@ $('#invoice_add').click(function (e) {
         .parent()
         .parent()
         .append(
-              '<i style="margin-left: auto;" onclick="deleteRow2(this)" class="fas fa-trash text-danger " data-toggle="tooltip" data-placement="right" title="Delete top row"></i>'
+              '<i style="margin-left: auto;" onclick="deleteRow2(this)" class="fas fa-trash text-danger print_hide" data-toggle="tooltip" data-placement="right" title="Delete top row"></i>'
         );
 
 
@@ -48,7 +48,7 @@ $('#addrow').click(function (e) {
         .insertBefore('#table tbody tr:nth-last-child(3)')
         .find('th:last')
         .append(
-           ' <button onclick="deleteRow(this)" id="'+ new_id +'" class="btn btn-danger">'+
+           ' <button onclick="deleteRow(this)" id="'+ new_id +'" class="btn btn-danger print_hide">'+
                ' <i class="fas fa-trash-alt"></i>'+
            ' </button>'
         )
@@ -183,7 +183,35 @@ function deleteTax(event){
     refreshTax();
 }
 
+var monthes =['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sept','Oct','Nov','Dec'];
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth()).padStart(2, '0'); //January is 0!
+// var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+// console.log();
+today =monthes[Number(mm)]+ '/' + dd + '/' + yyyy;
+$('#bs_date_no_text').attr('placeholder', today);
 
+function generatePDF() {
+    // Choose the element that our invoice is rendered in.
+    // const element =$('#print_doc');
+    $('.print_hide').hide();
+    var pdf_name = $('#bs_title').val() + '.pdf';
+    const element =document.getElementById('print_doc');
+
+    var opt = {
+        margin:       0,
+        filename:     pdf_name,
+        image:        { type: 'jpeg', quality: 1 },
+        html2canvas:  { scale: 3 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    html2pdf()
+        .from(element)
+        .set(opt)
+        .save();
+}
 
 
 

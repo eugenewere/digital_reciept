@@ -4,7 +4,7 @@ html,body{
     margin: 0;
     padding: 0;
     font-family: 'Roboto Condensed', sans-serif;
-    background-color: #f2f2f2;
+    background-color: #c6dcfd;
 }
 .bg-whitee{
     background-color: #ffffff;
@@ -32,9 +32,9 @@ html,body{
     display:flex;
     flex-direction: column;
     position: relative;
-    border: 1px dotted black;
+    /*border: 1px dotted black;*/
     border-radius: 4px;
-    width: 200px;
+    width: auto;
     height: 200px;
     overflow: hidden;
 }
@@ -109,7 +109,7 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
 .text-bold-custom{
-    font-family: 600;
+    font-weight: 600;
 }
 
 
@@ -119,6 +119,50 @@ input::-webkit-inner-spin-button {
 
 
 
+
+
+
+
+
+
+
+
+.editable-container,
+.toolbar-container {
+    position: relative;
+    border: 1px solid red;
+}
+
+.editable-container::after,
+.toolbar-container::after {
+    content: attr(class);
+    position: absolute;
+    background: red;
+    color: #fff;
+    top: 0;
+    right: 0;
+    font: 10px/2 monospace;
+    padding: .1em .3em;
+}
+
+.toolbar-container{
+    padding: 1em;
+}
+
+.editable-container {
+    padding: 3em;
+    overflow-y: scroll;
+    max-height: 300px;
+}
+
+.editable-container .ck-editor__editable {
+    min-height: 21cm;
+    padding: 2em;
+    border: 1px #D3D3D3 solid;
+    border-radius: var(--ck-border-radius);
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
 
 
 

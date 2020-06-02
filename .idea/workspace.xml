@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="264753fe-9beb-4802-82ce-ff431a05d361" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/db.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/ck-editor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/html2pdf.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -72,7 +75,7 @@
       <option name="presentableId" value="Default" />
       <updated>1591016546097</updated>
       <workItem from="1591016551222" duration="39346000" />
-      <workItem from="1591091974292" duration="12534000" />
+      <workItem from="1591091974292" duration="31502000" />
     </task>
     <servers />
   </component>

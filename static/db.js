@@ -6,6 +6,9 @@
     db.transaction(function (tx) {
         tx.executeSql("CREATE TABLE IF NOT EXISTS taxvalues ( name text, value integer)");
     });
+    db.transaction(function (tx) {
+        tx.executeSql("CREATE TABLE IF NOT EXISTS discount ( name text, value integer)");
+    });
 
 
 // }
