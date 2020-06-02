@@ -15,9 +15,19 @@ $('#invoice_add').click(function (e) {
     $('#clone_me div:first')
         .clone()
         .insertAfter('#clone_me > div:last')
-        .find('input').attr('placeholder', '-----');
-    $('#invoice_delete').show();
+        .find('input').attr('placeholder', '-----')
+        .parent()
+        .parent()
+        .append(
+              '<i style="margin-left: auto;" onclick="deleteRow2(this)" class="fas fa-trash text-danger " data-toggle="tooltip" data-placement="right" title="Delete top row"></i>'
+        );
+
+
 });
+function deleteRow2(e){
+    e.parentElement.style.display ='none';
+
+}
 
 $('#addrow').click(function (e) {
     var new_id = 'deleteButton' + $('#table tbody tr:not(:nth-last-child(3))').length;
@@ -44,7 +54,7 @@ $('#addrow').click(function (e) {
 });
 
 function deleteRow(e) {
-    $('#'+ e.id).parent().parent().hide()
+    $('#'+ e.id).parent().parent().fadeOut();
 }
 
 function insertDecimal(num) {
@@ -69,6 +79,31 @@ addItems();
 setInterval(addItems, 1000);
 
 
+
+function add_ammounts(){
+    var ammounts = [];
+    $('.ammounts_total').each(function () {
+       ammounts.push(this.innerText) ;
+
+    });
+    $('#total_txt').text(eval(ammounts.join('+')));
+}
+
+setInterval(add_ammounts,1000);
+
+// $('#print').click(function () {
+//     $("#print_doc").printElement();
+// });
+function printContent(printpage){
+    var headstr = "<html><head><title></title></head><body><nav></nav>";
+    var footstr = "</body>";
+    var newstr = $(printpage).html();
+    var oldstr = document.body.innerHTML;
+    document.body.innerHTML = headstr + newstr + footstr;
+    window.print();
+    document.body.innerHTML = oldstr;
+    return false;
+}
 
 
 

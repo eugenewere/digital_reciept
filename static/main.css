@@ -43,7 +43,7 @@ html,body{
     top: 50%;
     left: 50%;
     font-size: 50px;
-    color: #000000;
+    color: #33a604;
     transform: translate(-50%, -50%);
     z-index: 100;
 }
@@ -107,6 +107,9 @@ input[type='number'] {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
+}
+.text-bold-custom{
+    font-family: 600;
 }
 
 
