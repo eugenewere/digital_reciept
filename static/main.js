@@ -1,3 +1,12 @@
+
+// function taxSet(){
+//     localStorage.getItem('tax_value') ?  $('#modal_tax, #tax').text(localStorage.getItem('tax_value')):  $('#modal_tax, #tax').text(0);
+// }
+// taxSet();
+
+// $('#modal_tax, #tax').text();
+refreshTax();
+
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -106,8 +115,73 @@ function printContent(printpage){
 }
 
 
+$('#tax_form_submit').click(function (e) {
+   var tax_value = $("#tax_input").val();
+   var tax_name = $("#tax_name").val();
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+   // console.log(tax);
+   if(tax_value.length === 0 && tax_name.length === 0){
+       $('#alert_dangerr').fadeIn()
+   }else {
+       $('#alert_dangerr').fadeOut();
+       $('#spinner').show();
+       // setTimeout(localStorage.setItem(tax_name, tax),3000);
+       db.transaction(function (tx) {
+           tx.executeSql("INSERT INTO taxvalues (name, value) VALUES (?,?)", [tax_name, tax_value]);
+       });
+       $('#spinner').fadeOut();
+       $('#alert_success').fadeIn();
 
+       refreshTax();
 
+   }
+});
+
+function refreshTax(){
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    $('#tax_tbody').html(' ');
+    db.transaction(function (tx) {
+        tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
+            if(results.rows.length > 0) {
+                for(var i = 0; i < results.rows.length; i++) {
+                    // console.log("Result -> " + results.rows.item(i).firstname + " " + results.rows.item(i).lastname);
+                    var id_row = i + 1;
+                    $('#tax_tbody').append(
+                        ' <tr id="'+"tax"+ i +'">'+
+                            '<th scope="row">'+ id_row +'</th>'+
+                            '<td>'+ results.rows.item(i).name +'</td>'+
+                            '<td>'+ results.rows.item(i).value +'</td>'+
+                            '<td>'+
+                                '<i id="'+"t_delete" + i +'" style="margin-left: auto;" onclick="deleteTax(this)" class="fas fa-trash text-danger " data-toggle="tooltip" data-placement="right" title="Delete top row"></i>'
+                            +'</td>'+
+                        '</tr>')
+                }
+            }
+        });
+    });
+}
+
+function deleteTax(event){
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    console.log();
+    var db_id = $('#'+ event.id).parent().parent().find('th:first').text();
+    console.log(db_id);
+    db.transaction(function(tx) {
+        tx.executeSql('delete from taxvalues where rowid=?', [db_id], function(transaction, result) {
+            console.log(result);
+            console.info('Record Deleted Successfully!');
+        }, function(transaction, error) {
+            console.log(error);
+        });
+    }, transError, transSuccess);
+
+    function transError() {
+
+    }function transSuccess() {
+
+    }
+    refreshTax();
+}
 
 
 
