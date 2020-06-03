@@ -91,7 +91,6 @@ function addItems() {
     add_ammounts();
 }
 addItems();
-setInterval(addItems, 1000);
 function add_ammounts(){
     var ammounts = [];
     $('.tab_row:visible .ammounts_total').each(function () {
