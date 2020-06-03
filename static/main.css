@@ -88,7 +88,7 @@ textarea:focus, input:focus{
     color: black;
 }
 .input_title_sm{
-    font-size: 19px;
+    font-size: 17px;
     color: black;
 }
 .text-bold-placehoder, .text-bold-placehoder::placeholder{
@@ -127,42 +127,7 @@ input::-webkit-inner-spin-button {
 
 
 
-.editable-container,
-.toolbar-container {
-    position: relative;
-    border: 1px solid red;
-}
 
-.editable-container::after,
-.toolbar-container::after {
-    content: attr(class);
-    position: absolute;
-    background: red;
-    color: #fff;
-    top: 0;
-    right: 0;
-    font: 10px/2 monospace;
-    padding: .1em .3em;
-}
-
-.toolbar-container{
-    padding: 1em;
-}
-
-.editable-container {
-    padding: 3em;
-    overflow-y: scroll;
-    max-height: 300px;
-}
-
-.editable-container .ck-editor__editable {
-    min-height: 21cm;
-    padding: 2em;
-    border: 1px #D3D3D3 solid;
-    border-radius: var(--ck-border-radius);
-    background: white;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
 .custom-switch{
     float: right;
     top: 40px;
@@ -171,6 +136,11 @@ input::-webkit-inner-spin-button {
     color: #fff;
     border-color: #28a745;
     background-color: #28a745;
+}
+.totat-print-border{
+    border-bottom: 1px solid white !important;
+    border-left: 1px solid white !important;
+
 }
 
 

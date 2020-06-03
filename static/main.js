@@ -7,6 +7,9 @@
 // $('#modal_tax, #tax').text();
 refreshTax();
 refreshDiscount();
+displayTax();
+
+$( "#paid_amount_input" ).keyup();
 var monthes =['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sept','Oct','Nov','Dec'];
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
@@ -56,22 +59,17 @@ $('#addrow').click(function (e) {
         .clone()
         .insertBefore('#table tbody tr:nth-last-child(3)')
         .find('th:last')
-        .append(
-           ' <button onclick="deleteRow(this)" id="'+ new_id +'" class="btn btn-danger print_hide">'+
-               ' <i class="fas fa-trash-alt"></i>'+
-           ' </button>'
-        )
-        .parent().attr('id', tr_id)
-    ;
-
+        .append(' <i onclick="deleteRow(this)" id="'+ new_id +'" data-toggle="tooltip" data-placement="right" title="Delete this row" class="fas fa-trash-alt text-danger print_hide"></i>')
+        .parent().attr('id', tr_id);
     $('#'+new_id).parent().parent().find('input').value=0;
-    // $('#'+new_id).parent().parent().find('th span:first').hide();
-    // $('#'+new_id).parent().parent().find('th span').text('_____');
     addItems();
+    add_ammounts();
+
 
 });
 function deleteRow(e) {
-    $('#'+ e.id).parent().parent().fadeOut();
+    $('#'+ e.id).parent().parent().hide();
+    add_ammounts();
 }
 function insertDecimal(num) {
     return (num / 100).toFixed(2);
@@ -95,13 +93,14 @@ addItems();
 setInterval(addItems, 1000);
 function add_ammounts(){
     var ammounts = [];
-    $('.ammounts_total').each(function () {
-       ammounts.push(this.innerText) ;
-
+    $('.tab_row:visible .ammounts_total').each(function () {
+       ammounts.push(this.innerText);
     });
+
     $('#total_txt').text(eval(ammounts.join('+')));
+    $( "#paid_amount_input" ).keyup();
 }
-setInterval(add_ammounts,1000);
+add_ammounts();
 function printContent(printpage){
     var headstr = "<html><head><title></title></head><body><nav></nav>";
     var footstr = "</body>";
@@ -244,10 +243,10 @@ function deleteDiscount(event){
     refreshDiscount();
 }
 function generatePDF() {
+    // $('#total_border').addClass('totat-print-border');
     $('.print_hide').hide();
     var pdf_name = $('#bs_title').val() + '.pdf';
     const element =document.getElementById('print_doc');
-
     var opt = {
         margin:       0,
         filename:     pdf_name,
@@ -259,6 +258,8 @@ function generatePDF() {
         .from(element)
         .set(opt)
         .save();
+
+
 }
 
 $('input[type="checkbox"]').on('click', function(){
@@ -270,4 +271,55 @@ $('input[type="checkbox"]').on('click', function(){
         $('.checkbox-click-hide').fadeOut();
     }
 });
+function calcualateBalanceDue() {
 
+}
+$('#paid_amount_input').keyup(function (e) {
+    var paid_amount = $('#paid_amount_input').val();
+    // console.log(paid_amount);
+    // var balance_due_text = $('#balance_duee');
+    var total_text = $('#total_txt').text();
+    var answer =total_text - paid_amount;
+    $('#balance_duee').text(answer);
+});
+
+function displayTax() {
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    $('#tax_tbody_aa').html(' ');
+    db.transaction(function (tx) {
+        tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
+            if(results.rows.length > 0) {
+                var myid;
+                for(var i = 0; i < results.rows.length; i++) {
+                    // console.log("Result -> " + results.rows.item(i).firstname + " " + results.rows.item(i).lastname);
+                    var id_row = i + 1;
+                    myid = "t_delete_aa" + i;
+                    $('#tax_tbody_aa').append(
+                        ' <tr id="'+"tax_aa"+ i +'">'+
+                            '<th scope="row">'+ id_row +'</th>'+
+                            '<td>'+ results.rows.item(i).name +'</td>'+
+                            '<td>'+ results.rows.item(i).value +'</td>'+
+                            '<td>'+
+                                '<i onclick="taxTotal(this)" data-name="'+results.rows.item(i).name+ '" data-value="'+results.rows.item(i).value+'"  id="'+"t_delete_aa" + i +'" style="margin-left: auto; cursor: pointer" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Use Tax">Use This Tax</i>' +
+                                '<i onclick="undotaxTotal(this)" data-name="'+results.rows.item(i).name+ '" data-value="'+results.rows.item(i).value+'" id="'+"t_delete_ud" + i +'" style="margin-left: auto; cursor: pointer; display: none; "  class="btn btn-info ml-2" data-toggle="tooltip" data-placement="right" title="Use Tax">Undo</i>' +
+                            '</td>'+
+                        '</tr>'
+                    )
+                }
+            }
+        });
+    });
+}
+var oldTotal =  $('#total_txt').text();
+function taxTotal(e) {
+    var tottal_v = oldTotal;
+    var value_name = e.dataset.value;
+    console.log(value_name, oldTotal);
+    $('#'+ e.id).parent().find('i:last').show();
+    var new_value = Number(oldTotal)+Number(((value_name/100)*(oldTotal)));
+    $('#total_txt').text(new_value);
+}
+function undotaxTotal(e) {
+    $('#total_txt').text(oldTotal);
+    $('#'+ e.id).hide();
+}

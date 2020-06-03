@@ -41,8 +41,6 @@
 
 <section class="w-100">
 
-
-    <div id="toolbar-container"></div>
     <div class="col-sm-12">
         <div class="row py-4">
 
@@ -142,7 +140,7 @@
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Unit Price</th>
                                 <th scope="col">Amount</th>
-                                <th scope="col"></th>
+                                <th scope="col" class="print_hide"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -162,14 +160,14 @@
                                     <th scope="row">
                                         <span>Ksh </span><span class="ammounts_total"></span>
                                     </th>
-                                    <th scope="row">
+                                    <th scope="row" class="print_hide">
 
                                     </th>
                                 </tr>
 
 
                                 <tr>
-                                    <td colspan="2" rowspan="3">
+                                    <td id="total_border" class="totat-print-border" colspan="2" rowspan="3">
                                         <button id="addrow" class="btn btn-success btn-sm print_hide" data-toggle="tooltip" data-placement="left" title="Add another row"><i class="fas fa-plus-square" ></i> Add row</button>
                                         <div class="custom-control custom-switch print_hide">
                                             <input checked="checked" name="ttt" value="off"  type="checkbox" class="custom-control-input" id="customSwitch1">
@@ -179,9 +177,13 @@
                                     <td class="py-0">
                                         <label for="bs_Total" class="no-label"></label>
                                         <input type="text" class="form-control no-border input_title_sm text-bold-placehoder" id="bs_Total" placeholder="Total: ">
+                                        <button  data-toggle="modal" data-target="#usetax"   class="btn btn-info print_hide text-white"><span data-toggle="tooltip" title="Add Tax" data-placement="bottom">T</span></button>
+                                        <button data-toggle="modal" data-target="#usediscount"   class="btn btn-warning print_hide text-white"><span data-toggle="tooltip" title="Add Discount" data-placement="bottom">D</span></button>
+
+
                                     </td>
                                     <td colspan="2" class="text-bold-custom">
-                                        <span>Ksh </span><span id="total_txt"></span>
+                                        <span>Ksh </span><span id="total_txt">0</span>
                                     </td>
                                 </tr>
                                 <tr class="checkbox-click-hide">
@@ -203,7 +205,7 @@
                                         <input type="text" class="form-control no-border input_title_sm text-bold-placehoder" id="bs_paid_balance" placeholder="Balance Due: ">
                                     </td>
                                     <td colspan="2" class="text-bold-custom">
-                                        Ksh 120000
+                                        Ksh <span id="balance_duee">0</span>
                                     </td>
                                 </tr>
 
@@ -355,7 +357,69 @@
                     </div>
                 </div>
             </div>
-<!--        endmodal-->
+            <!-- Modal -->
+            <div class="modal fade" id="usetax" tabindex="-1" role="dialog" aria-labelledby="exampleModaltaxin" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="padding: 2px 8px;">
+                            <h5 class="modal-title" id="exampleModaltaxin">Choose Tax</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col-sm-12">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Value</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tax_tbody_aa">
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="usediscount" tabindex="-1" role="dialog" aria-labelledby="exampleModaltaxing" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="padding: 2px 8px;">
+                            <h5 class="modal-title" id="exampleModaltaxing">Choose Discount</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col-sm-12">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Value</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tax_tbody_bb">
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--        endmodal-->
         </div>
     </div>
 </section>
