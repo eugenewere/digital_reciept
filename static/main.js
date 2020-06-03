@@ -246,7 +246,14 @@ function deleteDiscount(event){
 function generatePDF() {
     // $('#total_border').addClass('totat-print-border');
     $('.print_hide').hide();
-    var pdf_name = $('#bs_title').val() + '.pdf';
+    var pdf_name;
+    if($('#bs_name').val().length !== 0){
+        pdf_name = $('#bs_name').val() + '.pdf';
+
+    }else {
+        pdf_name = $('#editor_title_t').val() + '.pdf';
+    }
+
     const element =document.getElementById('print_doc');
     var opt = {
         margin:       0,
@@ -322,7 +329,6 @@ function undotaxTotal(e) {
     $('#total_txt').text(oldTotal);
     $('#'+ e.id).hide();
 }
-
 function displayDiscounts() {
     var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
     $('#tax_tbody_bb').html(' ');
