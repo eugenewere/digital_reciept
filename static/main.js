@@ -256,20 +256,22 @@ function generatePDF() {
 
     const element =document.getElementById('print_doc');
     var opt = {
-        margin:       0,
+        margin:       0.12,
         filename:     pdf_name,
         image:        { type: 'jpeg', quality: 1 },
-        html2canvas:  { scale: 1 },
-        jsPDF:        { unit: 'in', format: 'ledger', orientation: 'portrait' }
+        html2canvas:  { scale: 1,  },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
     html2pdf()
         .from(element)
         .set(opt)
         .save();
 
-
+    setTimeout(retunObje, 7000);
 }
-
+function retunObje(){
+    $('.print_hide').fadeIn();
+}
 $('input[type="checkbox"]').on('click', function(){
     var propState = $(this).prop('checked'); // grab the checkbox checked state.
     propState === true ? propState = false : propState = true; // ternary operation. If box is checked uncheck it. if it is not checked check it.
