@@ -6,6 +6,17 @@
 
 // $('#modal_tax, #tax').text();
 refreshTax();
+refreshDiscount();
+var monthes =['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sept','Oct','Nov','Dec'];
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth()).padStart(2, '0'); //January is 0!
+// var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+// console.log();
+today =monthes[Number(mm)]+ '/' + dd + '/' + yyyy;
+$('#bs_date_no_text').attr('placeholder', today);
+
 
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -18,7 +29,6 @@ function readURL(input) {
     }
 }
 $('[data-toggle="tooltip"]').tooltip();
-
 $('#invoice_add').click(function (e) {
     // console.log('this');
     $('#clone_me div:first')
@@ -37,7 +47,6 @@ function deleteRow2(e){
     e.parentElement.style.display ='none';
 
 }
-
 $('#addrow').click(function (e) {
     var new_id = 'deleteButton' + $('#table tbody tr:not(:nth-last-child(3))').length;
     var rows= $('#table tbody tr:not(:nth-last-child(3))').length + 1;
@@ -61,11 +70,9 @@ $('#addrow').click(function (e) {
     addItems();
 
 });
-
 function deleteRow(e) {
     $('#'+ e.id).parent().parent().fadeOut();
 }
-
 function insertDecimal(num) {
     return (num / 100).toFixed(2);
 }
@@ -86,9 +93,6 @@ function addItems() {
 }
 addItems();
 setInterval(addItems, 1000);
-
-
-
 function add_ammounts(){
     var ammounts = [];
     $('.ammounts_total').each(function () {
@@ -97,12 +101,7 @@ function add_ammounts(){
     });
     $('#total_txt').text(eval(ammounts.join('+')));
 }
-
 setInterval(add_ammounts,1000);
-
-// $('#print').click(function () {
-//     $("#print_doc").printElement();
-// });
 function printContent(printpage){
     var headstr = "<html><head><title></title></head><body><nav></nav>";
     var footstr = "</body>";
@@ -113,8 +112,6 @@ function printContent(printpage){
     document.body.innerHTML = oldstr;
     return false;
 }
-
-
 $('#tax_form_submit').click(function (e) {
    var tax_value = $("#tax_input").val();
    var tax_name = $("#tax_name").val();
@@ -136,7 +133,27 @@ $('#tax_form_submit').click(function (e) {
 
    }
 });
+function deleteTax(event){
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    console.log();
+    var db_id = $('#'+ event.id).parent().parent().find('th:first').text();
+    console.log(db_id);
+    db.transaction(function(tx) {
+        tx.executeSql('delete from taxvalues where rowid=?', [db_id], function(transaction, result) {
+            console.log(result);
+            console.info('Record Deleted Successfully!');
+        }, function(transaction, error) {
+            console.log(error);
+        });
+    }, transError, transSuccess);
 
+    function transError() {
+
+    }function transSuccess() {
+
+    }
+    refreshTax();
+}
 function refreshTax(){
     var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
     $('#tax_tbody').html(' ');
@@ -160,14 +177,58 @@ function refreshTax(){
         });
     });
 }
+$('#discount_form_submit').click(function (e) {
 
-function deleteTax(event){
+    var discount_value = $("#discount_value").val();
+    var discount_name = $("#discount_name").val();
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    console.log(discount_name, discount_value);
+    if(discount_value.length === 0 && discount_name.length === 0){
+        $('#alert_dangerr2').fadeIn()
+    }else {
+        $('#alert_dangerr2').fadeOut();
+        $('#discount_spinner').show();
+        db.transaction(function (tx) {
+            tx.executeSql("INSERT INTO discount (name, value) VALUES (?,?)", [discount_name, discount_value]);
+        });
+        $('#discount_spinner').fadeOut();
+        $('#alert_success2').fadeIn();
+
+        refreshDiscount();
+
+
+    }
+});
+function refreshDiscount(){
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    $('#discount_tbody').html(' ');
+    db.transaction(function (tx) {
+        tx.executeSql("SELECT name, value FROM discount", [], function(tx, results) {
+            if(results.rows.length > 0) {
+                for(var i = 0; i < results.rows.length; i++) {
+                    // console.log("Result -> " + results.rows.item(i).firstname + " " + results.rows.item(i).lastname);
+                    var id_row = i + 1;
+                    $('#discount_tbody').append(
+                        ' <tr id="'+"discount"+ i +'">'+
+                            '<th scope="row">'+ id_row +'</th>'+
+                            '<td>'+ results.rows.item(i).name +'</td>'+
+                            '<td>'+ results.rows.item(i).value +'</td>'+
+                            '<td>'+
+                            '<i id="'+"discount_delete" + i +'" style="margin-left: auto;" onclick="deleteDiscount(this)" class="fas fa-trash text-danger " data-toggle="tooltip" data-placement="right" title="Delete discount"></i>'
+                            +'</td>'+
+                        '</tr>')
+                }
+            }
+        });
+    });
+}
+function deleteDiscount(event){
     var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
     console.log();
     var db_id = $('#'+ event.id).parent().parent().find('th:first').text();
     console.log(db_id);
     db.transaction(function(tx) {
-        tx.executeSql('delete from taxvalues where rowid=?', [db_id], function(transaction, result) {
+        tx.executeSql('delete from discount where rowid=?', [db_id], function(transaction, result) {
             console.log(result);
             console.info('Record Deleted Successfully!');
         }, function(transaction, error) {
@@ -180,22 +241,9 @@ function deleteTax(event){
     }function transSuccess() {
 
     }
-    refreshTax();
+    refreshDiscount();
 }
-
-var monthes =['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sept','Oct','Nov','Dec'];
-var today = new Date();
-var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth()).padStart(2, '0'); //January is 0!
-// var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-var yyyy = today.getFullYear();
-// console.log();
-today =monthes[Number(mm)]+ '/' + dd + '/' + yyyy;
-$('#bs_date_no_text').attr('placeholder', today);
-
 function generatePDF() {
-    // Choose the element that our invoice is rendered in.
-    // const element =$('#print_doc');
     $('.print_hide').hide();
     var pdf_name = $('#bs_title').val() + '.pdf';
     const element =document.getElementById('print_doc');
@@ -213,5 +261,13 @@ function generatePDF() {
         .save();
 }
 
-
+$('input[type="checkbox"]').on('click', function(){
+    var propState = $(this).prop('checked'); // grab the checkbox checked state.
+    propState === true ? propState = false : propState = true; // ternary operation. If box is checked uncheck it. if it is not checked check it.
+    if(propState === false){
+        $('.checkbox-click-hide').fadeIn();
+    }else if(propState === true){
+        $('.checkbox-click-hide').fadeOut();
+    }
+});
 

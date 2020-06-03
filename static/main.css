@@ -163,7 +163,15 @@ input::-webkit-inner-spin-button {
     background: white;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
-
+.custom-switch{
+    float: right;
+    top: 40px;
+}
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #28a745;
+    background-color: #28a745;
+}
 
 
 

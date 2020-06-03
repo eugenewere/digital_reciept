@@ -82,10 +82,8 @@
 
                         </div>
                         <div class="col-sm-12 col-md-4 ">
-
-                                <label for="editor_title_t" class="no-label"></label>
-                                <input value="Receipt" type="text" class="form-control no-border input_title text-right" id="editor_title_t"  placeholder="Receipt">
-
+                            <label for="editor_title_t" class="no-label"></label>
+                            <input value="Receipt" type="text" class="form-control no-border input_title text-right" id="editor_title_t"  placeholder="Receipt">
                         </div>
                     </div>
                     <div class="col-sm-12 row mx-auto py-5">
@@ -173,6 +171,10 @@
                                 <tr>
                                     <td colspan="2" rowspan="3">
                                         <button id="addrow" class="btn btn-success btn-sm print_hide" data-toggle="tooltip" data-placement="left" title="Add another row"><i class="fas fa-plus-square" ></i> Add row</button>
+                                        <div class="custom-control custom-switch print_hide">
+                                            <input checked="checked" name="ttt" value="off"  type="checkbox" class="custom-control-input" id="customSwitch1">
+                                            <label class="custom-control-label" for="customSwitch1"></label>
+                                        </div>
                                     </td>
                                     <td class="py-0">
                                         <label for="bs_Total" class="no-label"></label>
@@ -182,12 +184,12 @@
                                         <span>Ksh </span><span id="total_txt"></span>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr class="checkbox-click-hide">
                                     <td class="py-0">
                                         <label for="bs_paid_amount" class="no-label"></label>
                                         <input type="text" class="form-control no-border input_title_sm text-bold-placehoder" id="bs_paid_amount" placeholder="Paid Amount: ">
                                     </td>
-                                    <td colspan="2" cclass="text-bold-custom">
+                                    <td colspan="2" class="text-bold-custom">
                                         <div class="d-flex align-items-center">
 
                                             <label for="paid_amount_input" class="no-label"></label>
@@ -195,7 +197,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr class="checkbox-click-hide">
                                     <td class="py-0">
                                         <label for="bs_paid_balance" class="no-label"></label>
                                         <input type="text" class="form-control no-border input_title_sm text-bold-placehoder" id="bs_paid_balance" placeholder="Balance Due: ">
@@ -209,13 +211,17 @@
                         </table>
                     </div>
                     <div class="col-sm-12 row mx-auto py-5">
-                        <label for="validationTextarea" class="text-center w-100">Notes / Terms</label>
-                        <textarea rows="20" class="form-control no-border w-100 text-center" id="validationTextarea" placeholder="Notes / Terms" required></textarea>
+                        <label for="validationTextarea" class="text-center w-100 border-bottom">Notes / Terms</label>
+                        <textarea rows="10" class="form-control no-border w-100 text-center" id="validationTextarea" placeholder="Notes / Terms" required></textarea>
                     </div>
                 </div>
             </div>
-            <!-- Modal -->
 
+
+
+
+
+            <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
@@ -309,10 +315,13 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="discount_name">Name</label>
-                                        <input type="text" class="form-control" id="discount_name" placeholder="Name">
+                                        <select class="form-control" id="discount_name">
+                                            <option value="Percentage" selected>Percentage</option>
+                                            <option value="Cash">Cash</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="discount_value">Discount</label>
+                                        <label for="discount_value">Discount Value</label>
                                         <input type="number" class="form-control" id="discount_value" placeholder="value">
                                     </div>
                                 </div>
@@ -346,6 +355,7 @@
                     </div>
                 </div>
             </div>
+<!--        endmodal-->
         </div>
     </div>
 </section>
