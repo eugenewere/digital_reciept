@@ -8,7 +8,9 @@
 refreshTax();
 refreshDiscount();
 displayTax();
-
+$(function(){
+    $('table.resizable').resizableColumns();
+})
 $( "#paid_amount_input" ).keyup();
 var monthes =['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sept','Oct','Nov','Dec'];
 var today = new Date();
@@ -75,7 +77,7 @@ function insertDecimal(num) {
     return (num / 100).toFixed(2);
 }
 function addItems() {
-    $('.tab_row').each(function (event) {
+    $('.tab_row ').each(function (event) {
         var val_1 = $(this).find('input:eq(1)').val();
         var val_2 = $(this).find('input:eq(2)').val();
         var txt_2 = $(this).find('span:eq(1)').text(val_1 * val_2);
@@ -84,13 +86,17 @@ function addItems() {
             var val_2 = $(this).find('input:eq(2)').val();
             var summ=val_1 * val_2;
             var txt_2 = $(this).find('span:eq(1)').text(summ.toFixed(2));
-            console.log(val_1, val_2);
+
         });
 
     });
     add_ammounts();
 }
 addItems();
+function calculat() {
+    addItems();
+}
+
 function add_ammounts(){
     var ammounts = [];
     $('.tab_row:visible .ammounts_total').each(function () {
@@ -245,6 +251,8 @@ function deleteDiscount(event){
 }
 function generatePDF() {
     // $('#total_border').addClass('totat-print-border');
+
+    $('#downloading-loder').fadeIn('fast');
     $('.print_hide').hide();
     var pdf_name;
     if($('#bs_name').val().length !== 0){
@@ -260,7 +268,7 @@ function generatePDF() {
         filename:     pdf_name,
         image:        { type: 'jpeg', quality: 1 },
         html2canvas:  { scale: 1,  },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
     };
     html2pdf()
         .from(element)
@@ -268,6 +276,7 @@ function generatePDF() {
         .save();
 
     setTimeout(retunObje, 7000);
+    $('#downloading-loder').fadeOut('slow');
 }
 function retunObje(){
     $('.print_hide').fadeIn();
@@ -318,8 +327,10 @@ function displayTax() {
         });
     });
 }
-var oldTotal =  $('#total_txt').text();
+
 function taxTotal(e) {
+    var oldTotal =  $('#total_txt').text();
+    localStorage.setItem('oldTotal', oldTotal);
     var tottal_v = oldTotal;
     var value_name = e.dataset.value;
     console.log(value_name, oldTotal);
@@ -328,7 +339,7 @@ function taxTotal(e) {
     $('#total_txt').text(new_value);
 }
 function undotaxTotal(e) {
-    $('#total_txt').text(oldTotal);
+    $('#total_txt').text(localStorage.getItem('oldTotal'));
     $('#'+ e.id).hide();
 }
 function displayDiscounts() {
@@ -359,6 +370,7 @@ displayDiscounts();
 
 function makeDiscount(e) {
     var oldTotalnew =  $('#total_txt').text();
+    localStorage.setItem('oldTotalnew', oldTotalnew);
     var value = e.dataset.value;
     var name = e.dataset.name;
     var total =0 ;
@@ -379,6 +391,6 @@ function makeDiscount(e) {
 
 }
 function undoDiscount(e) {
-    $('#total_txt').text(oldTotal);
+    $('#total_txt').text(localStorage.getItem('oldTotalnew'));
     $('#'+ e.id).hide();
 }

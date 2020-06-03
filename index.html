@@ -32,7 +32,12 @@
                 </li>
 
                 <li class="nav-item px-1">
-                    <a class="nav-link btn btn-sm btn-success text-white" onclick="generatePDF();" id="print" href="#">Download<span class="sr-only">(current)</span></a>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <a class="nav-link btn btn-sm btn-success text-white" onclick="generatePDF();" id="print" href="#">Download<span class="sr-only">(current)</span></a>
+                        <div id="downloading-loder" style="display: none;" class="spinner-border text-success ml-2" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -84,7 +89,7 @@
                             <input  value="Receipt" type="text" class="form-control no-border input_title text-right" id="editor_title_t"  placeholder="Receipt">
                         </div>
                     </div>
-                    <div class="col-sm-12 row mx-auto py-5">
+                    <div class="col-sm-12 row mx-auto py-4">
                         <div class="col-sm-12 col-md-6 row">
                             <div class="col-sm-12 col-md-4">
                                 <label for="bs_billingto" class="no-label"></label>
@@ -132,8 +137,8 @@
                             <i id="invoice_add" class="fas fa-plus-square text-success print_hide" data-toggle="tooltip" data-placement="left" title="Add another row"></i>
                         </div>
                     </div>
-                    <div class="col-sm-12 row mx-auto py-5">
-                        <table class="table table-bordered" id="table">
+                    <div class="col-sm-12 row mx-auto py-4">
+                        <table  class="table table-bordered resizable" id="table">
                             <thead>
                             <tr>
                                 <th scope="col">Description</th>
@@ -151,11 +156,11 @@
                                     </th>
                                     <th scope="row">
                                         <label for="bs_quantity" class="no-label"></label>
-                                        <input value="5" type="number" class="form-control no-border" id="bs_quantity" placeholder="1">
+                                        <input onkeyup="calculat()" value="5" type="number" class="form-control no-border" id="bs_quantity" placeholder="1">
                                     </th>
                                     <th scope="row">
                                         <label for="bs_unit_price" class="no-label"></label>
-                                        <input value="100" type="number" class="form-control no-border" id="bs_unit_price" placeholder="20">
+                                        <input onkeyup="calculat()" value="100" type="number" class="form-control no-border" id="bs_unit_price" placeholder="20">
                                     </th>
                                     <th scope="row">
                                         <span>Ksh </span><span class="ammounts_total"></span>
@@ -166,7 +171,7 @@
                                 </tr>
 
 
-                                <tr>
+                                <tr >
                                     <td id="total_border" class="totat-print-border" colspan="2" rowspan="3">
                                         <button id="addrow" class="btn btn-success btn-sm print_hide" data-toggle="tooltip" data-placement="left" title="Add another row"><i class="fas fa-plus-square" ></i> Add row</button>
                                         <div class="custom-control custom-switch print_hide">
@@ -174,12 +179,11 @@
                                             <label class="custom-control-label" for="customSwitch1"></label>
                                         </div>
                                     </td>
-                                    <td class="py-0">
+                                    <td class="py-0" data-toggle="tooltip" title="Please add all items to the table before you make any tax and discount adjustments" data-placement="top">
                                         <label for="bs_Total" class="no-label"></label>
                                         <input type="text" class="form-control no-border input_title_sm text-bold-placehoder" id="bs_Total" placeholder="Total: ">
                                         <button  data-toggle="modal" data-target="#usetax"   class="btn btn-info print_hide text-white"><span data-toggle="tooltip" title="Add Tax" data-placement="bottom">T</span></button>
                                         <button data-toggle="modal" data-target="#usediscount"   class="btn btn-warning print_hide text-white"><span data-toggle="tooltip" title="Add Discount" data-placement="bottom">D</span></button>
-
 
                                     </td>
                                     <td colspan="2" class="text-bold-custom">
@@ -212,7 +216,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-sm-12 row mx-auto py-5">
+                    <div class="col-sm-12 row mx-auto py-2">
                         <label for="validationTextarea" class="text-center w-100 border-bottom">Notes / Terms</label>
                         <textarea rows="10" class="form-control no-border w-100 " id="validationTextarea" placeholder="Notes / Terms" required></textarea>
                     </div>
@@ -431,6 +435,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="static/html2pdf.js"></script>
+<script src="static/resize.js"></script>
 <script src="static/db.js" ></script>
 
 <script src="static/main.js" ></script>
