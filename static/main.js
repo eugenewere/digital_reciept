@@ -88,6 +88,7 @@ function addItems() {
         });
 
     });
+    add_ammounts();
 }
 addItems();
 setInterval(addItems, 1000);
@@ -127,10 +128,9 @@ $('#tax_form_submit').click(function (e) {
        });
        $('#spinner').fadeOut();
        $('#alert_success').fadeIn();
-
-       refreshTax();
-
    }
+    displayTax();
+    refreshTax();
 });
 function deleteTax(event){
     var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
@@ -151,7 +151,9 @@ function deleteTax(event){
     }function transSuccess() {
 
     }
-    refreshTax();
+    displayTax();
+    displayDiscounts();
+
 }
 function refreshTax(){
     var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
@@ -175,6 +177,7 @@ function refreshTax(){
             }
         });
     });
+
 }
 $('#discount_form_submit').click(function (e) {
 
@@ -192,11 +195,9 @@ $('#discount_form_submit').click(function (e) {
         });
         $('#discount_spinner').fadeOut();
         $('#alert_success2').fadeIn();
-
-        refreshDiscount();
-
-
     }
+    displayDiscounts();
+    refreshDiscount();
 });
 function refreshDiscount(){
     var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
@@ -241,6 +242,7 @@ function deleteDiscount(event){
 
     }
     refreshDiscount();
+    displayDiscounts();
 }
 function generatePDF() {
     // $('#total_border').addClass('totat-print-border');
@@ -251,8 +253,8 @@ function generatePDF() {
         margin:       0,
         filename:     pdf_name,
         image:        { type: 'jpeg', quality: 1 },
-        html2canvas:  { scale: 3 },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        html2canvas:  { scale: 1 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
     };
     html2pdf()
         .from(element)
@@ -271,9 +273,7 @@ $('input[type="checkbox"]').on('click', function(){
         $('.checkbox-click-hide').fadeOut();
     }
 });
-function calcualateBalanceDue() {
 
-}
 $('#paid_amount_input').keyup(function (e) {
     var paid_amount = $('#paid_amount_input').val();
     // console.log(paid_amount);
@@ -320,6 +320,58 @@ function taxTotal(e) {
     $('#total_txt').text(new_value);
 }
 function undotaxTotal(e) {
+    $('#total_txt').text(oldTotal);
+    $('#'+ e.id).hide();
+}
+
+function displayDiscounts() {
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    $('#tax_tbody_bb').html(' ');
+    db.transaction(function (tx) {
+        tx.executeSql("SELECT name, value FROM discount", [], function(tx, results) {
+            if(results.rows.length > 0) {
+                for(var i = 0; i < results.rows.length; i++) {
+                    var id_row = i + 1;
+                    $('#tax_tbody_bb').append(
+                        ' <tr id="'+"discount_bb"+ i +'">'+
+                            '<th scope="row">'+ id_row +'</th>'+
+                            '<td>'+ results.rows.item(i).name +'</td>'+
+                            '<td>'+ results.rows.item(i).value +'</td>'+
+                            '<td>'+
+                                '<i onclick="makeDiscount(this)" data-name="'+results.rows.item(i).name+ '" data-value="'+results.rows.item(i).value+'"  id="'+"discount_delete_bb" + i +'" style="margin-left: auto; cursor: pointer" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Use Tax">Use This Tax</i>' +
+                                '<i onclick="undoDiscount(this)" data-name="'+results.rows.item(i).name+ '" data-value="'+results.rows.item(i).value+'"  id="'+"discount_delete_ud" + i +'" style="margin-left: auto; cursor: pointer; display: none;" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Undo">Undo</i>' +
+
+                            '</td>'+
+                        '</tr>')
+                }
+            }
+        });
+    });
+}
+displayDiscounts();
+
+function makeDiscount(e) {
+    var oldTotalnew =  $('#total_txt').text();
+    var value = e.dataset.value;
+    var name = e.dataset.name;
+    var total =0 ;
+    console.log(name);
+    $('#'+ e.id).parent().find('i:last').show();
+    if(name === 'Percentage'){
+
+        total =((100-Number(value))/100) * Number(oldTotalnew);
+        console.log(total);
+        $('#total_txt').text(total);
+    }
+    else if(name === 'Cash'){
+        console.log(name);
+        total = Number(oldTotalnew) - Number(value);
+        console.log(total);
+        $('#total_txt').text(total);
+    }
+
+}
+function undoDiscount(e) {
     $('#total_txt').text(oldTotal);
     $('#'+ e.id).hide();
 }
