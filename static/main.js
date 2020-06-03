@@ -254,7 +254,7 @@ function generatePDF() {
         filename:     pdf_name,
         image:        { type: 'jpeg', quality: 1 },
         html2canvas:  { scale: 1 },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+        jsPDF:        { unit: 'in', format: 'ledger', orientation: 'portrait' }
     };
     html2pdf()
         .from(element)
