@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/bootstrap.css" >
     <link rel="stylesheet" href="static/main.css">
-    <script src="https://kit.fontawesome.com/16d33ecbbb.js" crossorigin="anonymous"></script>
+    <script src="static/fontaw.js" crossorigin="anonymous"></script>
 
     <title>Receipt Generator</title>
 
 <!--    <script src="static/ck-editor.js" ></script>-->
-    <script src="https://cdn.ckeditor.com/ckeditor5/19.1.1/inline/ckeditor.js"></script>
+    <script src="static/ck-editor.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
@@ -29,6 +29,17 @@
                 </li>
                 <li class="nav-item px-1">
                     <a type="button"  data-toggle="modal" data-target="#exampleModal2" class="nav-link btn btn-sm btn-warning text-white"  href="#">Add Discount </a>
+                </li>
+                <li class="nav-item px-1">
+                    <div class="dropdown">
+                        <button  class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Layout
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button id="Right-Logo" class="dropdown-item" type="button">Right Logo</button>
+                            <button id="Left-logo" class="dropdown-item" type="button">Left logo</button>
+                        </div>
+                    </div>
                 </li>
 
                 <li class="nav-item px-1">
@@ -50,67 +61,82 @@
 
             <div  class="col-sm-12 col-md-12 col-lg-8 col-lg-8 p-3 mx-auto bg-whitee receipt_wrapper">
                 <div id="print_doc" class="row" style="padding: 0 14px;">
-
-                    <div class="col-sm-12 row mx-auto header_bottom_boder pb-4">
-                        <div class="col-sm-12 col-md-4 pt-3">
-                            <div class="form-group img_wrapper" style="">
-                                <label id="img_label" data-toggle="tooltip" data-placement="right" title="Click to add image" for="vmimg"><i class="far fa-plus-square print_hide"></i></label>
-                                <input required id="vmimg" name="image" type="file" onchange="readURL(this);" />
-                                <img  data-toggle="tooltip" data-placement="right" title="Click center toggle to add image" style="" class="blah" id="image" src="static/No-Image-Available.png" alt="your image" />
-                                <small id="emailHelp" style="font-size: 22px;" class="form-text text-muted"></small>
+                    <div id="right" class="col-sm-12 row mx-auto header_bottom_boder pb-4">
+                        <div class="col-sm-12 col-md-8 px-0 py-0  " >
+                            <div id="ck1" class="contents">
+                                <h3>[ Business Name]</h3>
+                                <p>[ Business Address ]</p>
+                                <span class="d-flex">
+                                    <span>[ City ]</span>
+                                    <span>[ State ]</span>
+                                    <span>[ Postal Code ]</span>
+                                </span>
+                                <p>[ Phone Number ]</p>
+                                <p>[ Email Address ]</p>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 px-0 py-0  " >
-                            <label for="bs_name" class="no-label"></label>
-                            <input type="text" class="form-control no-border input_title" id="bs_name" placeholder="[ Business Name ]">
-
-                            <label for="bs_address" class="no-label"></label>
-                            <input type="text" class="form-control no-border" id="bs_address" placeholder="[ Business Address 1]">
-
-                            <label for="bs_City" class="no-label"></label>
-                            <input type="text" class="form-control no-border" id="bs_City" placeholder="[ City ]">
-
-                            <label for="bs_State" class="no-label"></label>
-                            <input type="text" class="form-control no-border" id="bs_State" placeholder="[ State ]">
-
-                            <label for="bs_Postal Code" class="no-label"></label>
-                            <input type="text" class="form-control no-border" id="bs_Postal Code" placeholder="[ Postal Code ]">
-
-                            <label for="bs_phone" class="no-label"></label>
-                            <input type="text" class="form-control no-border" id="bs_phone" placeholder="[ Phone Number ]">
-
-                            <label for="bs_email" class="no-label"></label>
-                            <input type="text" class="form-control no-border" id="bs_email" placeholder="[ Email Address ]">
-
-
+                        <div class="col-sm-12 col-md-4 pt-3">
+                            <div class="col-sm-4 col-md-12 mx-auto">
+                                <div class="form-group img_wrapper" style="">
+                                    <label id="img_label" data-toggle="tooltip" data-placement="right" title="Click to add image" for="vmimg"><i class="far fa-plus-square print_hide"></i></label>
+                                    <input required id="vmimg" name="image" type="file" onchange="readURL(this);" />
+                                    <img  data-toggle="tooltip" data-placement="right" title="Click center toggle to add image" style="" class="blah" id="image" src="static/No-Image-Available.png" alt="your image" />
+                                    <small id="emailHelp" style="font-size: 22px;" class="form-text text-muted"></small>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 ">
-                            <label for="editor_title_t" class="no-label"></label>
-                            <input  value="Receipt" type="text" class="form-control no-border input_title text-right" id="editor_title_t"  placeholder="Receipt">
+                    </div>
+                    <div style="display: none;" id="left" class="col-sm-12 row mx-auto header_bottom_boder pb-4">
+                        <div class="col-sm-12 col-md-4 pt-3">
+                            <div class="col-sm-4 col-md-12 mx-auto">
+                                <div class="form-group img_wrapper" style="">
+                                    <label id="img_label2" data-toggle="tooltip" data-placement="right" title="Click to add image" for="vmimg"><i class="far fa-plus-square print_hide"></i></label>
+                                    <input required id="vmimg2" name="image" type="file" onchange="readURL(this);" />
+                                    <img  data-toggle="tooltip" data-placement="right" title="Click center toggle to add image" style="" class="blah" id="image2" src="static/No-Image-Available.png" alt="your image" />
+                                    <small id="emailHelp2" style="font-size: 22px;" class="form-text text-muted"></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-5 px-0 py-0  " >
+                            <div id="ck2" class="contents w-100">
+                                <h3>[ Business Name]</h3>
+                                <p>[ Business Address ]</p>
+                                <span class="d-flex">
+                                    <span>[ City ]</span>
+                                    <span>[ State ]</span>
+                                    <span>[ Postal Code ]</span>
+                                </span>
+                                <p>[ Phone Number ]</p>
+                                <p>[ Email Address ]</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <div id="ck3" class="contents text-right">
+                                <h3 id="editor_title_t" >Invoice</h3>
+                            </div>
                         </div>
                     </div>
                     <div class="col-sm-12 row mx-auto py-4">
+                        <div id="work-title" class="col-sm-12 mb-3">
+                            <div id="ck4" class="contents text-right">
+                                <h3 id="editor_title_t2" >Invoice2</h3>
+                            </div>
+                        </div>
                         <div class="col-sm-12 col-md-6 row">
                             <div class="col-sm-12 col-md-4">
                                 <label for="bs_billingto" class="no-label"></label>
                                 <input type="text" class="form-control no-border input_title_sm" id="bs_billingto" placeholder="Billing To: ">
                             </div>
-                            <div class="col-sm-12 col-md-8">
-                                <label for="bs_Client" class="no-label"></label>
-                                <input type="text" class="form-control no-border " id="bs_Client" placeholder="[ Client Name ]">
-
-                                <label for="client_address" class="no-label"></label>
-                                <input type="text" class="form-control no-border" id="client_address" placeholder="[ Client Address Line 1]">
-
-                                <label for="client_City" class="no-label"></label>
-                                <input type="text" class="form-control no-border" id="client_City" placeholder="[ City ]">
-
-                                <label for="client_state" class="no-label"></label>
-                                <input type="text" class="form-control no-border" id="client_state" placeholder="[ State ]">
-
-                                <label for="client_PostalCode" class="no-label"></label>
-                                <input type="text" class="form-control no-border" id="client_PostalCode" placeholder="[ Postal Code ]">
-
+                            <div class="col-sm-12 col-md-8 p-0">
+                                <div id="ck5" class="contents text-left">
+                                    <p>[ Client Name]</p>
+                                    <p>[ Client Address Line 1 ]</p>
+                                    <span class="d-flex">
+                                        <span>[ City ]   </span>
+                                        <span>[ State ]   </span>
+                                        <span>[ Postal Code ]   </span>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div id="clone_me"  class="col-sm-12 col-md-6 ">
@@ -217,8 +243,11 @@
                         </table>
                     </div>
                     <div class="col-sm-12 row mx-auto py-2">
-                        <label for="validationTextarea" class="text-center w-100 border-bottom">Notes / Terms</label>
-                        <textarea rows="10" class="form-control no-border w-100 " id="validationTextarea" placeholder="Notes / Terms" required></textarea>
+                        <span class="text-center w-100 border-bottom">Notes / Terms</span>
+                        <div style="min-height: 100px" class="w-100" id="validationTextarea">
+                            <span>Start of Terms and Conditions ...</span>
+                        </div>
+
                     </div>
 
                 </div>
@@ -429,11 +458,12 @@
 </section>
 
 <!-- Optional JavaScript -->
-
+<!--<script src="https://cdn.ckeditor.com/ckeditor5/19.1.1/inline/ckeditor.js"></script>-->
+<script src="static/ck.js" ></script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="static/jquery351.js"></script>
+<script src="static/popper.js"></script>
+<script src="static/bootstrap.js"></script>
 <script src="static/html2pdf.js"></script>
 <script src="static/resize.js"></script>
 <script src="static/db.js" ></script>

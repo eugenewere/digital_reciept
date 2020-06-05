@@ -33,6 +33,8 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+
 $('[data-toggle="tooltip"]').tooltip();
 $('#invoice_add').click(function (e) {
     // console.log('this');
@@ -254,12 +256,15 @@ function generatePDF() {
 
     $('#downloading-loder').fadeIn('fast');
     $('.print_hide').hide();
-    var pdf_name;
-    if($('#bs_name').val().length !== 0){
-        pdf_name = $('#bs_name').val() + '.pdf';
+    var pdf_name = '';
+    if(document.getElementById('left').style.display === 'block' && document.getElementById('right').style.display === 'none'){
+        pdf_name = $('#editor_title_t').text() + '.pdf';
+        console.log(pdf_name);
+
 
     }else {
-        pdf_name = $('#editor_title_t').val() + '.pdf';
+        pdf_name = $('#editor_title_t2').text() + '.pdf';
+        console.log(pdf_name);
     }
 
     const element =document.getElementById('print_doc');
@@ -394,3 +399,48 @@ function undoDiscount(e) {
     $('#total_txt').text(localStorage.getItem('oldTotalnew'));
     $('#'+ e.id).hide();
 }
+
+
+
+var $right = $('#right');
+var $left = $('#left');
+var $workTitle = $('#work-title');
+$('#Right-Logo').click(function () {
+    $left.fadeOut(function () {
+        $right.fadeIn();
+        $workTitle.fadeIn();
+    });
+
+});
+$('#Left-logo').click(function () {
+    $right.fadeOut(function () {
+        $workTitle.fadeOut();
+        $left.fadeIn();
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
