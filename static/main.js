@@ -10,7 +10,7 @@ refreshDiscount();
 displayTax();
 $(function(){
     $('table.resizable').resizableColumns();
-})
+});
 $( "#paid_amount_input" ).keyup();
 var monthes =['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sept','Oct','Nov','Dec'];
 var today = new Date();
@@ -58,16 +58,23 @@ $('#addrow').click(function (e) {
     var new_id = 'deleteButton' + $('#table tbody tr:not(:nth-last-child(3))').length;
     var rows= $('#table tbody tr:not(:nth-last-child(3))').length + 1;
     var tr_id = 'trow'+ $('#table tbody tr:not(:nth-last-child(3))').length;
-    // console.log(tr_id);
+    var tbc = 'ckk' + ($('.table_contents').length + 1);
+    console.log(tbc);
     $('#table tbody tr:first')
         .clone()
         .insertBefore('#table tbody tr:nth-last-child(3)')
         .find('th:last')
-        .append(' <i onclick="deleteRow(this)" id="'+ new_id +'" data-toggle="tooltip" data-placement="right" title="Delete this row" class="fas fa-trash-alt text-danger print_hide"></i>')
-        .parent().attr('id', tr_id);
+        .append(
+            '<button data-toggle="tooltip" data-placement="right" title="Delete this row" onclick="deleteRow(this)" id="'+ new_id +'" class="btn btn-sm btn-danger">'+
+                '<i class="fas fa-trash-alt  print_hide"></i>'
+            +'</button>'
+        )
+        .parent().attr('id', tr_id)
+        .find('.table_contents').attr('id', tbc);
     $('#'+new_id).parent().parent().find('input').value=0;
     addItems();
     add_ammounts();
+    vuv();
 
 
 });
@@ -80,12 +87,13 @@ function insertDecimal(num) {
 }
 function addItems() {
     $('.tab_row ').each(function (event) {
-        var val_1 = $(this).find('input:eq(1)').val();
-        var val_2 = $(this).find('input:eq(2)').val();
+        var val_1 = $(this).find('input:eq(0)').val();
+        var val_2 = $(this).find('input:eq(1)').val();
         var txt_2 = $(this).find('span:eq(1)').text(val_1 * val_2);
+
         $(this).find('input').on('change', function () {
-            var val_1 = $(this).find('input:eq(1)').val();
-            var val_2 = $(this).find('input:eq(2)').val();
+            var val_1 = $(this).find('input:eq(0)').val();
+            var val_2 = $(this).find('input:eq(1)').val();
             var summ=val_1 * val_2;
             var txt_2 = $(this).find('span:eq(1)').text(summ.toFixed(2));
 
@@ -93,6 +101,7 @@ function addItems() {
 
     });
     add_ammounts();
+
 }
 addItems();
 function calculat() {
@@ -301,7 +310,7 @@ $('#paid_amount_input').keyup(function (e) {
     // console.log(paid_amount);
     // var balance_due_text = $('#balance_duee');
     var total_text = $('#total_txt').text();
-    var answer =total_text - paid_amount;
+    var answer =paid_amount - total_text  ;
     $('#balance_duee').text(answer);
 });
 
@@ -342,10 +351,12 @@ function taxTotal(e) {
     $('#'+ e.id).parent().find('i:last').show();
     var new_value = Number(oldTotal)+Number(((value_name/100)*(oldTotal)));
     $('#total_txt').text(new_value);
+    $('#paid_amount_input').keyup();
 }
 function undotaxTotal(e) {
     $('#total_txt').text(localStorage.getItem('oldTotal'));
     $('#'+ e.id).hide();
+    $('#paid_amount_input').keyup();
 }
 function displayDiscounts() {
     var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
@@ -393,11 +404,13 @@ function makeDiscount(e) {
         console.log(total);
         $('#total_txt').text(total);
     }
+    $('#paid_amount_input').keyup();
 
 }
 function undoDiscount(e) {
     $('#total_txt').text(localStorage.getItem('oldTotalnew'));
     $('#'+ e.id).hide();
+    $('#paid_amount_input').keyup();
 }
 
 

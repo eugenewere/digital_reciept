@@ -14,6 +14,12 @@
 
 <!--    <script src="static/ck-editor.js" ></script>-->
     <script src="static/ck-editor.js"></script>
+    <style>
+        .table td, .table th .table td {
+            padding:0 4px !important;vertical-align: initial !important;
+
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
@@ -59,7 +65,7 @@
     <div class="col-sm-12">
         <div class="row py-4">
 
-            <div  class="col-sm-12 col-md-12 col-lg-8 col-lg-8 p-3 mx-auto bg-whitee receipt_wrapper">
+            <div  class="col-sm-12 col-md-12 col-lg-8 col-xl-8 p-3 mx-auto bg-whitee receipt_wrapper">
                 <div id="print_doc" class="row" style="padding: 0 14px;">
                     <div id="right" class="col-sm-12 row mx-auto header_bottom_boder pb-4">
                         <div class="col-sm-12 col-md-8 px-0 py-0  " >
@@ -164,42 +170,45 @@
                         </div>
                     </div>
                     <div class="col-sm-12 row mx-auto py-4">
-                        <table  class="table table-bordered resizable" id="table">
+                        <table style=""  class="table table-bordered  resizable" id="table">
                             <thead>
                                 <tr>
-                                <th scope="col">
-                                    <input class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Description" placeholder="Description">
+                                <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
+                                    <input aria-label="l" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Description" placeholder="Description">
                                 </th>
-                                <th scope="col">
-                                    <input class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Quantity" placeholder="Quantity">
+                                <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
+                                    <input aria-label="e" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Quantity" placeholder="Quantity">
                                 </th>
-                                <th scope="col">
-                                    <input class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Unit Price" placeholder="Unit Price">
+                                <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
+                                    <input aria-label="f" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Unit Price" placeholder="Unit Price">
                                 </th>
-                                <th scope="col">
-                                    <input class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Amount" placeholder="Amount">
+                                <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
+                                    <input aria-label="v" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Amount" placeholder="Amount">
                                 </th>
-                                <th scope="col" class="print_hide"></th>
+                                <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col" class="print_hide"></th>
                             </tr>
                             </thead>
                             <tbody>
-                                <tr id="t_row1" class="tab_row">
-                                    <th scope="row">
-                                        <label for="bs_description" class="no-label"></label>
-                                        <input value="" type="text" class="form-control no-border" id="bs_description" placeholder="Service 1 Description">
+                                <tr style=" padding:0 9px !important;vertical-align: initial !important;" id="t_row1" class="tab_row">
+                                    <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="row">
+                                        <div id="ckk1" class="table_contents text-left">
+                                            <p>Product 1</p>
+                                        </div>
+<!--                                        <label for="bs_description" class="no-label"></label>-->
+<!--                                        <input value="" type="text" class="form-control no-border" id="bs_description" placeholder="">-->
                                     </th>
-                                    <th scope="row">
+                                    <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="row">
                                         <label for="bs_quantity" class="no-label"></label>
                                         <input onkeyup="calculat()" value="5" type="number" class="form-control no-border" id="bs_quantity" placeholder="1">
                                     </th>
-                                    <th scope="row">
+                                    <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="row">
                                         <label for="bs_unit_price" class="no-label"></label>
                                         <input onkeyup="calculat()" value="100" type="number" class="form-control no-border" id="bs_unit_price" placeholder="20">
                                     </th>
-                                    <th scope="row">
+                                    <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="row">
                                         <span>Ksh </span><span class="ammounts_total"></span>
                                     </th>
-                                    <th scope="row" class="print_hide">
+                                    <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="row" class="print_hide">
 
                                     </th>
                                 </tr>
@@ -210,7 +219,7 @@
                                         <button id="addrow" class="btn btn-success btn-sm print_hide" data-toggle="tooltip" data-placement="left" title="Add another row"><i class="fas fa-plus-square" ></i> Add row</button>
                                         <div class="custom-control custom-switch print_hide">
                                             <input checked="checked" name="ttt" value="off"  type="checkbox" class="custom-control-input" id="customSwitch1">
-                                            <label class="custom-control-label" for="customSwitch1"></label>
+                                            <label class="custom-control-label" for="customSwitch1">on</label>
                                         </div>
                                     </td>
                                     <td class="py-0" data-toggle="tooltip" title="Please add all items to the table before you make any tax and discount adjustments" data-placement="top">
