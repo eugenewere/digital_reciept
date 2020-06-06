@@ -121,7 +121,8 @@ textarea:focus, input:focus{
 
 
 .header_bottom_boder{
-    border-bottom: 1px dotted #575757;
+    border-bottom: 2px solid #575757;
+
 }
 
 input[type='number'] {
