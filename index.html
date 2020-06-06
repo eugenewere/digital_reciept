@@ -6,19 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+
     <link rel="stylesheet" href="static/bootstrap.css" >
     <link rel="stylesheet" href="static/main.css">
     <script src="static/fontaw.js" crossorigin="anonymous"></script>
 
     <title>Receipt Generator</title>
-
-<!--    <script src="static/ck-editor.js" ></script>-->
     <script src="static/ck-editor.js"></script>
+<!--    <script src="static/ck-editor.js" ></script>-->
     <style>
         .table td, .table th .table td {
             padding:0 4px !important;vertical-align: initial !important;
 
         }
+
     </style>
 </head>
 <body>
@@ -67,7 +68,7 @@
 
             <div  class="col-sm-12 col-md-12 col-lg-8 col-xl-8 p-3 mx-auto bg-whitee receipt_wrapper">
                 <div id="print_doc" class="row" style="padding: 0 14px;">
-                    <div id="right" class="col-sm-12 row mx-auto header_bottom_boder pb-4">
+                    <div id="right" class="col-sm-12 row mx-auto header_bottom_boder pb-2">
                         <div class="col-sm-12 col-md-8 px-0 py-0  " >
                             <div id="ck1" class="contents">
                                 <h3>[ Business Name]</h3>
@@ -118,38 +119,43 @@
                         </div>
                         <div class="col-sm-12 col-md-3">
                             <div id="ck3" class="contents text-right">
-                                <h3 id="editor_title_t" >Invoice</h3>
+                                <h3 class="m-0" id="editor_title_t" >
+                                    Invoice
+                                </h3>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 row mx-auto py-4">
+                    <div class="col-sm-12 row mx-auto ">
                         <div id="work-title" class="col-sm-12 mb-3">
                             <div id="ck4" class="contents text-right">
-                                <h3 id="editor_title_t2" >Invoice</h3>
+                                <h3 class="m-0" id="editor_title_t2" >
+                                    Invoice
+                                </h3>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-5 row">
+                        <div class="col-sm-12 col-md-7 row">
                             <div class="col-sm-12 px-0 col-md-4" style="padding-top: 9px">
                                 <label for="bs_billingto" class="no-label"></label>
                                 <input type="text" class="form-control no-border input_title_sm" id="bs_billingto" placeholder="Billing To: ">
                             </div>
                             <div class="col-sm-12 col-md-8 p-0">
                                 <div id="ck5" class="contents text-left">
-                                    <p>[ Client Name]</p>
-                                    <p>[ Client Address Line 1 ]</p>
+                                    [ Client Name]<br>
+                                    [ Client Address Line 1 ]<br>
                                     <span class="d-flex">
-                                        <span>[ City ]   </span>
-                                        <span>[ State ]   </span>
-                                        <span>[ Postal Code ]   </span>
+                                        [ City ]
+                                        [ State ]
+                                        [ Postal Code ]
+
                                     </span>
                                 </div>
                             </div>
                         </div>
-                        <div id="clone_me"  class="col-sm-12 col-md-4 ml-auto">
+                        <div id="clone_me"  class="col-sm-12 col-md-5 ">
                             <div class="row cloned">
                                 <div class="col-sm-6 text-right">
                                     <label for="bs_invoice_no" class="no-label"></label>
-                                    <input type="text" class="form-control no-border input_title_sm text-right " id="bs_invoice_no" placeholder="Invoice Number: ">
+                                    <input type="text" class="form-control no-border input_title_sm text-right " id="bs_invoice_no" placeholder="Invoice No: ">
                                 </div>
                                 <div class="col-sm-6 text-right">
                                     <label for="bs_invoice_no_text" class="no-label"></label>
