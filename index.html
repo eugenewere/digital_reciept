@@ -69,7 +69,7 @@
             <div  class="col-sm-12 col-md-12 col-lg-8 col-xl-8 p-3 mx-auto bg-whitee receipt_wrapper">
                 <div id="print_doc" class="row" style="padding: 0 14px;">
                     <div id="right" class="col-sm-12 row mx-auto header_bottom_boder pb-2">
-                        <div class="col-sm-12 col-md-8 px-0 py-0  " >
+                        <div class="col-sm-12 col-md-6 px-0 py-0  " >
                             <div id="ck1" class="contents">
                                 <h3>[ Business Name]</h3><br>
                                 [ Business Address ]<br>
@@ -84,8 +84,8 @@
 
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 pt-3">
-                            <div class="col-sm-4 col-md-12 mx-auto">
+                        <div class="px-0 col-sm-12 ml-auto col-md-5 pt-3">
+                            <div class="col mx-auto px-0">
                                 <div class="form-group img_wrapper" style="">
                                     <label id="img_label" data-toggle="tooltip" data-placement="right" title="Click to add image" for="vmimg"><i class="far fa-plus-square print_hide"></i></label>
                                     <input required id="vmimg" name="image" type="file" onchange="readURL(this);" />
@@ -137,12 +137,13 @@
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-7 row">
-                            <div class="col-sm-12 px-0 col-md-4" style="padding-top: 9px">
-                                <label for="bs_billingto" class="no-label"></label>
-                                <input type="text" class="form-control no-border input_title_sm" id="bs_billingto" placeholder="Billing To: ">
+                            <div class="col-sm-12 px-0 col-md-3" >
+                                <div id="ck6" class="contents text-left">
+                                    Billing To:
+                                </div>
                             </div>
-                            <div class="col-sm-12 col-md-8 p-0">
-                                <div id="ck5" class="contents text-left">
+                            <div class="col-sm-12 col-md-9 p-0">
+                                <div id="ck5" class="contents text-left p-0">
                                     [ Client Name]<br>
                                     [ Client Address Line 1 ]<br>
                                     <span class="d-flex">
@@ -156,21 +157,21 @@
                         </div>
                         <div id="clone_me"  class="col-sm-12 col-md-5 ">
                             <div class="row cloned">
-                                <div class="col-sm-6 text-right">
+                                <div class="col-sm-7 text-right pr-0">
                                     <label for="bs_invoice_no" class="no-label"></label>
                                     <input type="text" class="form-control no-border input_title_sm text-right " id="bs_invoice_no" placeholder="Invoice No: ">
                                 </div>
-                                <div class="col-sm-6 text-right">
+                                <div class="col-sm-5 text-right pr-0 pl-0">
                                     <label for="bs_invoice_no_text" class="no-label"></label>
                                     <input type="text" class="form-control no-border text-right" id="bs_invoice_no_text" placeholder="Invoice Number: ">
                                 </div>
                             </div>
                             <div class="row cloned">
-                                <div class="col-sm-6 text-right">
+                                <div class="col-sm-7 text-right pr-0">
                                     <label for="bs_datw" class="no-label"></label>
                                     <input type="text" class="form-control no-border input_title_sm text-right" id="bs_datw" placeholder="Date: ">
                                 </div>
-                                <div class="col-sm-6 text-right">
+                                <div class="col-sm-5 text-right pr-0 pl-0">
                                     <label for="bs_date_no_text" class="no-label"></label>
                                     <input value="" type="text" class="form-control no-border text-right" id="bs_date_no_text"  placeholder="">
                                 </div>
@@ -208,11 +209,11 @@
                                     </th>
                                     <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="row">
                                         <label for="bs_quantity" class="no-label"></label>
-                                        <input onkeyup="calculat()" value="5" type="number" class="form-control no-border" id="bs_quantity" placeholder="1">
+                                        <input onkeyup="calculat()" value="5" type="number" class="no-border" id="bs_quantity" placeholder="1">
                                     </th>
                                     <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="row">
                                         <label for="bs_unit_price" class="no-label"></label>
-                                        <input onkeyup="calculat()" value="100" type="number" class="form-control no-border" id="bs_unit_price" placeholder="20">
+                                        <input onkeyup="calculat()" value="100" type="number" class="no-border" id="bs_unit_price" placeholder="20">
                                     </th>
                                     <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="row">
                                         <span>Ksh </span><span class="ammounts_total"></span>

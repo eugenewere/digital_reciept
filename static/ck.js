@@ -23,11 +23,11 @@ InlineEditor
     .catch( error => {
         console.error( error );
     } );
-// InlineEditor
-//     .create( document.querySelector( '#ck6' ) )
-//     .catch( error => {
-//         console.error( error );
-//     } );
+InlineEditor
+    .create( document.querySelector( '#ck6' ) )
+    .catch( error => {
+        console.error( error );
+    } );
 // InlineEditor
 //     .create( document.querySelector( '#ck7' ) )
 //     .catch( error => {

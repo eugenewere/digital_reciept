@@ -48,9 +48,13 @@ html,body{
     flex-direction: column;
     position: relative;
     border-radius: 4px;
-    width: 200px;
+    width: auto;
     height: 200px;
     overflow: hidden;
+    margin-bottom: 0;
+}
+.img_wrapper img{
+    object-fit: contain;
 }
 #img_label{
     position: absolute;
