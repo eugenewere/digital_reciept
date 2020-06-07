@@ -26,9 +26,10 @@ $('#bs_date_no_text').attr('placeholder', today);
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
+        $('.blah3').hide();
+        $('.blah').show();
         reader.onload = function (e) {
-            $('.blah')
-                .attr('src', e.target.result);
+            $('.blah').attr('src', e.target.result);
         };
         reader.readAsDataURL(input.files[0]);
     }

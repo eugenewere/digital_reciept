@@ -55,6 +55,7 @@ html,body{
 }
 .img_wrapper img{
     object-fit: contain;
+    height: 200px;
 }
 #img_label{
     position: absolute;
