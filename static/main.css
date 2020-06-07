@@ -168,8 +168,8 @@ input::-webkit-inner-spin-button {
     background-color: #28a745;
 }
 .totat-print-border{
-    border-bottom: 1px solid white !important;
-    border-left: 1px solid white !important;
+    border-bottom: 1px solid #ffffff !important;
+    border-left: 1px solid #ffffff !important;
 
 }
 

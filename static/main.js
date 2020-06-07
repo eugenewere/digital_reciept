@@ -266,6 +266,7 @@ function generatePDF() {
 
     $('#downloading-loder').fadeIn('fast');
     $('.print_hide').hide();
+    $('#total_border').addClass('total_border');
     var pdf_name = '';
     if(document.getElementById('left').style.display === 'block' && document.getElementById('right').style.display === 'none'){
         pdf_name = $('#editor_title_t').text() + '.pdf';
