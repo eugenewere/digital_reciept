@@ -9,8 +9,9 @@
 
     <link rel="stylesheet" href="static/bootstrap.css" >
     <link rel="stylesheet" href="static/main.css">
-    <script src="static/fontaw.js" crossorigin="anonymous"></script>
-
+<!--    <script src="static/fontaw.js" crossorigin="anonymous"></script>-->
+    <script src="static/fonta.js" crossorigin="anonymous"></script>
+<!--    <link rel="stylesheet" href="static/fontaw.css">-->
     <title>Receipt Generator</title>
     <script src="static/ck-editor.js"></script>
 <!--    <script src="static/ck-editor.js" ></script>-->
@@ -19,18 +20,26 @@
             padding:0 4px !important;vertical-align: initial !important;
 
         }
+        .table .ck.ck-editor__editable_inline>:last-child {
+            margin-bottom:4px;
+        }
+
+         .table .ck.ck-editor__editable_inline>:first-child {
+             margin-top: 4px;
+         }
 
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+<nav id="navb" class="navbar navbar-expand-lg navbar-light bg-primary sticky-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Receipt Generator</a>
+        <a class="navbar-brand text-white" href="#">Receipt Generator</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse " id="navbarNav">
             <ul class="navbar-nav ml-auto">
+
                 <li class="nav-item px-1">
                     <a type="button"  data-toggle="modal" data-target="#exampleModal" class="nav-link btn btn-sm btn-info text-white"  href="#">Add Tax </a>
                 </li>
@@ -48,11 +57,13 @@
                         </div>
                     </div>
                 </li>
-
+                <li class="nav-item px-1">
+                    <button onclick="editContent()" class="btn btn-outline-warning">Preview</button>
+                </li>
                 <li class="nav-item px-1">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <a class="nav-link btn btn-sm btn-success text-white" onclick="generatePDF();" id="print" href="#">Download<span class="sr-only">(current)</span></a>
-                        <div id="downloading-loder" style="display: none;" class="spinner-border text-success ml-2" role="status">
+                        <a data-toggle="modal" data-target="#exampleModalsave" class="nav-link btn btn-sm btn-success text-white" id="print" href="#">Download<span class="sr-only">(current)</span></a>
+                        <div id="downloading-loder" style="display: none;" class="spinner-border text-warning ml-2" role="status">
                             <span class="sr-only">Loading...</span>
                         </div>
                     </div>
@@ -61,12 +72,36 @@
         </div>
     </div>
 </nav>
+<button style="display: none;" id="returnPage" onclick="showContent()" class="btn btn-outline-danger text-right">Return to edit page</button>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModalsave" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelsave" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="padding: 2px 8px;">
+                <h5 class="modal-title" id="exampleModalLabelsave">Save As</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="discount_value">Save As</label>
+                        <input type="text" class="form-control" id="filename" placeholder="eg invoice_a">
+                    </div>
+                </div>
+            </div>
+            <button onclick="generatePDF();" class="btn btn-outline-secondary m-2">Download</button>
+
+        </div>
+    </div>
+</div>
 <section class="w-100">
     <div class="col-sm-12">
         <div class="row py-4">
 
-            <div  class="col-sm-12 col-md-12 col-lg-8 col-xl-8 p-3 mx-auto bg-whitee receipt_wrapper">
+            <div class="col-sm-12 col-md-12 col-lg-7 col-xl-7 p-3 mx-auto bg-whitee receipt_wrapper">
                 <div id="print_doc" class="row" style="padding: 0 14px;">
                     <div id="right" class="col-sm-12 row mx-auto header_bottom_boder pb-2">
                         <div class="col-sm-12 col-md-6 px-0 py-0  " >
@@ -161,41 +196,43 @@
                             <div class="row cloned">
                                 <div class="col-sm-7 text-right pr-0">
                                     <label for="bs_invoice_no" class="no-label"></label>
-                                    <input type="text" class="form-control no-border input_title_sm text-right " id="bs_invoice_no" placeholder="Invoice No: ">
+                                    <input type="text" class="form-control no-border input_title_sm2 text-right " id="bs_invoice_no" placeholder="Invoice No: ">
                                 </div>
                                 <div class="col-sm-5 text-right pr-0 pl-0">
                                     <label for="bs_invoice_no_text" class="no-label"></label>
-                                    <input type="text" class="form-control no-border text-right" id="bs_invoice_no_text" placeholder="Invoice Number: ">
+                                    <input type="text" class="form-control no-border input_title_sm22 text-right" id="bs_invoice_no_text" placeholder="Invoice Number: ">
                                 </div>
                             </div>
                             <div class="row cloned">
                                 <div class="col-sm-7 text-right pr-0">
                                     <label for="bs_datw" class="no-label"></label>
-                                    <input type="text" class="form-control no-border input_title_sm text-right" id="bs_datw" placeholder="Date: ">
+                                    <input type="text" class="form-control no-border input_title_sm2 text-right" id="bs_datw" placeholder="Date: ">
                                 </div>
                                 <div class="col-sm-5 text-right pr-0 pl-0">
                                     <label for="bs_date_no_text" class="no-label"></label>
-                                    <input value="" type="text" class="form-control no-border text-right" id="bs_date_no_text"  placeholder="">
+                                    <input value="" type="text" class="form-control no-border input_title_sm22 text-right" id="bs_date_no_text"  placeholder="">
                                 </div>
                             </div>
-                            <i id="invoice_add" class="fas fa-plus-square text-success print_hide" data-toggle="tooltip" data-placement="left" title="Add another row"></i>
+                            <span id="invoice_add">
+                            <i  class="fas fa-plus-square text-success print_hide" data-toggle="tooltip" data-placement="left" title="Add another row"></i>
+                            </span>
                         </div>
                     </div>
                     <div class="col-sm-12 row mx-auto py-4">
                         <table style=""  class="table table-bordered  resizable" id="table">
-                            <thead>
-                                <tr>
+                            <thead >
+                                <tr style="background-color: #f6f6f6">
                                 <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
-                                    <input aria-label="l" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Description" placeholder="Description">
+                                    <input style="background-color: #f6f6f6" aria-label="l" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Description" placeholder="Description">
                                 </th>
                                 <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
-                                    <input aria-label="e" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Quantity" placeholder="Quantity">
+                                    <input style="background-color: #f6f6f6" aria-label="e" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Quantity" placeholder="Quantity">
                                 </th>
                                 <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
-                                    <input aria-label="f" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Unit Price" placeholder="Unit Price">
+                                    <input style="background-color: #f6f6f6" aria-label="f" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Unit Price" placeholder="Unit Price">
                                 </th>
                                 <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
-                                    <input aria-label="v" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Amount" placeholder="Amount">
+                                    <input style="background-color: #f6f6f6" aria-label="v" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Amount" placeholder="Amount">
                                 </th>
                                 <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col" class="print_hide"></th>
                             </tr>
@@ -237,8 +274,6 @@
                                     <td class="py-0" data-toggle="tooltip" title="Please add all items to the table before you make any tax and discount adjustments" data-placement="top">
                                         <label for="bs_Total" class="no-label"></label>
                                         <input type="text" class="form-control no-border input_title_sm text-bold-placehoder" id="bs_Total" placeholder="Total: ">
-                                        <button  data-toggle="modal" data-target="#usetax"   class="btn btn-info print_hide text-white"><span data-toggle="tooltip" title="Add Tax" data-placement="bottom">T</span></button>
-                                        <button data-toggle="modal" data-target="#usediscount"   class="btn btn-warning print_hide text-white"><span data-toggle="tooltip" title="Add Discount" data-placement="bottom">D</span></button>
 
                                     </td>
                                     <td colspan="2" class="text-bold-custom">
@@ -272,9 +307,9 @@
                         </table>
                     </div>
                     <div class="col-sm-12 row mx-auto py-2">
-                        <span class="text-center w-100 border-bottom">Notes / Terms</span>
-                        <div style="min-height: 100px" class="w-100" id="validationTextarea">
-                            <span>Start of Terms and Conditions ...</span>
+                        <span class="text-left w-100 border-bottom">Notes / Terms</span>
+                        <div style="min-height: 100px" class="w-100 text-left" id="validationTextarea">
+
                         </div>
 
                     </div>
@@ -321,6 +356,12 @@
                                         <label for="tax_input">Tax</label>
                                         <input type="number" class="form-control" id="tax_input" placeholder="amount">
                                     </div>
+                                    <div class="row" style="padding: 10px;">
+                                        <button type="button" id="tax_form_submit" class="btn btn-sm btn-primary mr-3">Save </button>
+                                        <div style="display: none" id="spinner" class="spinner-border text-success" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <table class="table">
@@ -341,11 +382,11 @@
                             </div>
 
                             <div class="row px-4">
+                                <button  data-toggle="modal" data-target="#usetax"   class="btn btn-info print_hide text-white mr-1">
+                                    <span data-toggle="tooltip" title="Add Tax" data-placement="bottom">Apply Tax</span>
+                                </button>
 
-                                <button type="button" id="tax_form_submit" class="btn btn-sm btn-primary mr-3">Save </button>
-                                <div style="display: none" id="spinner" class="spinner-border text-success" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
+
                             </div>
                         </div>
 
@@ -375,6 +416,8 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
+
+
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
@@ -388,6 +431,12 @@
                                     <div class="form-group">
                                         <label for="discount_value">Discount Value</label>
                                         <input type="number" class="form-control" id="discount_value" placeholder="value">
+                                    </div>
+                                    <div class="row" style="padding: 10px;">
+                                        <button type="button" id="discount_form_submit" class="btn btn-sm btn-primary mr-3">Save </button>
+                                        <div style="display: none" id="discount_spinner" class="spinner-border text-success" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -409,11 +458,7 @@
                             </div>
 
                             <div class="row px-4">
-
-                                <button type="button" id="discount_form_submit" class="btn btn-sm btn-primary mr-3">Save </button>
-                                <div style="display: none" id="discount_spinner" class="spinner-border text-success" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
+                                <button data-toggle="modal" data-target="#usediscount"   class="btn btn-warning print_hide text-white"><span data-toggle="tooltip" title="Add Discount" data-placement="bottom">Apply Discount</span></button>
                             </div>
                         </div>
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+@import url('fontaw.css');
 html,body{
     box-sizing: content-box;
     margin: 0;
@@ -120,6 +120,23 @@ textarea:focus, input:focus{
     font-size: 17px;
     color: black;
 }
+.input_title_sm2::placeholder{
+    font-size: 15px;
+    color: black;
+}
+.input_title_sm2{
+    font-size: 15px;
+    color: black;
+}
+.input_title_sm22::placeholder{
+    font-size: 15px;
+
+}
+.input_title_sm22{
+    font-size: 15px;
+
+}
+
 .text-bold-placehoder, .text-bold-placehoder::placeholder{
     font-weight: bold;
 }

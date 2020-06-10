@@ -11,17 +11,22 @@ displayTax();
 $(function(){
     $('table.resizable').resizableColumns();
 });
-$( "#paid_amount_input" ).keyup();
-var monthes =['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sept','Oct','Nov','Dec'];
-var today = new Date();
-var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth()).padStart(2, '0'); //January is 0!
-// var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-var yyyy = today.getFullYear();
-// console.log();
-today =monthes[Number(mm)]+ '/' + dd + '/' + yyyy;
-$('#bs_date_no_text').attr('placeholder', today);
 
+// function collectDate() {
+    var monthes =['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sept','Oct','Nov','Dec'];
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth()).padStart(2, '0'); //January is 0!
+// var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+// console.log();
+    today =monthes[Number(mm)]+ '/' + dd + '/' + yyyy;
+// $('#bs_date_no_text').attr('placeholder', today);
+  $('#bs_date_no_text').attr('placeholder', today);
+  $('#bs_date_no_text').attr('value', today);
+    console.log(today);
+
+// }
 
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -35,10 +40,36 @@ function readURL(input) {
     }
 }
 
+function editContent(){
+    $('.print_hide').fadeOut();
+    $('#navb').slideUp();
+    $('#returnPage').show();
+
+}
+function showContent(){
+    $('.print_hide').fadeIn();
+    $('#navb').slideDown();
+    $('#returnPage').fadeOut();
+}
 
 $('[data-toggle="tooltip"]').tooltip();
+// $('#invoice_add').click(function (e) {
+//     console.log('this');
+//     var id1= 'cdd' + (document.getElementsByClassName('cloned_contents1').length + 1);
+//     var id2= 'cddd' + (document.getElementsByClassName('cloned_contents2').length + 1);
+//     $('#clone_me div:first')
+//         .clone()
+//         .insertAfter('#clone_me > div:last')
+//         .find('.kesk span').text('-----')
+//         .parent().parent().parent()
+//         .find('.cloned_contents1:last').attr('id', id1)
+//         .parent().parent().parent()
+//         .find('.cloned_contents2:last').attr('id', id2);
+//
+//     $('#delinv').show();
+// });
 $('#invoice_add').click(function (e) {
-    // console.log('this');
+    console.log('this');
     $('#clone_me div:first')
         .clone()
         .insertAfter('#clone_me > div:last')
@@ -46,13 +77,22 @@ $('#invoice_add').click(function (e) {
         .parent()
         .parent()
         .append(
-              '<i style="margin-left: auto;" onclick="deleteRow2(this)" class="fas fa-trash text-danger print_hide" data-toggle="tooltip" data-placement="right" title="Delete top row"></i>'
+            '<i style="margin-left: auto;" onclick="deleteRow2(this)" class="fas fa-trash text-danger print_hide" data-toggle="tooltip" data-placement="right" title="Delete top row"></i>'
         );
 
 
 });
+
+// <i id="deleteinvose" style="margin-left: auto;  "  class="fas fa-trash text-danger print_hide" data-toggle="tooltip" data-placement="right" title="Delete top row"></i>
 function deleteRow2(e){
     e.parentElement.style.display ='none';
+    // $('.cloned:last').remove();
+    // console.log($('.cloned').length);
+    // if($('.cloned').length === 2){
+    //     $('#delinv').hide();
+    // }else {
+    //     $('#delinv').show();
+    // }
 
 }
 $('#addrow').click(function (e) {
@@ -119,14 +159,18 @@ function add_ammounts(){
     $( "#paid_amount_input" ).keyup();
 }
 add_ammounts();
-function printContent(printpage){
+function printContent(){
+    var $printDoc = $('#print_doc');
+    $('.print_hide').hide();
+    $('#total_border').addClass('total_border');
     var headstr = "<html><head><title></title></head><body><nav></nav>";
     var footstr = "</body>";
-    var newstr = $(printpage).html();
+    var newstr = $($printDoc).html();
     var oldstr = document.body.innerHTML;
     document.body.innerHTML = headstr + newstr + footstr;
     window.print();
     document.body.innerHTML = oldstr;
+    setTimeout(retunObje, 5000);
     return false;
 }
 $('#tax_form_submit').click(function (e) {
@@ -267,16 +311,17 @@ function generatePDF() {
     $('#downloading-loder').fadeIn('fast');
     $('.print_hide').hide();
     $('#total_border').addClass('total_border');
-    var pdf_name = '';
-    if(document.getElementById('left').style.display === 'block' && document.getElementById('right').style.display === 'none'){
-        pdf_name = $('#editor_title_t').text() + '.pdf';
-        console.log(pdf_name);
-
+    $('#exampleModalsave').modal('hide');
+    var pdf_name;
+    if ($('#filename').val()){
+        var str = $('#filename').val();
+        var regex = /[.,\s]/g;
+        pdf_name = str.replace(regex, '');
 
     }else {
-        pdf_name = $('#editor_title_t2').text() + '.pdf';
-        console.log(pdf_name);
+        pdf_name ='pdf';
     }
+
 
     const element =document.getElementById('print_doc');
     var opt = {
@@ -312,7 +357,7 @@ $('#paid_amount_input').keyup(function (e) {
     // console.log(paid_amount);
     // var balance_due_text = $('#balance_duee');
     var total_text = $('#total_txt').text();
-    var answer =paid_amount - total_text  ;
+    var answer =total_text-paid_amount;
     $('#balance_duee').text(answer);
 });
 

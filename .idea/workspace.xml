@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="264753fe-9beb-4802-82ce-ff431a05d361" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/static/fonta.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/fontaw.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ck.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ck.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.js" afterDir="false" />
     </list>
@@ -30,7 +34,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
@@ -76,7 +80,8 @@
       <workItem from="1591272657047" duration="152000" />
       <workItem from="1591353592979" duration="13266000" />
       <workItem from="1591461997946" duration="457000" />
-      <workItem from="1591476292179" duration="16644000" />
+      <workItem from="1591476292179" duration="17525000" />
+      <workItem from="1591792030777" duration="28911000" />
     </task>
     <servers />
   </component>
