@@ -80,7 +80,7 @@ $('#invoice_add').click(function (e) {
             '<i style="margin-left: auto;" onclick="deleteRow2(this)" class="fas fa-trash text-danger print_hide" data-toggle="tooltip" data-placement="right" title="Delete top row"></i>'
         );
 
-
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 // <i id="deleteinvose" style="margin-left: auto;  "  class="fas fa-trash text-danger print_hide" data-toggle="tooltip" data-placement="right" title="Delete top row"></i>
