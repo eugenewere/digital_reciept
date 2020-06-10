@@ -77,7 +77,10 @@ function vuv() {
     for(x of tab_contents){
         var id = '#' + x.id;
         InlineEditor
-        .create( document.querySelector( id ) )
+        .create( document.querySelector( id ),{
+            removePlugins: [ 'Insert image', 'Insert table', 'blockQuote', 'numberedList' ],
+            toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList', ]
+        } )
         .catch( error => {
             console.error( error );
         } );
