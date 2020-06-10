@@ -1,31 +1,49 @@
 // collectDate();
 InlineEditor
-    .create( document.querySelector( '#ck1' ) )
+    .create( document.querySelector( '#ck1' ),{
+            removePlugins: [ 'Insert image', 'Insert table', 'blockQuote', 'numberedList' ],
+            toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList', ]
+        }  )
     .catch( error => {
         console.error( error );
     } );
 InlineEditor
-    .create( document.querySelector( '#ck2' ) )
+    .create( document.querySelector( '#ck2' ),{
+            removePlugins: [ 'Insert image', 'Insert table', 'blockQuote', 'numberedList' ],
+            toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList', ]
+        }  )
     .catch( error => {
         console.error( error );
     } );
 InlineEditor
-    .create( document.querySelector( '#ck3' ) )
+    .create( document.querySelector( '#ck3' ),{
+            removePlugins: [ 'Insert image', 'Insert table', 'blockQuote', 'numberedList' ],
+            toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList', ]
+        }  )
     .catch( error => {
         console.error( error );
     } );
 InlineEditor
-    .create( document.querySelector( '#ck4' ) )
+    .create( document.querySelector( '#ck4' ),{
+            removePlugins: [ 'Insert image', 'Insert table', 'blockQuote', 'numberedList' ],
+            toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList', ]
+        }  )
     .catch( error => {
         console.error( error );
     } );
 InlineEditor
-    .create( document.querySelector( '#ck5' ) )
+    .create( document.querySelector( '#ck5' ),{
+            removePlugins: [ 'Insert image', 'Insert table', 'blockQuote', 'numberedList' ],
+            toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList', ]
+        }  )
     .catch( error => {
         console.error( error );
     } );
 InlineEditor
-    .create( document.querySelector( '#ck6' ) )
+    .create( document.querySelector( '#ck6' ),{
+            removePlugins: [ 'Insert image', 'Insert table', 'blockQuote', 'numberedList' ],
+            toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList', ]
+        }  )
     .catch( error => {
         console.error( error );
     } );
