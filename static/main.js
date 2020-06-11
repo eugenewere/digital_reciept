@@ -347,8 +347,10 @@ $('input[type="checkbox"]').on('click', function(){
     propState === true ? propState = false : propState = true; // ternary operation. If box is checked uncheck it. if it is not checked check it.
     if(propState === false){
         $('.checkbox-click-hide').fadeIn();
+        $('#labellll').text('on');
     }else if(propState === true){
         $('.checkbox-click-hide').fadeOut();
+        $('#labellll').text('off');
     }
 });
 
