@@ -419,12 +419,18 @@ function checkfortax() {
                 $('.no-extra-hide').show();
                 $('.rrr').attr('colspan', 4);
                 $('#subtotal_row').show();
+                $('.disco').attr('colspan', 4);
+
             }
             else {
                 $('.no-tax-hide').hide();
                 $('.no-extra-hide').hide();
                 $('.rrr').attr('colspan', 2);
                 $('#subtotal_row').hide();
+                $('.disco').attr('colspan', 2);
+                if($('.discountclass').length > 0){
+                    $('#subtotal_row').show();
+                }
             }
         });
     });
@@ -466,10 +472,7 @@ function calculateTaxTwo(e) {
             }
         });
     });
-
-    finalltaxdiscountmath()
-
-
+    finalltaxdiscountmath();
 }
 function calculateTaxOne(e) {
     // console.log(e.id);
@@ -534,6 +537,7 @@ tabletax();
 
 
 $('#discount_form_submit').click(function (e) {
+    checkfortax();
 
     var discount_value = $("#discount_value").val();
     var discount_name = $("#discount_name").val();
@@ -551,8 +555,9 @@ $('#discount_form_submit').click(function (e) {
         $('.discountclass').find('.doit').text(summ);
     }else {
         // console.log('else');
+
         var htmll = '<tr  class="discountclass">' +
-            '<td style="border-bottom-color: #ffffff;border-left-color: #ffffff" class="py-0 rrr" colspan="4"></td>' +
+            '<td style="border-bottom-color: #ffffff;border-left-color: #ffffff" class="py-0 disco" colspan="4"></td>' +
             '<td class="py-0">' +
             '<label for="bs_subTotall" class="no-label"></label>' +
             '<input type="text" value="Discount:" class="form-control no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotall" placeholder="Discount:">' +
@@ -682,7 +687,9 @@ function finalltaxdiscountmath(){
     console.log(itma);
     $('#total_txt').text(
         Number($('#subtotal_txt').text())+eval(itma.join('+'))
-    )
+    );
+    // $('#subtotal_row').show();
+
 
 }
 

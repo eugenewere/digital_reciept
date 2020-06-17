@@ -20,7 +20,7 @@ vuv();
 InlineEditor
     .create( document.querySelector( '#ck1' ),{
             removePlugins: [ 'Insert image', 'Insert table', 'blockQuote', 'numberedList' ],
-            toolbar: [ 'heading', 'bold', 'italic', 'bulletedList', 'numberedList', 'fontFamily', 'undo', 'redo',],
+            toolbar: [ 'heading', 'bold', 'italic', 'bulletedList', 'numberedList', 'undo', 'redo',],
 
         }  )
 
@@ -30,7 +30,7 @@ InlineEditor
 InlineEditor
     .create( document.querySelector( '#ck2' ),{
             removePlugins: [ 'Insert image', 'Insert table', 'blockQuote', 'numberedList' ],
-            toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList','font' ]
+            toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList' ]
         }  )
     .catch( error => {
         console.error( error );
@@ -38,7 +38,7 @@ InlineEditor
 InlineEditor
     .create( document.querySelector( '#ck3' ),{
             removePlugins: [ 'Insert image', 'Insert table', 'blockQuote', 'numberedList' ],
-            toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList','font' ]
+            toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList' ]
         }  )
     .catch( error => {
         console.error( error );
