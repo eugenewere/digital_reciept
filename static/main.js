@@ -488,7 +488,7 @@ function calculateTaxOne(e) {
                 if(! $('.'+ kkk).length !== 0 ) {
                     if (e.options[e.selectedIndex].text !== 'Choose') {
                         var html = '<tr data-taxsub="'+ kkk +'" class="tax-sub ' +kkk+ '">' +
-                            '<td style="border-bottom-color: #ffffff;border-left-color: #ffffff" class="py-0 rrr" colspan="4"></td>' +
+                            '<td style="border-bottom-color: #ffffff;border-left-color: #ffffff; border-top-color: #ffffff;" class="py-0 rrr" colspan="4"></td>' +
                             '<td class="py-0">' +
                             '<label for="bs_subTotal" class="no-label"></label>' +
                             '<input type="text" value="' + kkk.toUpperCase() + ':" class="form-control no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="' + kkk.toUpperCase() + ':">' +
@@ -502,10 +502,12 @@ function calculateTaxOne(e) {
                             '</td>' +
                             '</tr>';
                         $(html).insertAfter('.tax-sub:last');
-
+                    }else {
+                        console.log('Choosen');
                     }
                 }else {
                     console.log('exist');
+
                 }
             }
         }
@@ -513,7 +515,7 @@ function calculateTaxOne(e) {
     else {
         console.log('first');
         var html =  '<tr data-taxsub="'+ kkk +'" class="tax-sub ' + kkk + '">' +
-            '<td style="border-bottom-color: #ffffff;border-left-color: #ffffff" class="py-0 rrr" colspan="4"></td>'+
+            '<td style="border-bottom-color: #ffffff;border-left-color: #ffffff; border-top-color: #ffffff;" class="py-0 rrr" colspan="4"></td>'+
             '<td class="py-0">'+
             ' <label for="bs_subTotal" class="no-label"></label>'+
             '<input type="text" value="'+ kkk.toUpperCase() +':" class="form-control no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="'+ kkk.toUpperCase() +':">'+
@@ -527,9 +529,11 @@ function calculateTaxOne(e) {
             '</td>'+
             '</tr>';
         $(html).insertAfter('.tax-sub:last');
-        finalltaxdiscountmath()
     }
     // recalculatetax(kkk);
+    // finalltaxdiscountmath();
+
+
 }
 checkfortax();
 tabletax();
@@ -557,7 +561,7 @@ $('#discount_form_submit').click(function (e) {
         // console.log('else');
 
         var htmll = '<tr  class="discountclass">' +
-            '<td style="border-bottom-color: #ffffff;border-left-color: #ffffff" class="py-0 disco" colspan="4"></td>' +
+            '<td style="border-bottom-color: #ffffff; border-left-color: #ffffff; border-top-color: #ffffff;" class="py-0 disco" colspan="4"></td>' +
             '<td class="py-0">' +
             '<label for="bs_subTotall" class="no-label"></label>' +
             '<input type="text" value="Discount:" class="form-control no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotall" placeholder="Discount:">' +
@@ -680,11 +684,12 @@ displayDiscounts();
 function finalltaxdiscountmath(){
     var itma =[];
     for( v of $('.xui')){
+        console.log(v);
         // console.log(v.innerText);
         itma.push(Number(v.innerText));
 
     }
-    console.log(itma);
+    console.log('this is'+itma);
     $('#total_txt').text(
         Number($('#subtotal_txt').text())+eval(itma.join('+'))
     );
