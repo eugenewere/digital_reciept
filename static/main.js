@@ -1,13 +1,8 @@
-
-// function taxSet(){
-//     localStorage.getItem('tax_value') ?  $('#modal_tax, #tax').text(localStorage.getItem('tax_value')):  $('#modal_tax, #tax').text(0);
-// }
-// taxSet();
-
-// $('#modal_tax, #tax').text();
+checkfortax();
 refreshTax();
 refreshDiscount();
 displayTax();
+
 $(function(){
     $('table.resizable').resizableColumns();
 });
@@ -16,8 +11,7 @@ $(function(){
     var monthes =['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sept','Oct','Nov','Dec'];
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth()).padStart(2, '0'); //January is 0!
-// var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var mm = String(today.getMonth()).padStart(2, '0');
     var yyyy = today.getFullYear();
 // console.log();
     today =monthes[Number(mm)]+ '/' + dd + '/' + yyyy;
@@ -27,6 +21,8 @@ $(function(){
     console.log(today);
 
 // }
+
+
 
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -41,33 +37,45 @@ function readURL(input) {
 }
 
 function editContent(){
+    var rrr_colspan= $('.rrr').attr('colspan');
     $('.print_hide').fadeOut();
+
     $('#navb').slideUp();
     $('#returnPage').show();
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    $('#tax_tbody_aa').html(' ');
+    db.transaction(function (tx) {
+        tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
+            if(results.rows.length > 0) {
+                var n = Number(rrr_colspan)-2;
+                console.log(n);
+                $('.print_hide2').fadeOut();
+                $('.rrr').attr('colspan', n);
+            }
+        });
+    });
 
 }
 function showContent(){
+    var rrr_colspan= $('.rrr').attr('colspan');
     $('.print_hide').fadeIn();
     $('#navb').slideDown();
     $('#returnPage').fadeOut();
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    $('#tax_tbody_aa').html(' ');
+    db.transaction(function (tx) {
+        tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
+            if(results.rows.length > 0) {
+                var n = Number(rrr_colspan)+2;
+                console.log(n);
+                $('.print_hide2').fadeIn();
+                $('.rrr').attr('colspan', n);
+            }
+        });
+    });
 }
 
 $('[data-toggle="tooltip"]').tooltip();
-// $('#invoice_add').click(function (e) {
-//     console.log('this');
-//     var id1= 'cdd' + (document.getElementsByClassName('cloned_contents1').length + 1);
-//     var id2= 'cddd' + (document.getElementsByClassName('cloned_contents2').length + 1);
-//     $('#clone_me div:first')
-//         .clone()
-//         .insertAfter('#clone_me > div:last')
-//         .find('.kesk span').text('-----')
-//         .parent().parent().parent()
-//         .find('.cloned_contents1:last').attr('id', id1)
-//         .parent().parent().parent()
-//         .find('.cloned_contents2:last').attr('id', id2);
-//
-//     $('#delinv').show();
-// });
 $('#invoice_add').click(function (e) {
     console.log('this');
     $('#clone_me div:first')
@@ -100,10 +108,10 @@ $('#addrow').click(function (e) {
     var rows= $('#table tbody tr:not(:nth-last-child(3))').length + 1;
     var tr_id = 'trow'+ $('#table tbody tr:not(:nth-last-child(3))').length;
     var tbc = 'ckk' + ($('.table_contents').length + 1);
-    console.log(tbc);
+    // console.log(tbc);
     $('#table tbody tr:first')
         .clone()
-        .insertBefore('#table tbody tr:nth-last-child(3)')
+        .insertAfter('.tab_row:last')
         .find('th:last')
         .append(
             '<button data-toggle="tooltip" data-placement="right" title="Delete this row" onclick="deleteRow(this)" id="'+ new_id +'" class="btn btn-sm btn-danger">'+
@@ -112,13 +120,14 @@ $('#addrow').click(function (e) {
         )
         .parent().attr('id', tr_id)
         .find('.table_contents').attr('id', tbc);
-    $('#'+new_id).parent().parent().find('input').value=0;
+    $('#'+new_id).parent().parent().find('input').value= 0;
     addItems();
     add_ammounts();
+    tabletax();
     vuv();
-
-
 });
+
+
 function deleteRow(e) {
     $('#'+ e.id).parent().parent().hide();
     add_ammounts();
@@ -148,17 +157,20 @@ addItems();
 function calculat() {
     addItems();
 }
-
 function add_ammounts(){
     var ammounts = [];
     $('.tab_row:visible .ammounts_total').each(function () {
        ammounts.push(this.innerText);
     });
 
-    $('#total_txt').text(eval(ammounts.join('+')));
+    $('#subtotal_txt').text(eval(ammounts.join('+')));
     $( "#paid_amount_input" ).keyup();
+    totalAmount();
 }
 add_ammounts();
+function totalAmount() {
+    $('#total_txt').text( $('#subtotal_txt').text());
+}
 function printContent(){
     var $printDoc = $('#print_doc');
     $('.print_hide').hide();
@@ -172,138 +184,6 @@ function printContent(){
     document.body.innerHTML = oldstr;
     setTimeout(retunObje, 5000);
     return false;
-}
-$('#tax_form_submit').click(function (e) {
-   var tax_value = $("#tax_input").val();
-   var tax_name = $("#tax_name").val();
-    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
-   // console.log(tax);
-   if(tax_value.length === 0 && tax_name.length === 0){
-       $('#alert_dangerr').fadeIn()
-   }else {
-       $('#alert_dangerr').fadeOut();
-       $('#spinner').show();
-       // setTimeout(localStorage.setItem(tax_name, tax),3000);
-       db.transaction(function (tx) {
-           tx.executeSql("INSERT INTO taxvalues (name, value) VALUES (?,?)", [tax_name, tax_value]);
-       });
-       $('#spinner').fadeOut();
-       $('#alert_success').fadeIn();
-   }
-    displayTax();
-    refreshTax();
-});
-function deleteTax(event){
-    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
-    console.log();
-    var db_id = $('#'+ event.id).parent().parent().find('th:first').text();
-    console.log(db_id);
-    db.transaction(function(tx) {
-        tx.executeSql('delete from taxvalues where rowid=?', [db_id], function(transaction, result) {
-            console.log(result);
-            console.info('Record Deleted Successfully!');
-        }, function(transaction, error) {
-            console.log(error);
-        });
-    }, transError, transSuccess);
-
-    function transError() {
-
-    }function transSuccess() {
-
-    }
-    displayTax();
-    displayDiscounts();
-
-}
-function refreshTax(){
-    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
-    $('#tax_tbody').html(' ');
-    db.transaction(function (tx) {
-        tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
-            if(results.rows.length > 0) {
-                for(var i = 0; i < results.rows.length; i++) {
-                    // console.log("Result -> " + results.rows.item(i).firstname + " " + results.rows.item(i).lastname);
-                    var id_row = i + 1;
-                    $('#tax_tbody').append(
-                        ' <tr id="'+"tax"+ i +'">'+
-                            '<th scope="row">'+ id_row +'</th>'+
-                            '<td>'+ results.rows.item(i).name +'</td>'+
-                            '<td>'+ results.rows.item(i).value +'</td>'+
-                            '<td>'+
-                                '<i id="'+"t_delete" + i +'" style="margin-left: auto;" onclick="deleteTax(this)" class="fas fa-trash text-danger " data-toggle="tooltip" data-placement="right" title="Delete top row"></i>'
-                            +'</td>'+
-                        '</tr>')
-                }
-            }
-        });
-    });
-
-}
-$('#discount_form_submit').click(function (e) {
-
-    var discount_value = $("#discount_value").val();
-    var discount_name = $("#discount_name").val();
-    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
-    console.log(discount_name, discount_value);
-    if(discount_value.length === 0 && discount_name.length === 0){
-        $('#alert_dangerr2').fadeIn()
-    }else {
-        $('#alert_dangerr2').fadeOut();
-        $('#discount_spinner').show();
-        db.transaction(function (tx) {
-            tx.executeSql("INSERT INTO discount (name, value) VALUES (?,?)", [discount_name, discount_value]);
-        });
-        $('#discount_spinner').fadeOut();
-        $('#alert_success2').fadeIn();
-    }
-    displayDiscounts();
-    refreshDiscount();
-});
-function refreshDiscount(){
-    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
-    $('#discount_tbody').html(' ');
-    db.transaction(function (tx) {
-        tx.executeSql("SELECT name, value FROM discount", [], function(tx, results) {
-            if(results.rows.length > 0) {
-                for(var i = 0; i < results.rows.length; i++) {
-                    // console.log("Result -> " + results.rows.item(i).firstname + " " + results.rows.item(i).lastname);
-                    var id_row = i + 1;
-                    $('#discount_tbody').append(
-                        ' <tr id="'+"discount"+ i +'">'+
-                            '<th scope="row">'+ id_row +'</th>'+
-                            '<td>'+ results.rows.item(i).name +'</td>'+
-                            '<td>'+ results.rows.item(i).value +'</td>'+
-                            '<td>'+
-                            '<i id="'+"discount_delete" + i +'" style="margin-left: auto;" onclick="deleteDiscount(this)" class="fas fa-trash text-danger " data-toggle="tooltip" data-placement="right" title="Delete discount"></i>'
-                            +'</td>'+
-                        '</tr>')
-                }
-            }
-        });
-    });
-}
-function deleteDiscount(event){
-    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
-    console.log();
-    var db_id = $('#'+ event.id).parent().parent().find('th:first').text();
-    console.log(db_id);
-    db.transaction(function(tx) {
-        tx.executeSql('delete from discount where rowid=?', [db_id], function(transaction, result) {
-            console.log(result);
-            console.info('Record Deleted Successfully!');
-        }, function(transaction, error) {
-            console.log(error);
-        });
-    }, transError, transSuccess);
-
-    function transError() {
-
-    }function transSuccess() {
-
-    }
-    refreshDiscount();
-    displayDiscounts();
 }
 function generatePDF() {
     // $('#total_border').addClass('totat-print-border');
@@ -353,7 +233,6 @@ $('input[type="checkbox"]').on('click', function(){
         $('#labellll').text('off');
     }
 });
-
 $('#paid_amount_input').keyup(function (e) {
     var paid_amount = $('#paid_amount_input').val();
     // console.log(paid_amount);
@@ -363,6 +242,84 @@ $('#paid_amount_input').keyup(function (e) {
     $('#balance_duee').text(answer);
 });
 
+
+
+
+
+$('#tax_form_submit').click(function (e) {
+    var tax_value = $("#tax_input").val();
+    var tax_name = $("#tax_name").val();
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    // console.log(tax);
+    if(tax_value.length === 0 && tax_name.length === 0){
+        $('#alert_dangerr').fadeIn()
+    }else {
+        $('#alert_dangerr').fadeOut();
+        $('#spinner').show();
+        // setTimeout(localStorage.setItem(tax_name, tax),3000);
+        db.transaction(function (tx) {
+            tx.executeSql("INSERT INTO taxvalues (name, value) VALUES (?,?)", [tax_name, tax_value]);
+        });
+        $('#spinner').fadeOut();
+        $('#alert_success').fadeIn();
+    }
+    displayTax();
+    refreshTax();
+    checkfortax();
+    tabletax();
+});
+function deleteTax(event){
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    console.log();
+    var db_id = $('#'+ event.id).parent().parent().find('td:first').text();
+    console.log(db_id);
+    // var dbid = $('#'+ event.id).attr('data-rowid');
+    // var iii = String(event.id);
+    // var dbid = document.getElementById(String(event.id)).dataset.rowid;
+    // console.log(dbi, iii);
+    db.transaction(function(tx) {
+        tx.executeSql('delete from taxvalues where name=?', [db_id], function(transaction, result) {
+            console.log(result);
+            console.info('Record Deleted Successfully!');
+        }, function(transaction, error) {
+            console.log(error);
+        });
+    }, transError, transSuccess);
+
+    function transError() {}
+    function transSuccess() {
+
+    }
+    displayTax();
+    refreshTax();
+    tabletax();
+    checkfortax();
+
+}
+function refreshTax(){
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    $('#tax_tbody').html(' ');
+    db.transaction(function (tx) {
+        tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
+            if(results.rows.length > 0) {
+                for(var i = 0; i < results.rows.length; i++) {
+                    // console.log("Result -> " + results.rows.item(i).firstname + " " + results.rows.item(i).lastname);
+                    var id_row = i + 1;
+                    $('#tax_tbody').append(
+                        ' <tr id="'+"tax"+ i +'">'+
+                            '<th scope="row">'+ id_row +'</th>'+
+                            '<td>'+ results.rows.item(i).name +'</td>'+
+                            '<td>'+ results.rows.item(i).value +'</td>'+
+                            '<td>'+
+                            '<i id="'+"t_delete" + i +'" data-rowid="'+ results.rows.item(i).rowid +'" style="margin-left: auto;" onclick="deleteTax(this)" class="fas fa-trash text-danger " data-toggle="tooltip" data-placement="right" title="Delete top row"></i>'
+                            +'</td>'+
+                        '</tr>')
+                }
+            }
+        });
+    });
+
+}
 function displayTax() {
     var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
     $('#tax_tbody_aa').html(' ');
@@ -390,7 +347,52 @@ function displayTax() {
         });
     });
 }
+function tabletax() {
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    $('#tax_tbody_aa').html(' ');
+    db.transaction(function (tx) {
+        tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
+            if(results.rows.length > 0) {
+                var id = $('.tax-dropdown').length;
+                // console.log(id);
+                var myid = "table_tax_id_" + id ;
+                $('.tax-dropdown:last').html(' ');
+                $('.tax-dropdown:last').each(function () {
+                    $(this).append(
+                        ' <option class="op1" selected value="default">Choose</option>'
+                    );
+                    for(var i = 0; i < results.rows.length; i++) {
 
+                        $(this).append(
+                            '<option value="'+ results.rows.item(i).value +'">'+ results.rows.item(i).name +'</option>'
+                        )
+
+                    }
+                    $('.tax-dropdown:last').attr('id', myid);
+                    id++;
+                })
+                var id2 = $('.extra-tax-select').length;
+                // console.log(id2);
+                var myid2 = "table_extratax_id_" + id2 ;
+                $('.extra-tax-select:last').html(' ');
+                $('.extra-tax-select:last').each(function () {
+                    $(this).append(
+                        ' <option class="op1" selected value="0">Choose</option>'
+                    );
+                    for(var i = 0; i < results.rows.length; i++) {
+
+                        $(this).append(
+                            '<option value="'+ results.rows.item(i).value +'">'+ results.rows.item(i).name +'</option>'
+                        )
+                    }
+                    $('.extra-tax-select:last').attr('id', myid2);
+                    id++;
+                })
+
+            }
+        });
+    });
+}
 function taxTotal(e) {
     var oldTotal =  $('#total_txt').text();
     localStorage.setItem('oldTotal', oldTotal);
@@ -406,6 +408,213 @@ function undotaxTotal(e) {
     $('#total_txt').text(localStorage.getItem('oldTotal'));
     $('#'+ e.id).hide();
     $('#paid_amount_input').keyup();
+}
+function checkfortax() {
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    $('#tax_tbody_aa').html(' ');
+    db.transaction(function (tx) {
+        tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
+            if(results.rows.length > 0) {
+                $('.no-tax-hide').show();
+                $('.no-extra-hide').show();
+                $('.rrr').attr('colspan', 4);
+                $('#subtotal_row').show();
+            }
+            else {
+                $('.no-tax-hide').hide();
+                $('.no-extra-hide').hide();
+                $('.rrr').attr('colspan', 2);
+                $('#subtotal_row').hide();
+            }
+        });
+    });
+}
+// var last_text;
+// var last_val;
+function calculateTaxTwo(e) {
+    var tax_name = [];
+    $('.calcit').each(function () {
+        if(this.options[this.selectedIndex].text !== 'Choose'){
+            tax_name.push(this.options[this.selectedIndex].text)
+        }
+    });
+    var hist = {};
+    tax_name.map( function (a) { if (a in hist) hist[a] ++; else hist[a] = 1; } );
+    // console.log( JSON.parse(JSON.stringify(hist)));
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+
+    for (const [name, instance] of Object.entries(hist)){
+       // console.log(name, instance);
+        db.transaction(function (tx) {
+            tx.executeSql("SELECT * FROM taxvalues WHERE name=?", [name], function(tx, results) {
+                // console.log(results.rows.item(0).value);
+                $('.tax_txt_'+name).text((results.rows.item(0).value)*instance);
+            });
+        });
+
+
+
+    }
+    db.transaction(function (tx) {
+        tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
+            if(results.rows.length > 0) {
+                for(var i = 0; i < results.rows.length; i++) {
+                    if( ! tax_name.includes(results.rows.item(i).name)){
+                        $('.'+results.rows.item(i).name).remove();
+                    }
+                }
+            }
+        });
+    });
+
+    finalltaxdiscountmath()
+
+
+}
+function calculateTaxOne(e) {
+    // console.log(e.id);
+    // console.log(e.value);
+    var kkk =e.options[e.selectedIndex].text;
+    // console.log(kkkk);
+    if(($('.tax-sub').length !== 0)){
+        if($('.'+kkk).length === 0){
+            var valuee=$('.'+kkk).find('input:first').val();
+            // console.log(valuee);
+            if(e.options[e.selectedIndex].text  !== valuee ){
+                // console.log('if');
+                if(! $('.'+ kkk).length !== 0 ) {
+                    if (e.options[e.selectedIndex].text !== 'Choose') {
+                        var html = '<tr data-taxsub="'+ kkk +'" class="tax-sub ' +kkk+ '">' +
+                            '<td style="border-bottom-color: #ffffff;border-left-color: #ffffff" class="py-0 rrr" colspan="4"></td>' +
+                            '<td class="py-0">' +
+                            '<label for="bs_subTotal" class="no-label"></label>' +
+                            '<input type="text" value="' + kkk.toUpperCase() + ':" class="form-control no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="' + kkk.toUpperCase() + ':">' +
+                            '</td>' +
+                            ' <td colspan="2" class="text-bold-custom">' +
+                                '<span>'+
+                                    '<span>Ksh </span>' +
+                                    '<span data-taxx="'+ kkk +'"  class="xui tax_txt_'+ kkk +'">' + e.value + '</span>' +
+                                '</span>'+
+
+                            '</td>' +
+                            '</tr>';
+                        $(html).insertAfter('.tax-sub:last');
+
+                    }
+                }else {
+                    console.log('exist');
+                }
+            }
+        }
+    }
+    else {
+        console.log('first');
+        var html =  '<tr data-taxsub="'+ kkk +'" class="tax-sub ' + kkk + '">' +
+            '<td style="border-bottom-color: #ffffff;border-left-color: #ffffff" class="py-0 rrr" colspan="4"></td>'+
+            '<td class="py-0">'+
+            ' <label for="bs_subTotal" class="no-label"></label>'+
+            '<input type="text" value="'+ kkk.toUpperCase() +':" class="form-control no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="'+ kkk.toUpperCase() +':">'+
+            '</td>'+
+            ' <td colspan="2" class="text-bold-custom">' +
+                '<span>'+
+                    '<span>Ksh </span>' +
+                    '<span data-taxx="'+ kkk +'"  class="xui tax_txt_'+ kkk +'">' + e.value + '</span>' +
+                '</span>'+
+
+            '</td>'+
+            '</tr>';
+        $(html).insertAfter('.tax-sub:last');
+        finalltaxdiscountmath()
+    }
+    // recalculatetax(kkk);
+}
+checkfortax();
+tabletax();
+
+
+
+$('#discount_form_submit').click(function (e) {
+
+    var discount_value = $("#discount_value").val();
+    var discount_name = $("#discount_name").val();
+    var ddd = $('#subtotal_txt').text();
+    var summ = 0;
+    if(discount_name === 'Percentage'){
+        summ = '-' + Number(discount_value/100)*Number(ddd);
+    }else if (discount_name === "Cash") {
+        summ= '-' + discount_value;
+
+    }
+    if($('.discountclass').length !== 0) {
+        // $('#usediscount').modal('hide');
+        // console.log('if');
+        $('.discountclass').find('.doit').text(summ);
+    }else {
+        // console.log('else');
+        var htmll = '<tr  class="discountclass">' +
+            '<td style="border-bottom-color: #ffffff;border-left-color: #ffffff" class="py-0 rrr" colspan="4"></td>' +
+            '<td class="py-0">' +
+            '<label for="bs_subTotall" class="no-label"></label>' +
+            '<input type="text" value="Discount:" class="form-control no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotall" placeholder="Discount:">' +
+            '</td>' +
+            '<td colspan="2" class="text-bold-custom">' +
+            '<span>Ksh </span>' +
+            '<span class="xui doit">' + summ + '</span>' +
+            '</td>' +
+            '</tr>';
+        // $('#usediscount').modal('hide');
+        $(htmll).insertAfter('#subtotal_row');
+
+    }
+
+    finalltaxdiscountmath();
+    // displayDiscounts();
+    // refreshDiscount();
+});
+function refreshDiscount(){
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    $('#discount_tbody').html(' ');
+    db.transaction(function (tx) {
+        tx.executeSql("SELECT name, value FROM discount", [], function(tx, results) {
+            if(results.rows.length > 0) {
+                for(var i = 0; i < results.rows.length; i++) {
+                    // console.log("Result -> " + results.rows.item(i).firstname + " " + results.rows.item(i).lastname);
+                    var id_row = i + 1;
+                    $('#discount_tbody').append(
+                        ' <tr id="'+"discount"+ i +'">'+
+                        '<th scope="row">'+ id_row +'</th>'+
+                        '<td>'+ results.rows.item(i).name +'</td>'+
+                        '<td>'+ results.rows.item(i).value +'</td>'+
+                        '<td>'+
+                        '<i id="'+"discount_delete" + i +'" style="margin-left: auto;" onclick="deleteDiscount(this)" class="fas fa-trash text-danger " data-toggle="tooltip" data-placement="right" title="Delete discount"></i>'
+                        +'</td>'+
+                        '</tr>')
+                }
+            }
+        });
+    });
+}
+function deleteDiscount(event){
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    console.log();
+    var db_id = $('#'+ event.id).parent().parent().find('th:first').text();
+    console.log(db_id);
+    db.transaction(function(tx) {
+        tx.executeSql('delete from discount where rowid=?', [db_id], function(transaction, result) {
+            console.log(result);
+            console.info('Record Deleted Successfully!');
+        }, function(transaction, error) {
+            console.log(error);
+        });
+    }, transError, transSuccess);
+
+    function transError() {
+
+    }function transSuccess() {
+
+    }
+    refreshDiscount();
+    displayDiscounts();
 }
 function displayDiscounts() {
     var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
@@ -431,8 +640,6 @@ function displayDiscounts() {
         });
     });
 }
-displayDiscounts();
-
 function makeDiscount(e) {
     var oldTotalnew =  $('#total_txt').text();
     localStorage.setItem('oldTotalnew', oldTotalnew);
@@ -461,6 +668,35 @@ function undoDiscount(e) {
     $('#'+ e.id).hide();
     $('#paid_amount_input').keyup();
 }
+displayDiscounts();
+
+
+
+function finalltaxdiscountmath(){
+    var itma =[];
+    for( v of $('.xui')){
+        // console.log(v.innerText);
+        itma.push(Number(v.innerText));
+
+    }
+    console.log(itma);
+    $('#total_txt').text(
+        Number($('#subtotal_txt').text())+eval(itma.join('+'))
+    )
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -482,7 +718,23 @@ $('#Left-logo').click(function () {
 });
 
 
-
+$(".modal-header").on("mousedown", function(mousedownEvt) {
+    var $draggable = $(this);
+    var x = mousedownEvt.pageX - $draggable.offset().left,
+        y = mousedownEvt.pageY - $draggable.offset().top;
+    $("body").on("mousemove.draggable", function(mousemoveEvt) {
+        $draggable.closest(".modal-dialog").offset({
+            "left": mousemoveEvt.pageX - x,
+            "top": mousemoveEvt.pageY - y
+        });
+    });
+    $("body").one("mouseup", function() {
+        $("body").off("mousemove.draggable");
+    });
+    $draggable.closest(".modal").one("bs.modal.hide", function() {
+        $("body").off("mousemove.draggable");
+    });
+});
 
 
 

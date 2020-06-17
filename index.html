@@ -29,6 +29,7 @@
          }
 
     </style>
+
 </head>
 <body>
 <nav id="navb" class="navbar navbar-expand-lg navbar-light bg-primary sticky-top">
@@ -101,7 +102,7 @@
     <div class="col-sm-12">
         <div class="row py-4">
 
-            <div class="col-sm-12 shadow-lg col-md-12 col-lg-6 col-xl-6 p-3 mx-auto bg-whitee receipt_wrapper">
+            <div class="col-sm-12 col-md-12 col-lg-7 col-xl-7 p-3 mx-auto bg-whitee receipt_wrapper">
                 <div id="print_doc" class="row" style="padding: 0 14px;">
                     <div id="right" class="col-sm-12 row mx-auto header_bottom_boder pb-2">
                         <div class="col-sm-12 col-md-6 px-0 py-0  " >
@@ -219,7 +220,7 @@
                         </div>
                     </div>
                     <div class="col-sm-12 row mx-auto py-4">
-                        <table style=""  class="table table-bordered  resizable" id="table">
+                        <table style=""  class="table table-bordered main-table resizable" id="table">
                             <thead >
                                 <tr style="background-color: #f6f6f6">
                                 <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
@@ -231,7 +232,13 @@
                                 <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
                                     <input style="background-color: #f6f6f6" aria-label="f" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Unit Price" placeholder="Unit Price">
                                 </th>
-                                <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
+                                <th  class="no-tax-hide print_hide2" style="width: 90px; padding:0 9px !important;vertical-align: initial !important;" scope="col">
+                                    <input style="background-color: #f6f6f6; width: 70px;" aria-label="dd" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Tax" placeholder="Tax">
+                                </th>
+                                <th  class="no-extra-hide print_hide2" style="width: 90px; padding:0 9px !important;vertical-align: initial !important;" scope="col">
+                                    <input style="background-color: #f6f6f6; width: 70px;" aria-label="tt" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="ExtraTax" placeholder="ExtraTax">
+                                </th>
+                                <th style=" padding:0 9px !important;vertical-align: initial !important;width:140px;" scope="col">
                                     <input style="background-color: #f6f6f6" aria-label="v" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Amount" placeholder="Amount">
                                 </th>
                                 <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col" class="print_hide"></th>
@@ -243,28 +250,55 @@
                                         <div id="ckk1" class="table_contents text-left">
                                             <p>Product 1</p>
                                         </div>
-<!--                                        <label for="bs_description" class="no-label"></label>-->
-<!--                                        <input value="" type="text" class="form-control no-border" id="bs_description" placeholder="">-->
                                     </th>
-                                    <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="row">
+                                    <th style=" width:110px; padding:0 9px !important;vertical-align: initial !important;" scope="row">
                                         <label for="bs_quantity" class="no-label"></label>
-                                        <input onkeyup="calculat()" value="5" type="number" class="no-border" id="bs_quantity" placeholder="1">
+                                        <input style="width: 100px;" onkeyup="calculat()" value="5" type="number" class="no-border" id="bs_quantity" placeholder="1">
                                     </th>
-                                    <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="row">
+                                    <th style=" width:110px; padding:0 9px !important;vertical-align: initial !important;" scope="row">
                                         <label for="bs_unit_price" class="no-label"></label>
-                                        <input onkeyup="calculat()" value="100" type="number" class="no-border" id="bs_unit_price" placeholder="20">
+                                        <input style="width: 100px;" onkeyup="calculat()" value="100" type="number" class="no-border" id="bs_unit_price" placeholder="20">
+                                    </th>
+                                    <th class="no-tax-hide print_hide2" style=" padding:3px 1px !important;vertical-align: initial !important;" scope="row">
+                                        <div class="form-group mb-0">
+                                            <select onchange="calculateTaxOne(this); calculateTaxTwo(this); " class="form-control p-1 calcit tax-dropdown" >
+
+
+                                            </select>
+                                        </div>
+                                    </th>
+                                    <th class="no-extra-hide print_hide2" style=" padding:3px 1px !important;vertical-align: initial !important;" scope="row">
+                                        <div class="form-group mb-0">
+                                            <select onchange="calculateTaxOne(this); calculateTaxTwo(this); " class="form-control p-1 calcit extra-tax-select" >
+
+                                            </select>
+                                        </div>
                                     </th>
                                     <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="row">
                                         <span>Ksh </span><span class="ammounts_total"></span>
                                     </th>
+
                                     <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="row" class="print_hide">
 
                                     </th>
                                 </tr>
 
 
-                                <tr >
-                                    <td id="total_border" class="totat-print-border" colspan="2" rowspan="3">
+                                <tr class="tax-sub" id="subtotal_row">
+                                    <td style="border-bottom-color: #ffffff;border-left-color: #ffffff" class="py-0 rrr " colspan="3">
+
+                                    </td>
+                                    <td class="py-0">
+                                        <label for="bs_subTotal" class="no-label"></label>
+                                        <input type="text" class="form-control no-border input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="SubTotal: ">
+                                    </td>
+                                    <td colspan="2" class="text-bold-custom">
+                                        <span>Ksh </span><span class="" id="subtotal_txt"></span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td id="total_border" class="totat-print-border rrr" colspan="3" rowspan="4">
                                         <button id="addrow" class="btn btn-success btn-sm print_hide" data-toggle="tooltip" data-placement="left" title="Add another row"><i class="fas fa-plus-square" ></i> Add row</button>
                                         <div class="custom-control custom-switch print_hide">
                                             <input checked="checked" name="ttt" value="off"  type="checkbox" class="custom-control-input" id="customSwitch1">
@@ -274,12 +308,12 @@
                                     <td class="py-0" data-toggle="tooltip" title="Please add all items to the table before you make any tax and discount adjustments" data-placement="top">
                                         <label for="bs_Total" class="no-label"></label>
                                         <input type="text" class="form-control no-border input_title_smn text-bold-placehoder" id="bs_Total" placeholder="Total: ">
-
                                     </td>
                                     <td colspan="2" class="text-bold-custom">
                                         <span>Ksh </span><span id="total_txt">0</span>
                                     </td>
                                 </tr>
+
                                 <tr class="checkbox-click-hide">
                                     <td class="py-0">
                                         <label for="bs_paid_amount" class="no-label"></label>
@@ -287,7 +321,6 @@
                                     </td>
                                     <td colspan="2" class="text-bold-custom">
                                         <div class="d-flex align-items-center">
-
                                             <label for="paid_amount_input" class="no-label"></label>
                                             Ksh <input  value="0" type="number" class="form-control no-border ml-2" id="paid_amount_input" placeholder="Amount">
                                         </div>
@@ -308,7 +341,7 @@
                     </div>
                     <div class="col-sm-12 row mx-auto py-2">
                         <span class="text-left w-100 border-bottom">Notes / Terms</span>
-                        <div style="min-height: 100px" class="w-100 text-left" id="validationTextarea">
+                        <div style="min-height: 300px" class="w-100 text-left" id="validationTextarea">
 
                         </div>
 
@@ -382,9 +415,9 @@
                             </div>
 
                             <div class="row px-4">
-                                <button  data-toggle="modal" data-target="#usetax"   class="btn btn-info print_hide text-white mr-1">
-                                    <span data-toggle="tooltip" title="Add Tax" data-placement="bottom">Apply Tax</span>
-                                </button>
+<!--                                <button  data-toggle="modal" data-target="#usetax"   class="btn btn-info print_hide text-white mr-1">-->
+<!--                                    <span data-toggle="tooltip" title="Add Tax" data-placement="bottom">Apply Tax</span>-->
+<!--                                </button>-->
 
 
                             </div>
@@ -420,7 +453,7 @@
 
                             </div>
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 mr-auto">
                                     <div class="form-group">
                                         <label for="discount_name">Name</label>
                                         <select class="form-control" id="discount_name">
@@ -439,27 +472,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Value</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="discount_tbody">
 
-
-                                        </tbody>
-                                    </table>
-                                </div>
                             </div>
 
-                            <div class="row px-4">
-                                <button data-toggle="modal" data-target="#usediscount"   class="btn btn-warning print_hide text-white"><span data-toggle="tooltip" title="Add Discount" data-placement="bottom">Apply Discount</span></button>
-                            </div>
+<!--                            <div class="row px-4">-->
+<!--                                <button data-toggle="modal" data-target="#usediscount"   class="btn btn-warning print_hide text-white"><span data-toggle="tooltip" title="Add Discount" data-placement="bottom">Apply Discount</span></button>-->
+<!--                            </div>-->
                         </div>
 
                     </div>
@@ -477,7 +495,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="col-sm-12">
-                                <table class="table">
+                                <table class="table p-0">
                                     <thead>
                                     <tr>
                                         <th scope="col">#</th>
@@ -533,16 +551,17 @@
 
 <!-- Optional JavaScript -->
 <!--<script src="https://cdn.ckeditor.com/ckeditor5/19.1.1/inline/ckeditor.js"></script>-->
-<script src="static/ck.js" ></script>
+<!--<script type="module" src="node_modules/@ckeditor/ckeditor5-font/src/fontfamily.js"></script>-->
+<script type="text/javascript" src="static/ck.js" ></script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="static/jquery351.js"></script>
-<script src="static/popper.js"></script>
-<script src="static/bootstrap.js"></script>
-<script src="static/html2pdf.js"></script>
-<script src="static/resize.js"></script>
-<script src="static/db.js" ></script>
+<script type="text/javascript" src="static/jquery351.js"></script>
+<script type="text/javascript" src="static/popper.js"></script>
+<script type="text/javascript" src="static/bootstrap.js"></script>
+<script type="text/javascript" src="static/html2pdf.js"></script>
+<script type="text/javascript" src="static/resize.js"></script>
+<script type="text/javascript" src="static/db.js" ></script>
 
-<script src="static/main.js" ></script>
+<script type="text/javascript" src="static/main.js" ></script>
 
 </body>
 </html>

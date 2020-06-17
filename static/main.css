@@ -4,13 +4,14 @@ html,body{
     margin: 0;
     padding: 0;
     font-family: 'Roboto Condensed', sans-serif;
-    background-color: #c1c1c1;
+    background-color: #ffffff;
 }
 .bg-whitee{
     background-color: #ffffff;
 }
 .receipt_wrapper{
-    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: -8px -8px 12px 0 rgba(202, 202, 202, 0.8), 8px 8px 12px 0 rgba(202, 202, 202, 0.8);
 }
 #vmimg{
     position: absolute;
