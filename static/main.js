@@ -187,42 +187,101 @@ function printContent(){
 }
 function generatePDF() {
     // $('#total_border').addClass('totat-print-border');
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    db.transaction(function (tx) {
+        tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
+            if(results.rows.length > 0) {
 
-    $('#downloading-loder').fadeIn('fast');
-    $('.print_hide').hide();
-    $('.print_hide2').hide();
-    $('#total_border').addClass('total_border');
-    $('#exampleModalsave').modal('hide');
-    var pdf_name;
-    if ($('#filename').val()){
-        var str = $('#filename').val();
-        var regex = /[.,\s]/g;
-        pdf_name = str.replace(regex, '');
+                $('.rrr').attr('colspan', 2);
+                $('.disco').attr('colspan', 2);
+                $('#downloading-loder').fadeIn('fast');
+                $('.print_hide').hide();
+                $('.print_hide2').hide();
+                $('#total_border').addClass('total_border');
+                $('#exampleModalsave').modal('hide');
+                var pdf_name;
+                if ($('#filename').val()){
+                    var str = $('#filename').val();
+                    var regex = /[.,\s]/g;
+                    pdf_name = str.replace(regex, '');
 
-    }else {
-        pdf_name ='pdf';
-    }
+                }else {
+                    pdf_name ='pdf';
+                }
+                const element =document.getElementById('print_doc');
+                var opt = {
+                    margin:       0.12,
+                    filename:     pdf_name,
+                    image:        { type: 'jpeg', quality: 1 },
+                    html2canvas:  { scale: 1,  },
+                    jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+                };
+                html2pdf()
+                    .from(element)
+                    .set(opt)
+                    .save();
+
+                setTimeout(retunObje, 7000);
+                $('#downloading-loder').fadeOut('slow');
+
+            }
+            else {
+                $('#downloading-loder').fadeIn('fast');
+                $('.print_hide').hide();
+                $('.print_hide2').hide();
+                $('#total_border').addClass('total_border');
+                $('#exampleModalsave').modal('hide');
+                var pdf_name;
+                if ($('#filename').val()){
+                    var str = $('#filename').val();
+                    var regex = /[.,\s]/g;
+                    pdf_name = str.replace(regex, '');
+
+                }else {
+                    pdf_name ='pdf';
+                }
 
 
-    const element =document.getElementById('print_doc');
-    var opt = {
-        margin:       0.12,
-        filename:     pdf_name,
-        image:        { type: 'jpeg', quality: 1 },
-        html2canvas:  { scale: 1,  },
-        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-    };
-    html2pdf()
-        .from(element)
-        .set(opt)
-        .save();
+                const element =document.getElementById('print_doc');
+                var opt = {
+                    margin:       0.12,
+                    filename:     pdf_name,
+                    image:        { type: 'jpeg', quality: 1 },
+                    html2canvas:  { scale: 1,  },
+                    jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+                };
+                html2pdf()
+                    .from(element)
+                    .set(opt)
+                    .save();
 
-    setTimeout(retunObje, 7000);
-    $('#downloading-loder').fadeOut('slow');
+                setTimeout(retunObje, 7000);
+                $('#downloading-loder').fadeOut('slow');
+            }
+        });
+    });
+
+
 }
 function retunObje(){
     $('.print_hide').fadeIn();
     $('.print_hide2').fadeIn();
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    db.transaction(function (tx) {
+        tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
+            if(results.rows.length > 0) {
+                $('.rrr').attr('colspan', 4);
+                $('.disco').attr('colspan', 4);
+
+            }
+            else {
+                $('.rrr').attr('colspan', 2);
+                $('.disco').attr('colspan', 2);
+
+            }
+        });
+    });
+    checkfortax();
 }
 $('input[type="checkbox"]').on('click', function(){
     var propState = $(this).prop('checked'); // grab the checkbox checked state.
