@@ -190,6 +190,7 @@ function generatePDF() {
 
     $('#downloading-loder').fadeIn('fast');
     $('.print_hide').hide();
+    $('.print_hide2').hide();
     $('#total_border').addClass('total_border');
     $('#exampleModalsave').modal('hide');
     var pdf_name;
@@ -221,6 +222,7 @@ function generatePDF() {
 }
 function retunObje(){
     $('.print_hide').fadeIn();
+    $('.print_hide2').fadeIn();
 }
 $('input[type="checkbox"]').on('click', function(){
     var propState = $(this).prop('checked'); // grab the checkbox checked state.
@@ -411,7 +413,6 @@ function undotaxTotal(e) {
 }
 function checkfortax() {
     var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
-    $('#tax_tbody_aa').html(' ');
     db.transaction(function (tx) {
         tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
             if(results.rows.length > 0) {
@@ -457,9 +458,6 @@ function calculateTaxTwo(e) {
                 $('.tax_txt_'+name).text((results.rows.item(0).value)*instance);
             });
         });
-
-
-
     }
     db.transaction(function (tx) {
         tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
@@ -472,6 +470,7 @@ function calculateTaxTwo(e) {
             }
         });
     });
+
     finalltaxdiscountmath();
 }
 function calculateTaxOne(e) {
@@ -502,7 +501,8 @@ function calculateTaxOne(e) {
                             '</td>' +
                             '</tr>';
                         $(html).insertAfter('.tax-sub:last');
-                    }else {
+                    }
+                    else {
                         console.log('Choosen');
                     }
                 }else {
@@ -530,16 +530,9 @@ function calculateTaxOne(e) {
             '</tr>';
         $(html).insertAfter('.tax-sub:last');
     }
-    // recalculatetax(kkk);
-    // finalltaxdiscountmath();
-
-
 }
 checkfortax();
 tabletax();
-
-
-
 $('#discount_form_submit').click(function (e) {
     checkfortax();
 
@@ -560,7 +553,7 @@ $('#discount_form_submit').click(function (e) {
     }else {
         // console.log('else');
 
-        var htmll = '<tr  class="discountclass">' +
+        var htmll = '<tr  class="discountclass tax_sub">' +
             '<td style="border-bottom-color: #ffffff; border-left-color: #ffffff; border-top-color: #ffffff;" class="py-0 disco" colspan="4"></td>' +
             '<td class="py-0">' +
             '<label for="bs_subTotall" class="no-label"></label>' +
@@ -678,40 +671,26 @@ function undoDiscount(e) {
     $('#paid_amount_input').keyup();
 }
 displayDiscounts();
-
-
-
 function finalltaxdiscountmath(){
+    setTimeout(cvui,1000)
+}
+function cvui() {
     var itma =[];
-    for( v of $('.xui')){
+    var xui = document.getElementsByClassName('xui');
+    for( v of xui ){
         console.log(v);
         // console.log(v.innerText);
         itma.push(Number(v.innerText));
 
     }
     console.log('this is'+itma);
-    $('#total_txt').text(
-        Number($('#subtotal_txt').text())+eval(itma.join('+'))
-    );
-    // $('#subtotal_row').show();
-
-
+    if(xui.length > 0){
+        $('#total_txt').text(
+            Number($('#subtotal_txt').text())+eval(itma.join('+'))
+        );
+        itma.length = 0;
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var $right = $('#right');
 var $left = $('#left');
 var $workTitle = $('#work-title');
