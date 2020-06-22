@@ -1,0 +1,1 @@
+const Fontt = require('@ckeditor/ckeditor5-font')

@@ -1,68 +1,57 @@
-// import Font from '@ckeditor/ckeditor5-font/src/font';
-// import Font from '@ckeditor/ckeditor5-font/src/fontfamily'
-// import FontFamily from '@ckeditor/ckeditor5-font/src/fontfamily';
-// const Font = import('fontfamily');
-// var FontFamily = require('@ckeditor/ckeditor5-font/src/fontfamily');
-// import fontfamily from  '/@ckeditor/ckeditor5-font/src/fontfamily'
-// const FontFamily = import('fontfamily/fontfamily')
-// const path = require( '@ckeditor/ckeditor5-font/src/fontfamily' );
-
-
-
-
 InlineEditor
     .create( document.querySelector( '#ck1' ),{
-            removePlugins: [ 'Insert image', 'Insert table', 'blockQuote', 'numberedList' ],
-            toolbar: ['enter', '|', 'heading', 'bold', 'italic', 'bulletedList', 'numberedList', 'fontFamily','undo', 'redo','link'],
+            removePlugins: [ 'Insert image', 'Insert table' ],
+            toolbar: ['heading','Paragraph', 'Highlight', 'bold', 'italic', 'FontFamily','FontSize','FontColor','FontBackgroundColor','Indent','IndentBlock','TextTransformation','blockQuote','Essentials','Autoformat', 'undo', 'redo','link','bulletedList', 'numberedList'],
 
-        }  )
-
-
+        })
     .catch( error => {
         console.error( error );
     } );
 InlineEditor
     .create( document.querySelector( '#ck2' ),{
-            removePlugins: [ 'Insert image', 'Insert table', 'blockQuote', 'numberedList' ],
-             toolbar: ['enter', '|', 'heading', 'bold', 'italic', 'bulletedList', 'numberedList', 'fontFamily','undo', 'redo','link'],
+            removePlugins: [ 'Insert image', 'Insert table' ],
+            toolbar: ['heading','Paragraph', 'Highlight', 'bold', 'italic', 'FontFamily','FontSize','FontColor','FontBackgroundColor','Indent','IndentBlock','TextTransformation','blockQuote','Essentials','Autoformat', 'undo', 'redo','link','bulletedList', 'numberedList'],
         }  )
     .catch( error => {
         console.error( error );
     } );
 InlineEditor
     .create( document.querySelector( '#ck3' ),{
-            removePlugins: [ 'Insert image', 'Insert table', 'blockQuote', 'numberedList' ],
-            toolbar: ['enter', '|', 'heading', 'bold', 'italic', 'bulletedList', 'numberedList', 'fontFamily','undo', 'redo','link'],
+            removePlugins: [ 'Insert image', 'Insert table' ],
+            toolbar: ['heading','Paragraph', 'Highlight', 'bold', 'italic', 'FontFamily','FontSize','FontColor','FontBackgroundColor','Indent','IndentBlock','TextTransformation','blockQuote','Essentials','Autoformat', 'undo', 'redo','link','bulletedList', 'numberedList'],
         }  )
     .catch( error => {
         console.error( error );
     } );
 InlineEditor
     .create( document.querySelector( '#ck4' ),{
-            removePlugins: [ 'Insert image', 'Insert table', 'blockQuote', 'numberedList' ],
-             toolbar: ['enter', '|', 'heading', 'bold', 'italic', 'bulletedList', 'numberedList', 'fontFamily','undo', 'redo','link'],
+            removePlugins: [ 'Insert image', 'Insert table' ],
+            toolbar: ['heading','Paragraph', 'Highlight', 'bold', 'italic', 'FontFamily','FontSize','FontColor','FontBackgroundColor','Indent','IndentBlock','TextTransformation','blockQuote','Essentials','Autoformat', 'undo', 'redo','link','bulletedList', 'numberedList'],
         }  )
     .catch( error => {
         console.error( error );
     } );
 InlineEditor
     .create( document.querySelector( '#ck5' ),{
-            removePlugins: [ 'Insert image', 'Insert table', 'blockQuote', 'numberedList' ],
-             toolbar: ['enter', '|', 'heading', 'bold', 'italic', 'bulletedList', 'numberedList', 'fontFamily','undo', 'redo','link'],
+            removePlugins: [ 'Insert image', 'Insert table' ],
+            toolbar: ['heading','Paragraph', 'Highlight', 'bold', 'italic', 'FontFamily','FontSize','FontColor','FontBackgroundColor','Indent','IndentBlock','TextTransformation','blockQuote','Essentials','Autoformat', 'undo', 'redo','link','bulletedList', 'numberedList'],
         }  )
     .catch( error => {
         console.error( error );
     } );
 InlineEditor
     .create( document.querySelector( '#ck6' ),{
-            removePlugins: [ 'Insert image', 'Insert table', 'blockQuote', 'numberedList' ],
-             toolbar: ['enter', '|', 'heading', 'bold', 'italic', 'bulletedList', 'numberedList', 'fontFamily','undo', 'redo','link'],
+            removePlugins: [ 'Insert image', 'Insert table' ],
+            toolbar: ['heading','Paragraph', 'Highlight', 'bold', 'italic', 'FontFamily','FontSize','FontColor','FontBackgroundColor','Indent','IndentBlock','TextTransformation','blockQuote','Essentials','Autoformat', 'undo', 'redo','link','bulletedList', 'numberedList'],
         }  )
     .catch( error => {
         console.error( error );
     } );
 InlineEditor
-    .create( document.querySelector( '#validationTextarea' ))
+    .create( document.querySelector( '#validationTextarea' ),{
+        removePlugins: [ 'Insert image', 'Insert table' ],
+        toolbar: ['heading','Paragraph', 'Highlight', 'bold', 'italic', 'FontFamily','FontSize','FontColor','FontBackgroundColor','Indent','IndentBlock','TextTransformation','blockQuote','Essentials','Autoformat', 'undo', 'redo','link','bulletedList', 'numberedList'],
+    })
     .catch( error => {
         console.error( error );
     } );
@@ -72,8 +61,8 @@ function vuv() {
         var id = '#' + x.id;
         InlineEditor
             .create( document.querySelector( id ),{
-                removePlugins: [ 'Insert image', 'Insert table', 'blockQuote', 'numberedList' ],
-                toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList', ]
+                removePlugins: [ 'Insert image', 'Insert table' ],
+                toolbar: ['heading','Paragraph', 'Highlight', 'bold', 'italic', 'FontFamily','FontSize','FontColor','FontBackgroundColor','Indent','IndentBlock','TextTransformation','blockQuote','Essentials','Autoformat', 'undo', 'redo','link','bulletedList', 'numberedList'],
             } )
             .catch( error => {
                 console.error( error );

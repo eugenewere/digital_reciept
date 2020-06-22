@@ -60,8 +60,8 @@ html,body{
 }
 #img_label{
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 54%;
+    left: 74%;
     font-size: 50px;
     color: #33a604;
     transform: translate(-50%, -50%);
