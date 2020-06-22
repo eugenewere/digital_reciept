@@ -21,11 +21,11 @@
 
         }
         .table .ck.ck-editor__editable_inline>:last-child {
-            margin-bottom:4px;
+            margin-bottom:2px !important;
         }
 
          .table .ck.ck-editor__editable_inline>:first-child {
-             margin-top: 4px;
+             margin-top: 2px !important;
          }
         .ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_nw, .ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_sw {
             right: -484px;
@@ -122,9 +122,9 @@
             <div class="col-sm-12 col-md-12 col-lg-7 col-xl-7 p-3 mx-auto bg-whitee receipt_wrapper">
                 <div id="print_doc" class="row" style="padding: 0 14px;">
                     <div id="right" class="col-sm-12 row mx-auto header_bottom_boder pb-2">
-                        <div class="col-sm-12 col-md-6 px-0 py-0  " >
+                        <div class="col-sm-12 col-md-5 px-0 py-0  " >
                             <div id="ck1" class="contents">
-                                <h3>[ Business Name]</h3><br>
+                                <h4>[ Business Name]</h4><br>
                                 [ Business Address ]<br>
 
                                 <span class="d-flex">
@@ -137,7 +137,7 @@
 
                             </div>
                         </div>
-                        <div class="px-0 col-sm-12 ml-auto col-md-5 pt-3">
+                        <div class="px-0 col-sm-12 ml-auto col-md-7 pt-3">
                             <div class="px-0">
                                 <div class="form-group img_wrapper" style="">
                                     <label id="img_label" data-toggle="tooltip" data-placement="right" title="Click to add image" for="vmimg"><i class="far fa-plus-square print_hide"></i></label>
@@ -163,7 +163,7 @@
                         </div>
                         <div class="col-sm-12 col-md-5 px-0 py-0  " >
                             <div id="ck2" class="contents w-100">
-                                <h3>[ Business Name]</h3><br>
+                                <h4>[ Business Name]</h4><br>
                                 [ Business Address ]<br>
 
                                 <span class="d-flex">
@@ -177,23 +177,23 @@
                         </div>
                         <div class="col-sm-12 col-md-3">
                             <div id="ck3" class="contents text-right">
-                                <h3 class="m-0" id="editor_title_t" >
+                                <span class="m-0" id="editor_title_t" >
                                     Invoice
-                                </h3>
+                                </span>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-12 row mx-auto ">
                         <div id="work-title" class="col-sm-12 mb-3">
                             <div id="ck4" class="contents text-right">
-                                <h3 class="m-0" id="editor_title_t2" >
+                                <span class="m-0 font-weight-bolder" id="editor_title_t2" >
                                     Invoice
-                                </h3>
+                                </span>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-7 row">
                             <div class="col-sm-12 px-0 col-md-3" >
-                                <div id="ck6" class="contents text-left">
+                                <div id="ck6" class="contents text-left font-weight-bolder">
                                     Billing To:
                                 </div>
                             </div>
@@ -210,29 +210,29 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="clone_me"  class="col-sm-12 col-md-5 ">
+                        <div id="clone_me"  style="padding-top: 10px;" class="col-sm-12 col-md-5 ">
                             <div class="row cloned">
                                 <div class="col-sm-7 text-right pr-0">
                                     <label for="bs_invoice_no" class="no-label"></label>
-                                    <input type="text" class="form-control no-border input_title_sm2 text-right " id="bs_invoice_no" placeholder="Invoice No:">
+                                    <input type="text" style="font-weight: bolder;" class="  no-border input_title_sm2 text-right " id="bs_invoice_no" placeholder="Invoice No:">
                                 </div>
                                 <div class="col-sm-5 text-right pr-0 pl-0">
                                     <label for="bs_invoice_no_text" class="no-label"></label>
-                                    <input type="text" class="form-control no-border input_title_sm22 text-right" id="bs_invoice_no_text" placeholder="Invoice Number">
+                                    <input type="text" class=" no-border input_title_sm22 text-right" id="bs_invoice_no_text" placeholder="Invoice Number">
                                 </div>
                             </div>
                             <div class="row cloned">
                                 <div class="col-sm-7 text-right pr-0">
                                     <label for="bs_datw" class="no-label"></label>
-                                    <input type="text" class="form-control no-border input_title_sm2 text-right" id="bs_datw" placeholder="Date:">
+                                    <input type="text" style="font-weight: bolder;" class="  no-border input_title_sm2 text-right" id="bs_datw" placeholder="Date:">
                                 </div>
                                 <div class="col-sm-5 text-right pr-0 pl-0">
                                     <label for="bs_date_no_text" class="no-label"></label>
-                                    <input value="" type="text" class="form-control no-border input_title_sm22 text-right" id="bs_date_no_text"  placeholder="">
+                                    <input value="" type="text" class=" no-border input_title_sm22 text-right" id="bs_date_no_text"  placeholder="">
                                 </div>
                             </div>
                             <span id="invoice_add">
-                            <i  class="fas fa-plus-square text-success print_hide" data-toggle="tooltip" data-placement="left" title="Add another row"></i>
+                                <i  class="fas fa-plus-square text-success print_hide" data-toggle="tooltip" data-placement="left" title="Add another row"></i>
                             </span>
                         </div>
                     </div>
@@ -294,7 +294,6 @@
                                     <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="row">
                                         <span>Ksh </span><span class="ammounts_total"></span>
                                     </th>
-
                                     <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="row" class="print_hide">
 
                                     </th>
@@ -313,7 +312,6 @@
                                         <span>Ksh </span><span class="" id="subtotal_txt"></span>
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td style="border-bottom-color: #ffffff;border-left-color: #ffffff;border-top-color: #ffffff" id="total_border" class="totat-print-border rrr" colspan="3" rowspan="4">
                                         <button id="addrow" class="btn btn-success btn-sm print_hide" data-toggle="tooltip" data-placement="left" title="Add another row"><i class="fas fa-plus-square" ></i> Add row</button>
@@ -330,16 +328,13 @@
                                         <span>Ksh </span><span id="total_txt">0</span>
                                     </td>
                                 </tr>
-
                                 <tr class="checkbox-click-hide">
                                     <td class="py-0">
-                                        <label for="bs_paid_amount" class="no-label"></label>
-                                        <input type="text" class="form-control no-border input_title_smn text-bold-placehoder" id="bs_paid_amount" placeholder="Paid Amount: ">
+                                        <input aria-label="ksaew"  type="text" class="form-control no-border input_title_smn text-bold-placehoder" id="bs_paid_amount" placeholder="Paid Amount: ">
                                     </td>
                                     <td colspan="2" class="text-bold-custom">
                                         <div class="d-flex align-items-center">
-                                            <label for="paid_amount_input" class="no-label"></label>
-                                            Ksh <input  value="0" type="number" class="form-control no-border ml-2" id="paid_amount_input" placeholder="Amount">
+                                            <span>Ksh</span> <input aria-label="ksa" value="0" type="number" class="form-control no-border ml-2" id="paid_amount_input" placeholder="Amount">
                                         </div>
                                     </td>
                                 </tr>

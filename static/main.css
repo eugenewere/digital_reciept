@@ -61,7 +61,7 @@ html,body{
 #img_label{
     position: absolute;
     top: 54%;
-    left: 74%;
+    right: 8%;
     font-size: 50px;
     color: #33a604;
     transform: translate(-50%, -50%);
