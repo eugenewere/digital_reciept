@@ -40,6 +40,18 @@
             width: 150px;
             margin-left: auto;
         }
+        .table-bordered th, .table-bordered tr, .table-bordered td, .table-bordered thead tr th {
+            border: 1px solid #acacac ;
+        }
+        .table-bordered .r-border{
+            border-bottom-color: #ffffff !important;
+            border-left-color: #ffffff !important;
+        }
+        .table-bordered .r-border2{
+            border-bottom-color: #ffffff !important;
+            border-left-color: #ffffff !important;
+            border-top-color: #ffffff !important;
+        }
 
     </style>
 
@@ -240,26 +252,26 @@
                         <table style=""  class="table table-bordered main-table resizable" id="table">
                             <thead >
                                 <tr style="background-color: #f6f6f6">
-                                <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
-                                    <input style="background-color: #f6f6f6" aria-label="l" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Description" placeholder="Description">
-                                </th>
-                                <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
-                                    <input style="background-color: #f6f6f6" aria-label="e" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Quantity" placeholder="Quantity">
-                                </th>
-                                <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
-                                    <input style="background-color: #f6f6f6" aria-label="f" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Unit Price" placeholder="Unit Price">
-                                </th>
-                                <th  class="no-tax-hide print_hide2" style="width: 90px; padding:0 9px !important;vertical-align: initial !important;" scope="col">
-                                    <input style="background-color: #f6f6f6; width: 70px;" aria-label="dd" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Tax" placeholder="Tax">
-                                </th>
-                                <th  class="no-extra-hide print_hide2" style="width: 90px; padding:0 9px !important;vertical-align: initial !important;" scope="col">
-                                    <input style="background-color: #f6f6f6; width: 70px;" aria-label="tt" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="ExtraTax" placeholder="ExtraTax">
-                                </th>
-                                <th style=" padding:0 9px !important;vertical-align: initial !important;width:140px;" scope="col">
-                                    <input style="background-color: #f6f6f6" aria-label="v" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Amount" placeholder="Amount">
-                                </th>
-                                <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col" class="print_hide"></th>
-                            </tr>
+                                    <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
+                                        <input style="background-color: #f6f6f6" aria-label="l" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Description" placeholder="Description">
+                                    </th>
+                                    <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
+                                        <input style="background-color: #f6f6f6" aria-label="e" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Quantity" placeholder="Quantity">
+                                    </th>
+                                    <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
+                                        <input style="background-color: #f6f6f6" aria-label="f" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Unit Price" placeholder="Unit Price">
+                                    </th>
+                                    <th  class="no-tax-hide print_hide2" style="width: 90px; padding:0 9px !important;vertical-align: initial !important;" scope="col">
+                                        <input style="background-color: #f6f6f6; width: 70px;" aria-label="dd" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Tax" placeholder="Tax">
+                                    </th>
+                                    <th  class="no-extra-hide print_hide2" style="width: 90px; padding:0 9px !important;vertical-align: initial !important;" scope="col">
+                                        <input style="background-color: #f6f6f6; width: 70px;" aria-label="tt" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="ExtraTax" placeholder="ExtraTax">
+                                    </th>
+                                    <th style=" padding:0 9px !important;vertical-align: initial !important;width:140px;" scope="col">
+                                        <input style="background-color: #f6f6f6" aria-label="v" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Amount" placeholder="Amount">
+                                    </th>
+                                    <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col" class="print_hide"></th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr style=" padding:0 9px !important;vertical-align: initial !important;" id="t_row1" class="tab_row">
@@ -276,7 +288,7 @@
                                         <label for="bs_unit_price" class="no-label"></label>
                                         <input style="width: 100px;" onkeyup="calculat()" value="100" type="number" class="no-border" id="bs_unit_price" placeholder="20">
                                     </th>
-                                    <th class="no-tax-hide print_hide2" style=" padding:3px 1px !important;vertical-align: initial !important;" scope="row">
+                                    <th class="no-tax-hide print_hide2" style="display: none; padding:3px 1px !important;vertical-align: initial !important;" scope="row">
                                         <div class="form-group mb-0">
                                             <select onchange="calculateTaxOne(this); calculateTaxTwo(this); " class="form-control p-1 calcit tax-dropdown" >
 
@@ -284,7 +296,7 @@
                                             </select>
                                         </div>
                                     </th>
-                                    <th class="no-extra-hide print_hide2" style=" padding:3px 1px !important;vertical-align: initial !important;" scope="row">
+                                    <th class="no-extra-hide print_hide2" style="display: none; padding:3px 1px !important;vertical-align: initial !important;" scope="row">
                                         <div class="form-group mb-0">
                                             <select onchange="calculateTaxOne(this); calculateTaxTwo(this); " class="form-control p-1 calcit extra-tax-select" >
 
@@ -301,7 +313,7 @@
 
 
                                 <tr class="tax-sub" id="subtotal_row">
-                                    <td style="border-bottom-color: #ffffff;border-left-color: #ffffff" class="py-0 rrr " colspan="3">
+                                    <td style="" class="py-0 rrr r-border" colspan="3">
 
                                     </td>
                                     <td class="py-0">
@@ -313,7 +325,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="border-bottom-color: #ffffff;border-left-color: #ffffff;border-top-color: #ffffff" id="total_border" class="totat-print-border rrr" colspan="3" rowspan="4">
+                                    <td style="" id="total_border" class=" r-border2 rrr" colspan="3" >
                                         <button id="addrow" class="btn btn-success btn-sm print_hide" data-toggle="tooltip" data-placement="left" title="Add another row"><i class="fas fa-plus-square" ></i> Add row</button>
                                         <div class="custom-control custom-switch print_hide">
                                             <input checked="checked" name="ttt" value="off"  type="checkbox" class="custom-control-input" id="customSwitch1">
@@ -329,6 +341,9 @@
                                     </td>
                                 </tr>
                                 <tr class="checkbox-click-hide">
+                                    <td style="" class="py-0 rrr r-border2" colspan="3">
+
+                                    </td>
                                     <td class="py-0">
                                         <input aria-label="ksaew"  type="text" class="form-control no-border input_title_smn text-bold-placehoder" id="bs_paid_amount" placeholder="Paid Amount: ">
                                     </td>
@@ -339,6 +354,9 @@
                                     </td>
                                 </tr>
                                 <tr class="checkbox-click-hide">
+                                    <td style="" class="py-0 rrr r-border2" colspan="3">
+
+                                    </td>
                                     <td class="py-0">
                                         <label for="bs_paid_balance" class="no-label"></label>
                                         <input type="text" class="form-control no-border input_title_smn text-bold-placehoder" id="bs_paid_balance" placeholder="Balance Due: ">
