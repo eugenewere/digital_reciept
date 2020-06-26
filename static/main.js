@@ -115,6 +115,7 @@ function addItems() {
 addItems();
 function calculat(e) {
     var $idd = $(e).parent().parent().attr('id');
+    var $selectform = $('#'+$idd).find('select')
     // console.log($idd);
 
         $('#'+$idd).find('input').blur(function () {
@@ -124,8 +125,10 @@ function calculat(e) {
             var summ = Number(val_1) * Number(val_2);
             console.log(summ);
             $('#'+$idd).find('span.ammounts_total').text(summ.toFixed(0));
+            $($selectform).trigger("change");
             add_ammounts();
             finalltaxdiscountmath();
+
         });
 
 
@@ -332,7 +335,7 @@ $('#paid_amount_input').keyup(function (e) {
     // var balance_due_text = $('#balance_duee');
     let total_text = $('#total_txt').text();
     let answer =Number(total_text) - paid_amount;
-    $('#balance_duee').text(answer);
+    $('#balance_duee').text(answer.toFixed(0));
 });
 function removSpaces(k){
     return k.replace(/ /g,"_");
@@ -536,8 +539,6 @@ function checkfortax() {
     });
 }
 
-
-
 function calculateTaxTwo(e) {
     var $spn = $(e).parent().find('span');
     var $selval =$(e).val();
@@ -548,7 +549,8 @@ function calculateTaxTwo(e) {
         $spn.text((Number($selval))/100 * Number($seltotal));
     }
 
-    // console.log() ;
+
+    console.log(e) ;
 
 
 
@@ -562,8 +564,6 @@ function calculateTaxTwo(e) {
     tax_name.map( function (a) { if (a in hist) hist[a] ++; else hist[a] = 1; } );
     // console.log( JSON.parse(JSON.stringify(hist)));
     var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
-
-
     db.transaction(function (tx) {
         tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
             // console.log(results.rows.item(0).value);
@@ -580,19 +580,6 @@ function calculateTaxTwo(e) {
         });
     });
 
-    // for (const [name, instance] of Object.entries(hist)){
-    //    // console.log(name, instance);
-    //     db.transaction(function (tx) {
-    //         tx.executeSql("SELECT * FROM taxvalues WHERE name=?", [name], function(tx, results) {
-    //             // console.log(results.rows.item(0).value);
-    //
-    //             fff.push($('[data-seltax='+name+']').text());
-    //             console.log(fff, eval(fff.join('+')));
-    //             $('.tax_txt_'+name).text((results.rows.item(0).value)*instance);
-    //         });
-    //     });
-    // }
-    // fff.length=0;
     db.transaction(function (tx) {
         tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
             if(results.rows.length > 0) {
@@ -604,7 +591,6 @@ function calculateTaxTwo(e) {
             }
         });
     });
-
     finalltaxdiscountmath();
 }
 function calculateTaxOne(e) {
