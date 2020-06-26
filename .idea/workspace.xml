@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="264753fe-9beb-4802-82ce-ff431a05d361" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ckeditor55/plugin/plugin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ckeditor55/src/ckeditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/ckeditor55/src/ckeditor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.js" afterDir="false" />
     </list>
@@ -36,7 +38,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ckeditor55/plugin" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -48,14 +50,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\myprojectx\receipt\static" />
-      <recent name="C:\myprojectx\receipt\node_modules" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\myprojectx\receipt\ckeditor55\plugin" />
       <recent name="C:\myprojectx\receipt\static" />
       <recent name="C:\myprojectx\receipt" />
       <recent name="C:\myprojectx\receipt\static\fonts" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\myprojectx\receipt\static" />
+      <recent name="C:\myprojectx\receipt\node_modules" />
     </key>
   </component>
   <component name="RunManager">
@@ -101,7 +104,7 @@
       <workItem from="1592479833555" duration="18055000" />
       <workItem from="1592827017941" duration="28666000" />
       <workItem from="1593086296481" duration="3599000" />
-      <workItem from="1593116854716" duration="12579000" />
+      <workItem from="1593116854716" duration="34481000" />
     </task>
     <servers />
   </component>
@@ -136,9 +139,9 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="251" y="60" key="SettingsEditor/0.30.1366.738@0.30.1366.738" timestamp="1592848682326" />
-    <state x="420" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1593166095605">
+    <state x="420" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1593175912398">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state x="420" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.30.1366.738@0.30.1366.738" timestamp="1593166095605" />
+    <state x="420" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.30.1366.738@0.30.1366.738" timestamp="1593175912398" />
   </component>
 </project>

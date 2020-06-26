@@ -37,44 +37,7 @@ function readURL(input) {
     }
 }
 
-function editContent(){
-    var rrr_colspan= $('.rrr').attr('colspan');
-    $('.print_hide').fadeOut();
 
-    $('#navb').slideUp();
-    $('#returnPage').show();
-    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
-    $('#tax_tbody_aa').html(' ');
-    db.transaction(function (tx) {
-        tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
-            if(results.rows.length > 0) {
-                var n = Number(rrr_colspan)-2;
-                console.log(n);
-                $('.print_hide2').fadeOut();
-                $('.rrr').attr('colspan', n);
-            }
-        });
-    });
-
-}
-function showContent(){
-    var rrr_colspan= $('.rrr').attr('colspan');
-    $('.print_hide').fadeIn();
-    $('#navb').slideDown();
-    $('#returnPage').fadeOut();
-    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
-    $('#tax_tbody_aa').html(' ');
-    db.transaction(function (tx) {
-        tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
-            if(results.rows.length > 0) {
-                var n = Number(rrr_colspan)+2;
-                console.log(n);
-                $('.print_hide2').fadeIn();
-                $('.rrr').attr('colspan', n);
-            }
-        });
-    });
-}
 
 $('[data-toggle="tooltip"]').tooltip();
 $('#invoice_add').click(function (e) {
@@ -105,6 +68,7 @@ function deleteRow2(e){
 
 }
 $('#addrow').click(function (e) {
+
     var new_id = 'deleteButton' + $('#table tbody tr:not(:nth-last-child(3))').length;
     var rows= $('#table tbody tr:not(:nth-last-child(3))').length + 1;
     var tr_id = 'trow'+ $('#table tbody tr:not(:nth-last-child(3))').length;
@@ -126,6 +90,7 @@ $('#addrow').click(function (e) {
     add_ammounts();
     tabletax();
     vuv();
+    finalltaxdiscountmath();
 });
 
 
@@ -140,29 +105,35 @@ function addItems() {
     $('.tab_row ').each(function (event) {
         var val_1 = $(this).find('input:eq(0)').val();
         var val_2 = $(this).find('input:eq(1)').val();
-        $(this).find('span:eq(2)').text(val_1 * val_2);
-
-        $(this).find('input').on('change', function () {
-            console.log(this);
-            var val_1 = $(this).find('input:eq(0)').val();
-            var val_2 = $(this).find('input:eq(1)').val();
-            var summ=val_1 * val_2;
-            $(this).parent().parent().find('.ammounts_total').text(summ.toFixed(2));
-
-        });
+        $(this).find('span:eq(2)').text(Number(val_1) * Number(val_2));
 
     });
     add_ammounts();
+    finalltaxdiscountmath();
 
 }
 addItems();
-function calculat() {
-    addItems();
+function calculat(e) {
+    var $idd = $(e).parent().parent().attr('id');
+    // console.log($idd);
+
+        $('#'+$idd).find('input').blur(function () {
+            console.log(this);
+            var val_1 = $('#'+$idd).find('input:eq(0)').val();
+            var val_2 = $('#'+$idd).find('input:eq(1)').val();
+            var summ = Number(val_1) * Number(val_2);
+            console.log(summ);
+            $('#'+$idd).find('span.ammounts_total').text(summ.toFixed(0));
+            add_ammounts();
+            finalltaxdiscountmath();
+        });
+
+
 }
 function add_ammounts(){
     var ammounts = [];
     $('.tab_row:visible .ammounts_total').each(function () {
-       ammounts.push(this.innerText);
+       ammounts.push(Number(this.innerText));
     });
 
     $('#subtotal_txt').text(eval(ammounts.join('+')));
@@ -187,87 +158,59 @@ function printContent(){
     setTimeout(retunObje, 5000);
     return false;
 }
-function generatePDF() {
-    // $('#total_border').addClass('totat-print-border');
+
+
+function editContent(){
+    var rrr_colspan= $('.rrr').attr('colspan');
+    $('.print_hide').fadeOut();
+
+    $('#navb').slideUp();
+    $('.returnPage').show();
     var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    $('#tax_tbody_aa').html(' ');
     db.transaction(function (tx) {
         tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
             if(results.rows.length > 0) {
-
-                $('.rrr').attr('colspan', 2);
+                var n = Number(rrr_colspan)-1;
+                console.log(n);
                 $('.disco').attr('colspan', 2);
-                $('#downloading-loder').fadeIn('fast');
-                $('.print_hide').hide();
-                $('.print_hide2').hide();
-                $('#total_border').addClass('total_border');
-                $('#exampleModalsave').modal('hide');
-                var pdf_name;
-                if ($('#filename').val()){
-                    var str = $('#filename').val();
-                    var regex = /[.,\s]/g;
-                    pdf_name = str.replace(regex, '');
-
-                }else {
-                    pdf_name ='pdf';
-                }
-                const element =document.getElementById('print_doc');
-                var opt = {
-                    margin:       0.12,
-                    filename:     pdf_name,
-                    image:        { type: 'jpeg', quality: 1 },
-                    html2canvas:  { scale: 1,  },
-                    jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-                };
-                html2pdf()
-                    .from(element)
-                    .set(opt)
-                    .save();
-
-                setTimeout(retunObje, 7000);
-                $('#downloading-loder').fadeOut('slow');
-
-            }
-            else {
-                $('#downloading-loder').fadeIn('fast');
-                $('.print_hide').hide();
-                $('.print_hide2').hide();
-                $('#total_border').addClass('total_border');
-                $('#exampleModalsave').modal('hide');
-                var pdf_name;
-                if ($('#filename').val()){
-                    var str = $('#filename').val();
-                    var regex = /[.,\s]/g;
-                    pdf_name = str.replace(regex, '');
-
-                }else {
-                    pdf_name ='pdf';
-                }
-
-
-                const element =document.getElementById('print_doc');
-                var opt = {
-                    margin:       0.12,
-                    filename:     pdf_name,
-                    image:        { type: 'jpeg', quality: 1 },
-                    html2canvas:  { scale: 1,  },
-                    jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-                };
-                html2pdf()
-                    .from(element)
-                    .set(opt)
-                    .save();
-
-                setTimeout(retunObje, 7000);
-                $('#downloading-loder').fadeOut('slow');
+                $('.print_hide2').fadeOut();
+                $('.rrr').attr('colspan', n);
+                $('.ccd').attr('colspan', 2);
             }
         });
     });
 
-
+}
+function showContent(){
+    var rrr_colspan= $('.rrr').attr('colspan');
+    $('.print_hide').fadeIn();
+    $('#navb').slideDown();
+    $('.returnPage').fadeOut();
+    var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    $('#tax_tbody_aa').html(' ');
+    db.transaction(function (tx) {
+        tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
+            if(results.rows.length > 0) {
+                var n = Number(rrr_colspan)+1;
+                console.log(n);
+                $('.print_hide2').fadeIn();
+                $('.rrr').attr('colspan', n);
+                $('.ccd').attr('colspan', 1);
+            }
+        });
+    });
+    checkfortax();
 }
 function retunObje(){
+    $('.returnPage').fadeOut();
+    $('#navb').slideDown();
     $('.print_hide').fadeIn();
     $('.print_hide2').fadeIn();
+    $('.ccd').attr('colspan', 1);
+    // $('.paidamm').hide(function () {
+    //     $('#paid_amount_input').show();
+    // });
     var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
     db.transaction(function (tx) {
         tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
@@ -285,6 +228,92 @@ function retunObje(){
     });
     checkfortax();
 }
+function generatePDF() {
+    $('#exampleModalsave').modal('hide');
+    var pdf_name;
+    if ($('#filename').val()){
+        var str = $('#filename').val();
+        var regex = /[.,\s]/g;
+        pdf_name = str.replace(regex, '');
+
+    }else {
+        pdf_name ='pdf';
+    }
+    const element =document.getElementById('print_doc');
+    var opt = {
+        margin:       0.12,
+        filename:     pdf_name,
+        image:        { type: 'jpeg', quality: 1 },
+        html2canvas:  { scale: 1,  },
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf()
+        .from(element)
+        .set(opt)
+        .save();
+
+    setTimeout(retunObje, 7000);
+    $('#downloading-loder').fadeOut('slow');
+
+    // // $('#paid_amount_input').hide(function () {
+    // //     $('.paidamm').show();
+    // // });
+    //
+    // var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
+    // db.transaction(function (tx) {
+    //     tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
+    //         if(results.rows.length > 0) {
+    //
+    //             $('.rrr').attr('colspan', 2);
+    //             $('.disco').attr('colspan', 2);
+    //             $('.ccd').attr('colspan', 2);
+    //             $('#downloading-loder').fadeIn('fast');
+    //             $('.print_hide').hide();
+    //             $('.print_hide2').hide();
+    //             $('#total_border').addClass('total_border');
+    //
+    //
+    //         }
+    //         else {
+    //             $('#downloading-loder').fadeIn('fast');
+    //             $('.print_hide').hide();
+    //             $('.print_hide2').hide();
+    //             $('.ccd').attr('colspan', 2);
+    //             $('#total_border').addClass('total_border');
+    //             $('#exampleModalsave').modal('hide');
+    //             var pdf_name;
+    //             if ($('#filename').val()){
+    //                 var str = $('#filename').val();
+    //                 var regex = /[.,\s]/g;
+    //                 pdf_name = str.replace(regex, '');
+    //
+    //             }else {
+    //                 pdf_name ='pdf';
+    //             }
+    //
+    //
+    //             const element =document.getElementById('print_doc');
+    //             var opt = {
+    //                 margin:       0.12,
+    //                 filename:     pdf_name,
+    //                 image:        { type: 'jpeg', quality: 1 },
+    //                 html2canvas:  { scale: 1,  },
+    //                 jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    //             };
+    //             html2pdf()
+    //                 .from(element)
+    //                 .set(opt)
+    //                 .save();
+    //
+    //             setTimeout(retunObje, 7000);
+    //             $('#downloading-loder').fadeOut('slow');
+    //         }
+    //     });
+    // });
+
+
+}
+
 $('input[type="checkbox"]').on('click', function(){
     var propState = $(this).prop('checked'); // grab the checkbox checked state.
     propState === true ? propState = false : propState = true; // ternary operation. If box is checked uncheck it. if it is not checked check it.
@@ -297,21 +326,20 @@ $('input[type="checkbox"]').on('click', function(){
     }
 });
 $('#paid_amount_input').keyup(function (e) {
-    var paid_amount = $('#paid_amount_input').val();
+    let paid_amount = $(this).val();
+    $('.paidamm').text(paid_amount);
     // console.log(paid_amount);
     // var balance_due_text = $('#balance_duee');
-    var total_text = $('#total_txt').text();
-    var answer =total_text-paid_amount;
+    let total_text = $('#total_txt').text();
+    let answer =Number(total_text) - paid_amount;
     $('#balance_duee').text(answer);
 });
-
-
-
-
-
+function removSpaces(k){
+    return k.replace(/ /g,"_");
+}
 $('#tax_form_submit').click(function (e) {
     var tax_value = $("#tax_input").val();
-    var tax_name = $("#tax_name").val();
+    var tax_name = removSpaces($("#tax_name").val())
     var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
     // console.log(tax);
     if(tax_value.length === 0 && tax_name.length === 0){
@@ -321,10 +349,20 @@ $('#tax_form_submit').click(function (e) {
         $('#spinner').show();
         // setTimeout(localStorage.setItem(tax_name, tax),3000);
         db.transaction(function (tx) {
-            tx.executeSql("INSERT INTO taxvalues (name, value) VALUES (?,?)", [tax_name, tax_value]);
+            tx.executeSql("SELECT * FROM taxvalues WHERE name=?", [tax_name], function(tx, results) {
+                if(results.rows.length === 0 ){
+                    tx.executeSql("INSERT INTO taxvalues (name, value) VALUES (?,?)", [tax_name, tax_value]);
+                    $('#alert_success').fadeIn();
+                    $('#spinner').fadeOut();
+                }else {
+                    $('#alert_exists').show();
+                    $('#spinner').fadeOut();
+
+                }
+            });
+
         });
-        $('#spinner').fadeOut();
-        $('#alert_success').fadeIn();
+
     }
     displayTax();
     refreshTax();
@@ -422,7 +460,7 @@ function tabletax() {
                 $('.tax-dropdown:last').html(' ');
                 $('.tax-dropdown:last').each(function () {
                     $(this).append(
-                        ' <option class="op1" selected value="default">Choose</option>'
+                        ' <option class="op1" selected value="0">Choose</option>'
                     );
                     for(var i = 0; i < results.rows.length; i++) {
 
@@ -463,8 +501,8 @@ function taxTotal(e) {
     var value_name = e.dataset.value;
     console.log(value_name, oldTotal);
     $('#'+ e.id).parent().find('i:last').show();
-    var new_value = Number(oldTotal)+Number(((value_name/100)*(oldTotal)));
-    $('#total_txt').text(new_value);
+    // var new_value = Number(oldTotal)+Number(((value_name/100)*(oldTotal)));
+    // $('#total_txt').text(new_value);
     $('#paid_amount_input').keyup();
 }
 function undotaxTotal(e) {
@@ -503,10 +541,13 @@ function checkfortax() {
 function calculateTaxTwo(e) {
     var $spn = $(e).parent().find('span');
     var $selval =$(e).val();
-    var $seltotal =  $(e).parent().parent().parent().find('span:last').text();
-    var $seltxt = e.options[e.selectedIndex].text;
-    $spn.attr('data-seltax', $seltxt);
-    $spn.text((Number($selval))/100 * Number($seltotal));
+    if (e.options[e.selectedIndex].text !== 'Choose'){
+        var $seltotal =  $(e).parent().parent().parent().find('span:last').text();
+        var $seltxt = e.options[e.selectedIndex].text;
+        $spn.attr('data-seltax', $seltxt);
+        $spn.text((Number($selval))/100 * Number($seltotal));
+    }
+
     // console.log() ;
 
 
@@ -581,9 +622,9 @@ function calculateTaxOne(e) {
                     if (e.options[e.selectedIndex].text !== 'Choose') {
                         var html = '<tr data-taxsub="'+ kkk +'" class="tax-sub ' +kkk+ '">' +
                             '<td style="border-bottom-color: #ffffff;border-left-color: #ffffff; border-top-color: #ffffff;" class="py-0 rrr" colspan="3"></td>' +
-                            '<td class="py-0">' +
+                            '<td class="" style="padding: 6px 6px !important;">' +
                             '<label for="bs_subTotal" class="no-label"></label>' +
-                            '<input type="text" value="' + kkk.toUpperCase() + ':" class="form-control no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="' + kkk.toUpperCase() + ':">' +
+                            '<input style="width: 85px;" type="text" value="' + kkk.toUpperCase().replace(/_/g," ") + ':" class="no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="' + kkk.toUpperCase() + ':">' +
                             '</td>' +
                             ' <td colspan="2" class="text-bold-custom">' +
                                 '<span>'+
@@ -609,9 +650,9 @@ function calculateTaxOne(e) {
         console.log('first');
         var html =  '<tr data-taxsub="'+ kkk +'" class="tax-sub ' + kkk + '">' +
             '<td style="border-bottom-color: #ffffff;border-left-color: #ffffff; border-top-color: #ffffff;" class="py-0 rrr" colspan="4"></td>'+
-            '<td class="py-0">'+
+            '<td class="" style="padding: 6px 6px !important;">'+
             ' <label for="bs_subTotal" class="no-label"></label>'+
-            '<input type="text" value="'+ kkk.toUpperCase() +':" class="form-control no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="'+ kkk.toUpperCase() +':">'+
+            '<input style="width: 85px;" type="text" value="'+ kkk.toUpperCase() +':" class=" no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="'+ kkk.toUpperCase() +':">'+
             '</td>'+
             ' <td colspan="2" class="text-bold-custom">' +
                 '<span>'+
@@ -648,9 +689,9 @@ $('#discount_form_submit').click(function (e) {
 
         var htmll = '<tr class="discountclass tax_sub">' +
             '<td style="border-bottom-color: #ffffff; border-left-color: #ffffff; border-top-color: #ffffff;" class="py-0 disco" colspan="4"></td>' +
-            '<td class="py-0">' +
+            '<td class="" style="padding: 6px 6px !important;">' +
             '<label for="bs_subTotall" class="no-label"></label>' +
-            '<input type="text" value="Discount:" class="form-control no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotall" placeholder="Discount:">' +
+            '<input style="width: 85px;" type="text" value="Discount:" class=" no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotall" placeholder="Discount:">' +
             '</td>' +
             '<td colspan="2" class="text-bold-custom">' +
             '<span>Ksh </span>' +
@@ -785,6 +826,8 @@ function cvui() {
         itma.length = 0;
     }
 }
+
+
 var $right = $('#right');
 var $left = $('#left');
 var $workTitle = $('#work-title');
@@ -801,8 +844,6 @@ $('#Left-logo').click(function () {
         $left.fadeIn();
     });
 });
-
-
 $(".modal-header").on("mousedown", function(mousedownEvt) {
     var $draggable = $(this);
     var x = mousedownEvt.pageX - $draggable.offset().left,

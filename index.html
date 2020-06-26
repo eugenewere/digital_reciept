@@ -55,6 +55,7 @@
             border-left-color: #ffffff !important;
             border-top-color: #ffffff !important;
         }
+        @media print { @page {size: auto !important} }
 
     </style>
 
@@ -93,19 +94,22 @@
                 <li class="nav-item px-1">
                     <button onclick="editContent()" class="btn btn-outline-warning">Preview</button>
                 </li>
-                <li class="nav-item px-1">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <a data-toggle="modal" data-target="#exampleModalsave" class="nav-link btn btn-sm btn-success text-white" id="print" href="#">Download<span class="sr-only">(current)</span></a>
-                        <div id="downloading-loder" style="display: none;" class="spinner-border text-warning ml-2" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                    </div>
-                </li>
+
             </ul>
         </div>
     </div>
 </nav>
-<button style="display: none; " id="returnPage" onclick="showContent()" class="btn btn-outline-danger text-right">Return to edit page</button>
+<div style="position: fixed; display: flex; width: auto; top: 10px; left: 5px; z-index: 999999999">
+    <button style="display: none; ; " id="" onclick="showContent()" class="btn btn-outline-danger text-right returnPage">Return to edit page</button>
+    <div style="display: none; ;" class="returnPage">
+        <div style=" display: flex; justify-content: space-between; align-items: center;">
+            <a data-toggle="modal" data-target="#exampleModalsave" class="nav-link btn btn-sm btn-success text-white" id="print" href="#">Download<span class="sr-only">(current)</span></a>
+            <div id="downloading-loder" style="display: none;" class="spinner-border text-warning ml-2" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalsave" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelsave" aria-hidden="true">
@@ -252,26 +256,28 @@
                         </div>
                     </div>
                     <div class="col-sm-12 row mx-auto py-4">
-                        <table style=""  class="table table-bordered main-table resizable" id="table">
+                         <table style=""  class="table table-bordered main-table resizable" id="table">
                             <thead >
                                 <tr style="background-color: #f6f6f6">
                                     <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
-                                        <input style="background-color: #f6f6f6" aria-label="l" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Description" placeholder="Description">
+                                        <input onkeyup="this.style.width = ((this.value.length + 1) * 8) + 'px';"  style="background-color: #f6f6f6" aria-label="l" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Description" placeholder="Description">
                                     </th>
                                     <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
-                                        <input style="background-color: #f6f6f6" aria-label="e" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Quantity" placeholder="Quantity">
+                                        <input onkeyup="this.style.width = ((this.value.length + 1) * 8) + 'px';" style="background-color: #f6f6f6" aria-label="e" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Quantity" placeholder="Quantity">
                                     </th>
                                     <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
-                                        <input style="background-color: #f6f6f6" aria-label="f" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Unit Price" placeholder="Unit Price">
+                                        <input onkeyup="this.style.width = ((this.value.length + 1) * 8) + 'px';" style="background-color: #f6f6f6" aria-label="f" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Unit Price" placeholder="Unit Price">
                                     </th>
                                     <th  class="no-tax-hide print_hide2" style="width: 90px; padding:0 9px !important;vertical-align: initial !important;" scope="col">
                                         <input style="background-color: #f6f6f6; width: 70px;" aria-label="dd" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Tax" placeholder="Tax">
                                     </th>
 
-                                    <th style=" padding:0 9px !important;vertical-align: initial !important;width:140px;" scope="col">
-                                        <input style="background-color: #f6f6f6" aria-label="v" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Amount" placeholder="Amount">
+                                    <th style=" padding:0 9px !important;vertical-align: initial !important;width:140px;" class="ccd" scope="col">
+                                        <input onkeyup="this.style.width = ((this.value.length + 1) * 8) + 'px';" style="background-color: #f6f6f6" aria-label="v" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Amount" placeholder="Amount">
                                     </th>
-                                    <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col" class="print_hide"></th>
+                                    <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col" class="print_hide">
+
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -283,11 +289,11 @@
                                     </th>
                                     <th style=" width:110px; padding:0 9px !important;vertical-align: initial !important;" scope="row">
                                         <label for="bs_quantity" class="no-label"></label>
-                                        <input style="width: 100px;" onkeyup="calculat()" value="5" type="number" class="no-border" id="bs_quantity" placeholder="1">
+                                        <input style="width: 100px;" onchange="calculat(this)" value="5" type="number" class="no-border" id="bs_quantity" placeholder="1">
                                     </th>
                                     <th style=" width:110px; padding:0 9px !important;vertical-align: initial !important;" scope="row">
                                         <label for="bs_unit_price" class="no-label"></label>
-                                        <input style="width: 100px;" onkeyup="calculat()" value="100" type="number" class="no-border" id="bs_unit_price" placeholder="20">
+                                        <input style="width: 100px;" onchange="calculat(this)" value="100" type="number" class="no-border" id="bs_unit_price" placeholder="20">
                                     </th>
                                     <th class="no-tax-hide print_hide2" style="display: none; padding:3px 1px !important;vertical-align: initial !important;" scope="row">
                                         <div class="form-group mb-0">
@@ -311,9 +317,9 @@
                                     <td style="" class="py-0 rrr r-border" colspan="3">
 
                                     </td>
-                                    <td class="py-0">
+                                    <td class="" style="padding: 6px 6px !important;">
                                         <label for="bs_subTotal" class="no-label"></label>
-                                        <input type="text" class="form-control no-border input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="SubTotal: ">
+                                        <input style="width: 85px;" type="text" class=" no-border input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="SubTotal: ">
                                     </td>
                                     <td colspan="2" class="text-bold-custom">
                                         <span>Ksh </span><span class="" id="subtotal_txt"></span>
@@ -327,9 +333,9 @@
                                             <label id="labellll" class="custom-control-label" for="customSwitch1">on</label>
                                         </div>
                                     </td>
-                                    <td class="py-0" data-toggle="tooltip" title="Please add all items to the table before you make any tax and discount adjustments" data-placement="top">
+                                    <td class="" style="padding: 6px 6px !important;" data-toggle="tooltip" title="Please add all items to the table before you make any tax and discount adjustments" data-placement="top">
                                         <label for="bs_Total" class="no-label"></label>
-                                        <input type="text" class="form-control no-border input_title_smn text-bold-placehoder" id="bs_Total" placeholder="Total: ">
+                                        <input style="width: 85px;" type="text" class="no-border input_title_smn text-bold-placehoder" id="bs_Total" placeholder="Total: ">
                                     </td>
                                     <td colspan="2" class="text-bold-custom">
                                         <span>Ksh </span><span id="total_txt">0</span>
@@ -339,12 +345,13 @@
                                     <td style="" class="py-0 rrr r-border2" colspan="3">
 
                                     </td>
-                                    <td class="py-0">
-                                        <input aria-label="ksaew"  type="text" class="form-control no-border input_title_smn text-bold-placehoder" id="bs_paid_amount" placeholder="Paid Amount: ">
+                                    <td class="" style="padding: 6px 6px !important;">
+                                        <input style="width: 85px;" aria-label="ksaew"  type="text" class="no-border input_title_smn text-bold-placehoder" id="bs_paid_amount" placeholder="Paid Amount: ">
                                     </td>
                                     <td colspan="2" class="text-bold-custom">
-                                        <div class="d-flex align-items-center">
-                                            <span>Ksh</span> <input aria-label="ksa" value="0" type="number" class="form-control no-border ml-2" id="paid_amount_input" placeholder="Amount">
+                                        <div class="" style="display: flex; align-items: center;;">
+                                            Ksh <input onkeyup="this.style.width = ((this.value.length + 1) * 8) + 'px';" style="" aria-label="ksa"  value="0" type="number" class=" no-border ml-2 font-weight-bolder" id="paid_amount_input" placeholder="00">
+<!--                                            <span style="display: none; vertical-align: center;" class="paidamm font-weight-bolder"></span>-->
                                         </div>
                                     </td>
                                 </tr>
@@ -352,9 +359,9 @@
                                     <td style="" class="py-0 rrr r-border2" colspan="3">
 
                                     </td>
-                                    <td class="py-0">
+                                    <td class="" style="padding: 6px 6px !important;">
                                         <label for="bs_paid_balance" class="no-label"></label>
-                                        <input type="text" class="form-control no-border input_title_smn text-bold-placehoder" id="bs_paid_balance" placeholder="Balance Due: ">
+                                        <input style="width: 85px;" type="text" class=" no-border input_title_smn text-bold-placehoder" id="bs_paid_balance" placeholder="Balance Due: ">
                                     </td>
                                     <td colspan="2" class="text-bold-custom">
                                         Ksh <span id="balance_duee">0</span>
@@ -362,7 +369,7 @@
                                 </tr>
 
                             </tbody>
-                        </table>
+                         </table>
                     </div>
                     <div class="col-sm-12 row mx-auto py-2">
                         <span class="text-left w-100 border-bottom">Notes / Terms</span>
@@ -397,6 +404,13 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
+                                <div style="padding: 4px 14px; display: none;" id="alert_exists" class="alert alert-danger" role="alert">
+                                    This name Exists
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
                                 <div style="padding: 4px 14px; display: none;" id="alert_success" class="alert alert-success" role="alert">
                                     Tax Added
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
