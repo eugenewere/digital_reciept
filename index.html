@@ -267,9 +267,7 @@
                                     <th  class="no-tax-hide print_hide2" style="width: 90px; padding:0 9px !important;vertical-align: initial !important;" scope="col">
                                         <input style="background-color: #f6f6f6; width: 70px;" aria-label="dd" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Tax" placeholder="Tax">
                                     </th>
-                                    <th  class="no-extra-hide print_hide2" style="width: 90px; padding:0 9px !important;vertical-align: initial !important;" scope="col">
-                                        <input style="background-color: #f6f6f6; width: 70px;" aria-label="tt" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="ExtraTax" placeholder="ExtraTax">
-                                    </th>
+
                                     <th style=" padding:0 9px !important;vertical-align: initial !important;width:140px;" scope="col">
                                         <input style="background-color: #f6f6f6" aria-label="v" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Amount" placeholder="Amount">
                                     </th>
@@ -297,13 +295,7 @@
 
 
                                             </select>
-                                        </div>
-                                    </th>
-                                    <th class="no-extra-hide print_hide2" style="display: none; padding:3px 1px !important;vertical-align: initial !important;" scope="row">
-                                        <div class="form-group mb-0">
-                                            <select onchange="calculateTaxOne(this); calculateTaxTwo(this); " class="form-control p-1 calcit extra-tax-select" >
-
-                                            </select>
+                                            <span class="seltx" data-seltax="" style="display: none;">0</span>
                                         </div>
                                     </th>
                                     <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="row">
@@ -420,8 +412,8 @@
                                         <small class="text-muted">Dont use same names</small>
                                     </div>
                                     <div class="form-group">
-                                        <label for="tax_input">Tax</label>
-                                        <input type="number" class="form-control" id="tax_input" placeholder="amount">
+                                        <label for="tax_input">Tax (%)</label>
+                                        <input max="100" type="number" class="form-control" id="tax_input" placeholder="Percentage%">
                                     </div>
                                     <div class="row" style="padding: 10px;">
                                         <button type="button" id="tax_form_submit" class="btn btn-sm btn-primary mr-3">Save </button>
@@ -436,7 +428,7 @@
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Name</th>
-                                            <th scope="col">Value</th>
+                                            <th scope="col">Value (%)</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                         </thead>

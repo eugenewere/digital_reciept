@@ -4,6 +4,7 @@
     <list default="true" id="264753fe-9beb-4802-82ce-ff431a05d361" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +99,9 @@
       <workItem from="1592315680435" duration="62651000" />
       <workItem from="1592479496568" duration="313000" />
       <workItem from="1592479833555" duration="18055000" />
-      <workItem from="1592827017941" duration="28018000" />
+      <workItem from="1592827017941" duration="28666000" />
+      <workItem from="1593086296481" duration="3599000" />
+      <workItem from="1593116854716" duration="12579000" />
     </task>
     <servers />
   </component>
@@ -133,9 +136,9 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="251" y="60" key="SettingsEditor/0.30.1366.738@0.30.1366.738" timestamp="1592848682326" />
-    <state x="420" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1592838890904">
+    <state x="420" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1593166095605">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state x="420" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.30.1366.738@0.30.1366.738" timestamp="1592838890904" />
+    <state x="420" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.30.1366.738@0.30.1366.738" timestamp="1593166095605" />
   </component>
 </project>

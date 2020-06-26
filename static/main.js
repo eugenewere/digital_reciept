@@ -18,6 +18,7 @@ $(function(){
 // $('#bs_date_no_text').attr('placeholder', today);
   $('#bs_date_no_text').attr('placeholder', today);
   $('#bs_date_no_text').attr('value', today);
+
     console.log(today);
 
 // }
@@ -139,13 +140,14 @@ function addItems() {
     $('.tab_row ').each(function (event) {
         var val_1 = $(this).find('input:eq(0)').val();
         var val_2 = $(this).find('input:eq(1)').val();
-        var txt_2 = $(this).find('span:eq(1)').text(val_1 * val_2);
+        $(this).find('span:eq(2)').text(val_1 * val_2);
 
         $(this).find('input').on('change', function () {
+            console.log(this);
             var val_1 = $(this).find('input:eq(0)').val();
             var val_2 = $(this).find('input:eq(1)').val();
             var summ=val_1 * val_2;
-            var txt_2 = $(this).find('span:eq(1)').text(summ.toFixed(2));
+            $(this).parent().parent().find('.ammounts_total').text(summ.toFixed(2));
 
         });
 
@@ -477,9 +479,9 @@ function checkfortax() {
             if(results.rows.length > 0) {
                 $('.no-tax-hide').show();
                 $('.no-extra-hide').show();
-                $('.rrr').attr('colspan', 4);
+                $('.rrr').attr('colspan', 3);
                 $('#subtotal_row').show();
-                $('.disco').attr('colspan', 4);
+                $('.disco').attr('colspan', 3);
 
             }
             else {
@@ -495,9 +497,20 @@ function checkfortax() {
         });
     });
 }
-// var last_text;
-// var last_val;
+
+
+
 function calculateTaxTwo(e) {
+    var $spn = $(e).parent().find('span');
+    var $selval =$(e).val();
+    var $seltotal =  $(e).parent().parent().parent().find('span:last').text();
+    var $seltxt = e.options[e.selectedIndex].text;
+    $spn.attr('data-seltax', $seltxt);
+    $spn.text((Number($selval))/100 * Number($seltotal));
+    // console.log() ;
+
+
+
     var tax_name = [];
     $('.calcit').each(function () {
         if(this.options[this.selectedIndex].text !== 'Choose'){
@@ -509,15 +522,36 @@ function calculateTaxTwo(e) {
     // console.log( JSON.parse(JSON.stringify(hist)));
     var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
 
-    for (const [name, instance] of Object.entries(hist)){
-       // console.log(name, instance);
-        db.transaction(function (tx) {
-            tx.executeSql("SELECT * FROM taxvalues WHERE name=?", [name], function(tx, results) {
-                // console.log(results.rows.item(0).value);
-                $('.tax_txt_'+name).text((results.rows.item(0).value)*instance);
-            });
+
+    db.transaction(function (tx) {
+        tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
+            // console.log(results.rows.item(0).value);
+            for(var i = 0; i < results.rows.length; i++) {
+                var fff = [];
+                $('[data-seltax=' + results.rows.item(i).name + ']').each(function () {
+                    fff.push($(this).text());
+                })
+
+                $('.tax_txt_' + results.rows.item(i).name).text(eval(fff.join('+')));
+            }
+            console.log(fff);
+            fff.length = 0;
         });
-    }
+    });
+
+    // for (const [name, instance] of Object.entries(hist)){
+    //    // console.log(name, instance);
+    //     db.transaction(function (tx) {
+    //         tx.executeSql("SELECT * FROM taxvalues WHERE name=?", [name], function(tx, results) {
+    //             // console.log(results.rows.item(0).value);
+    //
+    //             fff.push($('[data-seltax='+name+']').text());
+    //             console.log(fff, eval(fff.join('+')));
+    //             $('.tax_txt_'+name).text((results.rows.item(0).value)*instance);
+    //         });
+    //     });
+    // }
+    // fff.length=0;
     db.transaction(function (tx) {
         tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
             if(results.rows.length > 0) {
@@ -546,7 +580,7 @@ function calculateTaxOne(e) {
                 if(! $('.'+ kkk).length !== 0 ) {
                     if (e.options[e.selectedIndex].text !== 'Choose') {
                         var html = '<tr data-taxsub="'+ kkk +'" class="tax-sub ' +kkk+ '">' +
-                            '<td style="border-bottom-color: #ffffff;border-left-color: #ffffff; border-top-color: #ffffff;" class="py-0 rrr" colspan="4"></td>' +
+                            '<td style="border-bottom-color: #ffffff;border-left-color: #ffffff; border-top-color: #ffffff;" class="py-0 rrr" colspan="3"></td>' +
                             '<td class="py-0">' +
                             '<label for="bs_subTotal" class="no-label"></label>' +
                             '<input type="text" value="' + kkk.toUpperCase() + ':" class="form-control no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="' + kkk.toUpperCase() + ':">' +
@@ -612,7 +646,7 @@ $('#discount_form_submit').click(function (e) {
     }else {
         // console.log('else');
 
-        var htmll = '<tr  class="discountclass tax_sub">' +
+        var htmll = '<tr class="discountclass tax_sub">' +
             '<td style="border-bottom-color: #ffffff; border-left-color: #ffffff; border-top-color: #ffffff;" class="py-0 disco" colspan="4"></td>' +
             '<td class="py-0">' +
             '<label for="bs_subTotall" class="no-label"></label>' +
@@ -726,6 +760,7 @@ function makeDiscount(e) {
 }
 function undoDiscount(e) {
     $('#total_txt').text(localStorage.getItem('oldTotalnew'));
+    // var t = document.getElementById('total_txt').innerText
     $('#'+ e.id).hide();
     $('#paid_amount_input').keyup();
 }
@@ -737,12 +772,12 @@ function cvui() {
     var itma =[];
     var xui = document.getElementsByClassName('xui');
     for( v of xui ){
-        console.log(v);
+        // console.log(v);
         // console.log(v.innerText);
         itma.push(Number(v.innerText));
 
     }
-    console.log('this is'+itma);
+    // console.log('this is'+itma);
     if(xui.length > 0){
         $('#total_txt').text(
             Number($('#subtotal_txt').text())+eval(itma.join('+'))
