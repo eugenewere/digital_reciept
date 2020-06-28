@@ -651,23 +651,31 @@ $('#discount_form_submit').click(function (e) {
     if($('.discountclass').length !== 0) {
         // $('#usediscount').modal('hide');
         // console.log('if');
-        $('.discountclass').find('.doit').text(summ);
+        if(discount_value <= 0){
+            $('.discountclass').remove();
+        }else {
+            $('.discountclass').find('.doit').text(summ);
+        }
+
     }else {
         // console.log('else');
+        if(discount_value > 0) {
+            var htmll = '<tr class="discountclass tax_sub">' +
+                '<td style="border-bottom-color: #ffffff; border-left-color: #ffffff; border-top-color: #ffffff;" class="py-0 disco" colspan="4"></td>' +
+                '<td class="" style="padding: 6px 6px !important;">' +
+                '<label for="bs_subTotall" class="no-label"></label>' +
+                '<input style="width: 85px;" type="text" value="Discount:" class=" no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotall" placeholder="Discount:">' +
+                '</td>' +
+                '<td colspan="2" class="text-bold-custom">' +
+                '<span>Ksh </span>' +
+                '<span class="xui doit">' + summ + '</span>' +
+                '</td>' +
+                '</tr>';
+            // $('#usediscount').modal('hide');
+            $(htmll).insertAfter('#subtotal_row');
+        }else {
 
-        var htmll = '<tr class="discountclass tax_sub">' +
-            '<td style="border-bottom-color: #ffffff; border-left-color: #ffffff; border-top-color: #ffffff;" class="py-0 disco" colspan="4"></td>' +
-            '<td class="" style="padding: 6px 6px !important;">' +
-            '<label for="bs_subTotall" class="no-label"></label>' +
-            '<input style="width: 85px;" type="text" value="Discount:" class=" no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotall" placeholder="Discount:">' +
-            '</td>' +
-            '<td colspan="2" class="text-bold-custom">' +
-            '<span>Ksh </span>' +
-            '<span class="xui doit">' + summ + '</span>' +
-            '</td>' +
-            '</tr>';
-        // $('#usediscount').modal('hide');
-        $(htmll).insertAfter('#subtotal_row');
+        }
 
     }
 
