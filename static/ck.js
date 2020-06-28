@@ -5,7 +5,7 @@ InlineEditor
 
         })
     .catch( error => {
-        console.error( error );
+
     } );
 InlineEditor
     .create( document.querySelector( '#ck2' ),{
@@ -13,7 +13,7 @@ InlineEditor
             toolbar: ['heading','Paragraph', 'Highlight', 'bold', 'italic', 'FontFamily','FontSize','FontColor','FontBackgroundColor','Indent','IndentBlock','TextTransformation','blockQuote','Essentials','Autoformat', 'undo', 'redo','link','bulletedList', 'numberedList'],
         }  )
     .catch( error => {
-        console.error( error );
+
     } );
 InlineEditor
     .create( document.querySelector( '#ck3' ),{
@@ -21,7 +21,7 @@ InlineEditor
             toolbar: ['heading','Paragraph', 'Highlight', 'bold', 'italic', 'FontFamily','FontSize','FontColor','FontBackgroundColor','Indent','IndentBlock','TextTransformation','blockQuote','Essentials','Autoformat', 'undo', 'redo','link','bulletedList', 'numberedList'],
         }  )
     .catch( error => {
-        console.error( error );
+
     } );
 InlineEditor
     .create( document.querySelector( '#ck4' ),{
@@ -29,7 +29,7 @@ InlineEditor
             toolbar: ['heading','Paragraph', 'Highlight', 'bold', 'italic', 'FontFamily','FontSize','FontColor','FontBackgroundColor','Indent','IndentBlock','TextTransformation','blockQuote','Essentials','Autoformat', 'undo', 'redo','link','bulletedList', 'numberedList'],
         }  )
     .catch( error => {
-        console.error( error );
+
     } );
 InlineEditor
     .create( document.querySelector( '#ck5' ),{
@@ -37,7 +37,7 @@ InlineEditor
             toolbar: ['heading','Paragraph', 'Highlight', 'bold', 'italic', 'FontFamily','FontSize','FontColor','FontBackgroundColor','Indent','IndentBlock','TextTransformation','blockQuote','Essentials','Autoformat', 'undo', 'redo','link','bulletedList', 'numberedList'],
         }  )
     .catch( error => {
-        console.error( error );
+
     } );
 InlineEditor
     .create( document.querySelector( '#ck6' ),{
@@ -45,7 +45,7 @@ InlineEditor
             toolbar: ['heading','Paragraph', 'Highlight', 'bold', 'italic', 'FontFamily','FontSize','FontColor','FontBackgroundColor','Indent','IndentBlock','TextTransformation','blockQuote','Essentials','Autoformat', 'undo', 'redo','link','bulletedList', 'numberedList'],
         }  )
     .catch( error => {
-        console.error( error );
+
     } );
 InlineEditor
     .create( document.querySelector( '#validationTextarea' ),{
@@ -53,8 +53,17 @@ InlineEditor
         toolbar: ['heading','Paragraph', 'Highlight', 'bold', 'italic', 'FontFamily','FontSize','FontColor','FontBackgroundColor','Indent','IndentBlock','TextTransformation','blockQuote','Essentials','Autoformat', 'undo', 'redo','link','bulletedList', 'numberedList'],
     })
     .catch( error => {
-        console.error( error );
+
     } );
+InlineEditor
+    .create( document.querySelector( '#cknotes' ),{
+        removePlugins: [ 'Insert image', 'Insert table' ],
+        toolbar: ['heading','Paragraph', 'Highlight', 'bold', 'italic', 'FontFamily','FontSize','FontColor','FontBackgroundColor','Indent','IndentBlock','TextTransformation','blockQuote','Essentials','Autoformat', 'undo', 'redo','link','bulletedList', 'numberedList'],
+    })
+    .catch( error => {
+
+    } );
+
 function vuv() {
     var tab_contents = document.getElementsByClassName('table_contents');
     for(var x of tab_contents){
@@ -65,6 +74,6 @@ function vuv() {
                 toolbar: ['heading','Paragraph', 'Highlight', 'bold', 'italic', 'FontFamily','FontSize','FontColor','FontBackgroundColor','Indent','IndentBlock','TextTransformation','blockQuote','Essentials','Autoformat', 'undo', 'redo','link','bulletedList', 'numberedList'],
             } )
             .catch( error => {
-                console.error( error );
+
             });  }  }
 vuv();

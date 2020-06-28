@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="264753fe-9beb-4802-82ce-ff431a05d361" name="Default Changelist" comment="" />
+    <list default="true" id="264753fe-9beb-4802-82ce-ff431a05d361" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/static/bootstrap.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/bootstrap.min.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/bootstrap.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/bootstrap.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ck.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ck.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +41,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ckeditor55/plugin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -44,15 +53,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\myprojectx\receipt\ckeditor55\plugin" />
-      <recent name="C:\myprojectx\receipt\static" />
-      <recent name="C:\myprojectx\receipt" />
-      <recent name="C:\myprojectx\receipt\static\fonts" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\myprojectx\receipt\static" />
       <recent name="C:\myprojectx\receipt\node_modules" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\myprojectx\receipt\static" />
+      <recent name="C:\myprojectx\receipt\ckeditor55\plugin" />
+      <recent name="C:\myprojectx\receipt" />
+      <recent name="C:\myprojectx\receipt\static\fonts" />
     </key>
   </component>
   <component name="RunManager">
@@ -98,7 +107,8 @@
       <workItem from="1592479833555" duration="18055000" />
       <workItem from="1592827017941" duration="28666000" />
       <workItem from="1593086296481" duration="3599000" />
-      <workItem from="1593116854716" duration="41055000" />
+      <workItem from="1593116854716" duration="41733000" />
+      <workItem from="1593339596868" duration="15126000" />
     </task>
     <servers />
   </component>
@@ -125,10 +135,10 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="567" y="237" width="396" height="324" key="#Notifications/0.30.1366.738@0.30.1366.738" timestamp="1592479897175" />
-    <state x="463" y="154" key="FileChooserDialogImpl" timestamp="1592829980364">
+    <state x="463" y="154" key="FileChooserDialogImpl" timestamp="1593203019865">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state x="463" y="154" key="FileChooserDialogImpl/0.30.1366.738@0.30.1366.738" timestamp="1592829980364" />
+    <state x="463" y="154" key="FileChooserDialogImpl/0.30.1366.738@0.30.1366.738" timestamp="1593203019865" />
     <state x="251" y="60" key="SettingsEditor" timestamp="1592848682326">
       <screen x="0" y="30" width="1366" height="738" />
     </state>

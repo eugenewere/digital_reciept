@@ -7,24 +7,15 @@ $(function(){
     $('table.resizable').resizableColumns();
 });
 
-// function collectDate() {
-    var monthes =['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sept','Oct','Nov','Dec'];
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth()).padStart(2, '0');
-    var yyyy = today.getFullYear();
-// console.log();
-    today =monthes[Number(mm)]+ '/' + dd + '/' + yyyy;
-// $('#bs_date_no_text').attr('placeholder', today);
-  $('#bs_date_no_text').attr('placeholder', today);
-  $('#bs_date_no_text').attr('value', today);
-
-    console.log(today);
-
-// }
-
-
-
+var monthes =['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sept','Oct','Nov','Dec'];
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth()).padStart(2, '0');
+var yyyy = today.getFullYear();
+today =monthes[Number(mm)]+ '/' + dd + '/' + yyyy;
+$('#bs_date_no_text').attr('placeholder', today);
+$('#bs_date_no_text').attr('value', today);
+console.log(today);
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -85,7 +76,8 @@ $('#addrow').click(function (e) {
         )
         .parent().attr('id', tr_id)
         .find('.table_contents').attr('id', tbc);
-    $('#'+new_id).parent().parent().find('input').value= 0;
+    $('#'+new_id).parent().parent().find('.seltx').text(0);
+    $('#'+new_id).parent().parent().find('.seltx').attr('data-seltax', '');
     addItems();
     add_ammounts();
     tabletax();
@@ -95,8 +87,11 @@ $('#addrow').click(function (e) {
 
 
 function deleteRow(e) {
-    $('#'+ e.id).parent().parent().hide();
+    var $idd = '#'+ e.id;
+    $($idd).parent().parent().remove();
     add_ammounts();
+    $('#table tbody').find('select').trigger("change");
+    $( "#paid_amount_input" ).keyup();
 }
 function insertDecimal(num) {
     return (num / 100).toFixed(2);
@@ -351,6 +346,11 @@ $('#tax_form_submit').click(function (e) {
         $('#alert_dangerr').fadeOut();
         $('#spinner').show();
         // setTimeout(localStorage.setItem(tax_name, tax),3000);
+        $('.tax-dropdown').each(function (){
+            $(this).append(
+                '<option value="'+ tax_value +'">'+ tax_name +'</option>'
+            )
+        })
         db.transaction(function (tx) {
             tx.executeSql("SELECT * FROM taxvalues WHERE name=?", [tax_name], function(tx, results) {
                 if(results.rows.length === 0 ){
@@ -370,21 +370,20 @@ $('#tax_form_submit').click(function (e) {
     displayTax();
     refreshTax();
     checkfortax();
-    tabletax();
+    // tabletax();
 });
 function deleteTax(event){
     var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
     console.log();
     var db_id = $('#'+ event.id).parent().parent().find('td:first').text();
     console.log(db_id);
-    // var dbid = $('#'+ event.id).attr('data-rowid');
-    // var iii = String(event.id);
-    // var dbid = document.getElementById(String(event.id)).dataset.rowid;
-    // console.log(dbi, iii);
+
+
     db.transaction(function(tx) {
         tx.executeSql('delete from taxvalues where name=?', [db_id], function(transaction, result) {
             console.log(result);
             console.info('Record Deleted Successfully!');
+
         }, function(transaction, error) {
             console.log(error);
         });
@@ -392,12 +391,20 @@ function deleteTax(event){
 
     function transError() {}
     function transSuccess() {
-
+        jQuery(".calcit option").filter(function(){
+            return $.trim($(this).text()) ===  db_id;
+        }).remove();
+        $('[data-taxsub='+ db_id +']').remove();
+        // $('.calcit select').each(function () {
+        //     $(this).trigger("change");
+        // });
     }
     displayTax();
     refreshTax();
-    tabletax();
+    // tabletax();
     checkfortax();
+    finalltaxdiscountmath();
+
 
 }
 function refreshTax(){
@@ -461,37 +468,19 @@ function tabletax() {
                 // console.log(id);
                 var myid = "table_tax_id_" + id ;
                 $('.tax-dropdown:last').html(' ');
-                $('.tax-dropdown:last').each(function () {
+                $('.tax-dropdown:last').each(function (){
+                    var vallue = $(this).val();
                     $(this).append(
                         ' <option class="op1" selected value="0">Choose</option>'
                     );
                     for(var i = 0; i < results.rows.length; i++) {
-
                         $(this).append(
                             '<option value="'+ results.rows.item(i).value +'">'+ results.rows.item(i).name +'</option>'
-                        )
-
-                    }
+                        )}
                     $('.tax-dropdown:last').attr('id', myid);
                     id++;
                 })
-                var id2 = $('.extra-tax-select').length;
-                // console.log(id2);
-                var myid2 = "table_extratax_id_" + id2 ;
-                $('.extra-tax-select:last').html(' ');
-                $('.extra-tax-select:last').each(function () {
-                    $(this).append(
-                        ' <option class="op1" selected value="0">Choose</option>'
-                    );
-                    for(var i = 0; i < results.rows.length; i++) {
 
-                        $(this).append(
-                            '<option value="'+ results.rows.item(i).value +'">'+ results.rows.item(i).name +'</option>'
-                        )
-                    }
-                    $('.extra-tax-select:last').attr('id', myid2);
-                    id++;
-                })
 
             }
         });
@@ -538,22 +527,15 @@ function checkfortax() {
         });
     });
 }
-
 function calculateTaxTwo(e) {
     var $spn = $(e).parent().find('span');
     var $selval =$(e).val();
-    if (e.options[e.selectedIndex].text !== 'Choose'){
+    // if (e.options[e.selectedIndex].text !== 'Choose'){
         var $seltotal =  $(e).parent().parent().parent().find('span:last').text();
         var $seltxt = e.options[e.selectedIndex].text;
         $spn.attr('data-seltax', $seltxt);
         $spn.text((Number($selval))/100 * Number($seltotal));
-    }
-
-
-    console.log(e) ;
-
-
-
+    // }
     var tax_name = [];
     $('.calcit').each(function () {
         if(this.options[this.selectedIndex].text !== 'Choose'){
@@ -572,7 +554,6 @@ function calculateTaxTwo(e) {
                 $('[data-seltax=' + results.rows.item(i).name + ']').each(function () {
                     fff.push($(this).text());
                 })
-
                 $('.tax_txt_' + results.rows.item(i).name).text(eval(fff.join('+')));
             }
             console.log(fff);
@@ -588,6 +569,7 @@ function calculateTaxTwo(e) {
                         $('.'+results.rows.item(i).name).remove();
                     }
                 }
+
             }
         });
     });
@@ -607,23 +589,24 @@ function calculateTaxOne(e) {
                 if(! $('.'+ kkk).length !== 0 ) {
                     if (e.options[e.selectedIndex].text !== 'Choose') {
                         var html = '<tr data-taxsub="'+ kkk +'" class="tax-sub ' +kkk+ '">' +
-                            '<td style="border-bottom-color: #ffffff;border-left-color: #ffffff; border-top-color: #ffffff;" class="py-0 rrr" colspan="3"></td>' +
-                            '<td class="" style="padding: 6px 6px !important;">' +
-                            '<label for="bs_subTotal" class="no-label"></label>' +
-                            '<input style="width: 85px;" type="text" value="' + kkk.toUpperCase().replace(/_/g," ") + ':" class="no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="' + kkk.toUpperCase() + ':">' +
-                            '</td>' +
-                            ' <td colspan="2" class="text-bold-custom">' +
-                                '<span>'+
-                                    '<span>Ksh </span>' +
-                                    '<span data-taxx="'+ kkk +'"  class="xui tax_txt_'+ kkk +'">' + e.value + '</span>' +
-                                '</span>'+
+                                        '<td style="border-bottom-color: #ffffff;border-left-color: #ffffff; border-top-color: #ffffff;" class="py-0 rrr" colspan="3"></td>' +
+                                        '<td class="" style="padding: 6px 6px !important;">' +
+                                        '<label for="bs_subTotal" class="no-label"></label>' +
+                                        '<input style="width: 85px;" type="text" value="' + kkk.toUpperCase().replace(/_/g," ") + ':" class="no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="' + kkk.toUpperCase() + ':">' +
+                                        '</td>' +
+                                        ' <td colspan="2" class="text-bold-custom">' +
+                                            '<span>'+
+                                                '<span>Ksh </span>' +
+                                                '<span data-taxx="'+ kkk +'"  class="xui tax_txt_'+ kkk +'">' + e.value + '</span>' +
+                                            '</span>'+
 
-                            '</td>' +
-                            '</tr>';
+                                        '</td>' +
+                                    '</tr>';
                         $(html).insertAfter('.tax-sub:last');
                     }
                     else {
                         console.log('Choosen');
+                        setTimeout(cvui,1000)
                     }
                 }else {
                     console.log('exist');
@@ -655,7 +638,6 @@ checkfortax();
 tabletax();
 $('#discount_form_submit').click(function (e) {
     checkfortax();
-
     var discount_value = $("#discount_value").val();
     var discount_name = $("#discount_name").val();
     var ddd = $('#subtotal_txt').text();
@@ -775,14 +757,16 @@ function makeDiscount(e) {
         total =((100-Number(value))/100) * Number(oldTotalnew);
         console.log(total);
         $('#total_txt').text(total);
+        $( "#paid_amount_input" ).keyup();
     }
     else if(name === 'Cash'){
         console.log(name);
         total = Number(oldTotalnew) - Number(value);
         console.log(total);
         $('#total_txt').text(total);
+        $( "#paid_amount_input" ).keyup();
     }
-    $('#paid_amount_input').keyup();
+
 
 }
 function undoDiscount(e) {
@@ -793,24 +777,27 @@ function undoDiscount(e) {
 }
 displayDiscounts();
 function finalltaxdiscountmath(){
-    setTimeout(cvui,1000)
+    setTimeout(cvui,1000);
 }
 function cvui() {
     var itma =[];
     var xui = document.getElementsByClassName('xui');
     for( v of xui ){
-        // console.log(v);
-        // console.log(v.innerText);
         itma.push(Number(v.innerText));
-
     }
-    // console.log('this is'+itma);
+    console.log(xui);
     if(xui.length > 0){
         $('#total_txt').text(
             Number($('#subtotal_txt').text())+eval(itma.join('+'))
         );
         itma.length = 0;
+    }else{
+        itma.push(0);
+        $('#total_txt').text(
+            Number($('#subtotal_txt').text())+eval(itma.join('+'))
+        );
     }
+    $( "#paid_amount_input" ).keyup();
 }
 
 
