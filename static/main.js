@@ -242,7 +242,7 @@ function generatePDF() {
         margin:       0.12,
         filename:     pdf_name,
         image:        { type: 'png' },
-        html2canvas:  { scale: 5,  },
+        html2canvas:  { scale: 4,  },
         jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
     html2pdf()
@@ -589,7 +589,7 @@ function calculateTaxOne(e) {
                 if(! $('.'+ kkk).length !== 0 ) {
                     if (e.options[e.selectedIndex].text !== 'Choose') {
                         var html = '<tr data-taxsub="'+ kkk +'" class="tax-sub ' +kkk+ '">' +
-                                        '<td style="border-bottom-color: #ffffff;border-left-color: #ffffff; border-top-color: #ffffff;" class="py-0 rrr" colspan="3"></td>' +
+                                        '<td style="border-bottom-color: #ffffff !important;border-left-color: #ffffff !important; border-top-color: #ffffff !important;" class="py-0 rrr" colspan="3"></td>' +
                                         '<td class="" style="padding: 6px 6px !important;">' +
                                         '<label for="bs_subTotal" class="no-label"></label>' +
                                         '<input style="width: 85px;" type="text" value="' + kkk.toUpperCase().replace(/_/g," ") + ':" class="no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="' + kkk.toUpperCase() + ':">' +
@@ -618,7 +618,7 @@ function calculateTaxOne(e) {
     else {
         console.log('first');
         var html =  '<tr data-taxsub="'+ kkk +'" class="tax-sub ' + kkk + '">' +
-            '<td style="border-bottom-color: #ffffff;border-left-color: #ffffff; border-top-color: #ffffff;" class="py-0 rrr" colspan="4"></td>'+
+            '<td style="border-bottom-color: #ffffff !important; border-left-color: #ffffff !important;  border-top-color: #ffffff !important; " class="py-0 rrr" colspan="4"></td>'+
             '<td class="" style="padding: 6px 6px !important;">'+
             ' <label for="bs_subTotal" class="no-label"></label>'+
             '<input style="width: 85px;" type="text" value="'+ kkk.toUpperCase() +':" class=" no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="'+ kkk.toUpperCase() +':">'+
@@ -661,7 +661,7 @@ $('#discount_form_submit').click(function (e) {
         // console.log('else');
         if(discount_value > 0) {
             var htmll = '<tr class="discountclass tax_sub">' +
-                '<td style="border-bottom-color: #ffffff; border-left-color: #ffffff; border-top-color: #ffffff;" class="py-0 disco" colspan="4"></td>' +
+                '<td style="border-bottom-color: #ffffff !important; border-left-color: #ffffff !important; border-top-color: #ffffff !important;" class="py-0 disco" colspan="4"></td>' +
                 '<td class="" style="padding: 6px 6px !important;">' +
                 '<label for="bs_subTotall" class="no-label"></label>' +
                 '<input style="width: 85px;" type="text" value="Discount:" class=" no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotall" placeholder="Discount:">' +
