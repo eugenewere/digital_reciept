@@ -228,6 +228,7 @@ function retunObje(){
 }
 function generatePDF() {
     $('#exampleModalsave').modal('hide');
+    $('#downloading-loder').fadeIn('fast');
     var pdf_name;
     if ($('#filename').val()){
         var str = $('#filename').val();
@@ -242,8 +243,8 @@ function generatePDF() {
         margin:       0.12,
         filename:     pdf_name,
         image:        { type: 'png' },
-        html2canvas:  { scale: 5,  },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        html2canvas:  { scale: 4,  },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait', floatPrecision:'smart' }
     };
     html2pdf()
         .from(element)
