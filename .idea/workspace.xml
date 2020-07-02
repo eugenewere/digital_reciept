@@ -4,6 +4,8 @@
     <list default="true" id="264753fe-9beb-4802-82ce-ff431a05d361" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/fontaw.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/fontaw.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/fonts/ieVl2ZhZI2eCN5jzbjEETS9weq8-19-7DRs5.woff2" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/static/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.js" afterDir="false" />
     </list>
@@ -37,7 +39,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/fonts" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -49,15 +51,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\myprojectx\receipt\static" />
-      <recent name="C:\myprojectx\receipt\node_modules" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\myprojectx\receipt\static\fonts" />
       <recent name="C:\myprojectx\receipt\static" />
       <recent name="C:\myprojectx\receipt\ckeditor55\plugin" />
       <recent name="C:\myprojectx\receipt" />
-      <recent name="C:\myprojectx\receipt\static\fonts" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\myprojectx\receipt\static" />
+      <recent name="C:\myprojectx\receipt\node_modules" />
     </key>
   </component>
   <component name="RunManager">
@@ -107,7 +109,7 @@
       <workItem from="1593339596868" duration="18638000" />
       <workItem from="1593375589637" duration="1048000" />
       <workItem from="1593598531907" duration="105000" />
-      <workItem from="1593686913042" duration="9000000" />
+      <workItem from="1593686913042" duration="19149000" />
     </task>
     <servers />
   </component>
