@@ -3,7 +3,9 @@ html,body{
     box-sizing: content-box;
     margin: 0;
     padding: 0;
+    /*font-family:  sans-serif;*/
     font-family: 'Roboto Condensed', sans-serif;
+    font-weight: lighter;
     background-color: #ffffff;
 }
 .bg-whitee{

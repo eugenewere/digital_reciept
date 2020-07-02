@@ -4,6 +4,8 @@
     <list default="true" id="264753fe-9beb-4802-82ce-ff431a05d361" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +37,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -103,7 +105,9 @@
       <workItem from="1593086296481" duration="3599000" />
       <workItem from="1593116854716" duration="41733000" />
       <workItem from="1593339596868" duration="18638000" />
-      <workItem from="1593375589637" duration="222000" />
+      <workItem from="1593375589637" duration="1048000" />
+      <workItem from="1593598531907" duration="105000" />
+      <workItem from="1593686913042" duration="9000000" />
     </task>
     <servers />
   </component>
@@ -130,10 +134,10 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="567" y="237" width="396" height="324" key="#Notifications/0.30.1366.738@0.30.1366.738" timestamp="1592479897175" />
-    <state x="463" y="154" key="FileChooserDialogImpl" timestamp="1593203019865">
+    <state x="463" y="154" key="FileChooserDialogImpl" timestamp="1593690322899">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state x="463" y="154" key="FileChooserDialogImpl/0.30.1366.738@0.30.1366.738" timestamp="1593203019865" />
+    <state x="463" y="154" key="FileChooserDialogImpl/0.30.1366.738@0.30.1366.738" timestamp="1593690322899" />
     <state x="251" y="60" key="SettingsEditor" timestamp="1592848682326">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
@@ -142,5 +146,9 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="420" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.30.1366.738@0.30.1366.738" timestamp="1593194694625" />
+    <state x="339" y="180" key="run.anything.popup" timestamp="1593375716522">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state x="339" y="180" key="run.anything.popup/0.30.1366.738@0.30.1366.738" timestamp="1593375716522" />
   </component>
 </project>

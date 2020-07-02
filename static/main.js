@@ -239,10 +239,10 @@ function generatePDF() {
     }
     const element =document.getElementById('print_doc');
     var opt = {
-        margin:       0.12,
+        margin:       0.30,
         filename:     pdf_name,
-        image:        { type: 'jpeg', quality: 1 },
-        html2canvas:  { scale: 1,  },
+        image:        { type: 'png' },
+        html2canvas:  { scale: 4,  },
         jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
     };
     html2pdf()
