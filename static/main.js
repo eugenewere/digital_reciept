@@ -242,7 +242,7 @@ function generatePDF() {
         margin:       0.12,
         filename:     pdf_name,
         image:        { type: 'png' },
-        html2canvas:  { scale: 4,  },
+        html2canvas:  { scale: 5,  },
         jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
     html2pdf()
