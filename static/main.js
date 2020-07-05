@@ -185,20 +185,33 @@ function showContent(){
     $('.print_hide').fadeIn();
     $('#navb').slideDown();
     $('.returnPage').fadeOut();
+
     var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
     $('#tax_tbody_aa').html(' ');
     db.transaction(function (tx) {
         tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
             if(results.rows.length > 0) {
                 var n = Number(rrr_colspan)+1;
-                console.log(n);
+                // console.log(n);
                 $('.print_hide2').fadeIn();
                 $('.rrr').attr('colspan', n);
                 $('.ccd').attr('colspan', 1);
             }
         });
     });
+
     checkfortax();
+    checkImage();
+}
+function checkImage(){
+    if($('#image').css('display') === 'block'){
+        $('#image22').hide();
+    }else {
+        $('#image').hide();
+        // $('#image').attr('src','static/No-Image-Available.jpg')
+        $('#image22').show();
+        $('img#image22').css('display','block');
+    }
 }
 function retunObje(){
     $('.returnPage').fadeOut();
@@ -206,6 +219,7 @@ function retunObje(){
     $('.print_hide').fadeIn();
     $('.print_hide2').fadeIn();
     $('.ccd').attr('colspan', 1);
+    // $('#image').attr('src','static/No-Image-Available.jpg')
     // $('.paidamm').hide(function () {
     //     $('#paid_amount_input').show();
     // });
@@ -225,6 +239,7 @@ function retunObje(){
         });
     });
     checkfortax();
+    checkImage();
 }
 function generatePDF() {
     $('#exampleModalsave').modal('hide');
@@ -253,64 +268,6 @@ function generatePDF() {
 
     setTimeout(retunObje, 7000);
     $('#downloading-loder').fadeOut('slow');
-
-    // // $('#paid_amount_input').hide(function () {
-    // //     $('.paidamm').show();
-    // // });
-    //
-    // var db = openDatabase("my.db", '1.0', "My WebSQL Database", 2 * 1024 * 1024);
-    // db.transaction(function (tx) {
-    //     tx.executeSql("SELECT name, value FROM taxvalues", [], function(tx, results) {
-    //         if(results.rows.length > 0) {
-    //
-    //             $('.rrr').attr('colspan', 2);
-    //             $('.disco').attr('colspan', 2);
-    //             $('.ccd').attr('colspan', 2);
-    //             $('#downloading-loder').fadeIn('fast');
-    //             $('.print_hide').hide();
-    //             $('.print_hide2').hide();
-    //             $('#total_border').addClass('total_border');
-    //
-    //
-    //         }
-    //         else {
-    //             $('#downloading-loder').fadeIn('fast');
-    //             $('.print_hide').hide();
-    //             $('.print_hide2').hide();
-    //             $('.ccd').attr('colspan', 2);
-    //             $('#total_border').addClass('total_border');
-    //             $('#exampleModalsave').modal('hide');
-    //             var pdf_name;
-    //             if ($('#filename').val()){
-    //                 var str = $('#filename').val();
-    //                 var regex = /[.,\s]/g;
-    //                 pdf_name = str.replace(regex, '');
-    //
-    //             }else {
-    //                 pdf_name ='pdf';
-    //             }
-    //
-    //
-    //             const element =document.getElementById('print_doc');
-    //             var opt = {
-    //                 margin:       0.12,
-    //                 filename:     pdf_name,
-    //                 image:        { type: 'jpeg', quality: 1 },
-    //                 html2canvas:  { scale: 1,  },
-    //                 jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-    //             };
-    //             html2pdf()
-    //                 .from(element)
-    //                 .set(opt)
-    //                 .save();
-    //
-    //             setTimeout(retunObje, 7000);
-    //             $('#downloading-loder').fadeOut('slow');
-    //         }
-    //     });
-    // });
-
-
 }
 
 $('input[type="checkbox"]').on('click', function(){
@@ -527,6 +484,7 @@ function checkfortax() {
             }
         });
     });
+    // checkImage();
 }
 function calculateTaxTwo(e) {
     var $spn = $(e).parent().find('span');
@@ -842,6 +800,21 @@ $(".modal-header").on("mousedown", function(mousedownEvt) {
     $draggable.closest(".modal").one("bs.modal.hide", function() {
         $("body").off("mousemove.draggable");
     });
+});
+
+$("#image").draggable();
+
+$('#img_label22>#mydropdown')
+$('.dropdown-keep-open').on('hide.bs.dropdown', function (e) {
+    if (!e.clickEvent) {
+        // There is no `clickEvent` property in the `e` object when the `button` (or any other trigger) is clicked.
+        // What we usually want to happen in such situations is to hide the dropdown so we let it hide.
+        return true;
+    }
+
+    var target = $(e.clickEvent.target);
+
+    return !(target.hasClass('dropdown-keep-open') || target.parents('.dropdown-keep-open').length);
 });
 
 

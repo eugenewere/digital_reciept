@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="264753fe-9beb-4802-82ce-ff431a05d361" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/static/jquery.ui.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/bootstrap.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ck.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ck.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -14,8 +19,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -35,7 +40,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/fonts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../OnlinePhotoshop" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -105,7 +110,10 @@
       <workItem from="1593339596868" duration="18638000" />
       <workItem from="1593375589637" duration="1048000" />
       <workItem from="1593598531907" duration="105000" />
-      <workItem from="1593686913042" duration="22340000" />
+      <workItem from="1593686913042" duration="22642000" />
+      <workItem from="1593807777426" duration="621000" />
+      <workItem from="1593813114038" duration="133000" />
+      <workItem from="1593948921533" duration="30310000" />
     </task>
     <servers />
   </component>
@@ -132,18 +140,18 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="567" y="237" width="396" height="324" key="#Notifications/0.30.1366.738@0.30.1366.738" timestamp="1592479897175" />
-    <state x="463" y="154" key="FileChooserDialogImpl" timestamp="1593690322899">
+    <state x="463" y="154" key="FileChooserDialogImpl" timestamp="1593957546641">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state x="463" y="154" key="FileChooserDialogImpl/0.30.1366.738@0.30.1366.738" timestamp="1593690322899" />
+    <state x="463" y="154" key="FileChooserDialogImpl/0.30.1366.738@0.30.1366.738" timestamp="1593957546641" />
     <state x="251" y="60" key="SettingsEditor" timestamp="1592848682326">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="251" y="60" key="SettingsEditor/0.30.1366.738@0.30.1366.738" timestamp="1592848682326" />
-    <state x="420" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1593194694625">
+    <state x="420" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1593956771445">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state x="420" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.30.1366.738@0.30.1366.738" timestamp="1593194694625" />
+    <state x="420" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.30.1366.738@0.30.1366.738" timestamp="1593956771445" />
     <state x="339" y="180" key="run.anything.popup" timestamp="1593375716522">
       <screen x="0" y="30" width="1366" height="738" />
     </state>

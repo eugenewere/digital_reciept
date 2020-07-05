@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="static/main.css">
 <!--    <script src="static/fontaw.js" crossorigin="anonymous"></script>-->
     <script src="static/fonta.js" crossorigin="anonymous"></script>
+
 <!--    <link rel="stylesheet" href="static/fontaw.css">-->
     <title>Receipt Generator</title>
     <script src="ckeditor55/build/ckeditor.js"></script>
@@ -24,16 +25,13 @@
         .table .ck.ck-editor__editable_inline>:last-child {
             margin-bottom:2px !important;
         }
-
-         .table .ck.ck-editor__editable_inline>:first-child {
+        .table .ck.ck-editor__editable_inline>:first-child {
              margin-top: 2px !important;
          }
         .ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_nw, .ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_sw {
             right: -484px;
         }
-
-
-         .ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_se, .ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_sw {
+        .ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_se, .ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_sw {
              top: 0%;
              bottom: auto;
          }
@@ -41,41 +39,35 @@
             width: 150px;
             margin-left: auto;
         }
+         .table-bordered tbody tr th {
+            border: 1px solid #000000 !important;
 
-         /*.table-bordered tbody tr, .table-bordered thead tr {*/
-         /*   border: 1px solid #565656 !important;*/
-         /*}*/
-        .table-bordered tbody tr th,  .table-bordered tbody tr td{
-            border: 1px solid #565656 !important;
          }
         .table-bordered thead tr th {
-            border-top:  1px solid #3e3e3e !important;
-            border-left:  1px solid  #3e3e3e !important;
-            border-right:  1px solid  #3e3e3e !important;
-            /*border-bottom:  2px solid #565656 !important;*/
-        }
-        .table-bordered thead tr:nth-child(1){
-            border-top: 3px solid #00000060 !important
-        }
-        .table-bordered tbody tr:nth-child(1){
-            border-top: 3px solid #00000060 !important
-        }
-        /*.table-bordered thead tr th:nth-child(1){*/
-        /*    border-left:  3px solid #00000060 !important*/
-        /*}*/
-        /*.table-bordered thead tr th:last-child{*/
-        /*    border-right: 3px solid #00000060 !important*/
-        /*}*/
-
-        .table-bordered tbody tr th:nth-child(1){
-            border-left:  2px solid #00000099 !important
-        }
-        .table-bordered tbody tr th:last-child{
-            border-right:  2px solid #00000099 !important
-        }
-
+            border-bottom: 1px solid black;
+         }
+         /*.table-bordered tbody tr:first-child {*/
+         /*   border-top: 3px solid #000000 !important;*/
+         /*}*/
+         /*.table-bordered tbody tr:not(:first-child) {*/
+         /*    border:none !important;*/
+         /*}*/
+        .table-bordered tbody tr:not(:first-child) th,  .table-bordered tbody tr td{
+            border: 1px solid #000000 !important;
+         }
         .table-bordered thead tr th,.table-bordered thead tr th input{
             background-color: rgb(224, 222, 222) !important;
+            /*border-color: rgb(10, 9, 9) !important;*/
+        }
+        .table-bordered thead tr th{
+            border-top: 1px solid #000000;
+            /*border-bottom: 1px solid #000000;*/
+        }
+        .table-bordered thead tr th:first-child{
+            border-left-color: #000000 !important;
+            border-right: none;
+        }.table-bordered thead tr th:last-child{
+           border-right-color: #030303 !important;
         }
         .table-bordered .r-border{
             border-bottom-color: #ffffff !important;
@@ -94,7 +86,7 @@
 <body>
 <nav id="navb" class="navbar navbar-expand-lg navbar-light bg-primary sticky-top">
     <div class="container">
-        <a class="navbar-brand text-white" href="#">Receipt Generator</a>
+        <a class="navbar-brand text-white" href="#">Receipt Generator ...</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -110,17 +102,17 @@
                 <li class="nav-item px-1">
                     <a type="button"  data-toggle="modal" data-target="#exampleModal2" class="nav-link btn btn-sm btn-warning text-white"  href="#">Add Discount </a>
                 </li>
-                <li class="nav-item px-1">
-                    <div class="dropdown">
-                        <button  class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Layout
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button id="Right-Logo" class="dropdown-item" type="button">Right Logo</button>
-                            <button id="Left-logo" class="dropdown-item" type="button">Left logo</button>
-                        </div>
-                    </div>
-                </li>
+<!--                <li class="nav-item px-1">-->
+<!--                    <div class="dropdown">-->
+<!--                        <button  class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                            Layout-->
+<!--                        </button>-->
+<!--                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">-->
+<!--                            <button id="Right-Logo" class="dropdown-item" type="button">Right Logo</button>-->
+<!--                            <button id="Left-logo" class="dropdown-item" type="button">Left logo</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </li>-->
                 <li class="nav-item px-1">
                     <button onclick="editContent()" class="btn btn-outline-warning">Preview</button>
                 </li>
@@ -134,7 +126,7 @@
     <div style="display: none; ;" class="returnPage">
         <div style=" display: flex; justify-content: space-between; align-items: center;">
             <a data-toggle="modal" data-target="#exampleModalsave" class="nav-link btn btn-sm btn-success text-white" id="print" href="#">Download<span class="sr-only">(current)</span></a>
-            <div id="downloading-loder" style="display: none;" class="spinner-border text-warning ml-2" role="status">
+            <div id="downloading-loder" style="display: none;" class="spinner-border text-danger ml-2" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
@@ -171,29 +163,65 @@
             <div style="padding: 31px !important;" class="col-sm-12 col-md-12 col-lg-7 col-xl-7 p-3 mx-auto bg-whitee receipt_wrapper animate__animated  animate__rubberBand">
                 <div id="print_doc" class="row" style="padding: 0 14px;">
                     <div id="right" class="col-sm-12 row mx-auto header_bottom_boder pb-2">
-                        <div class="col-sm-12 col-md-5 px-0 py-0  " >
-                            <div id="ck1" class="contents">
-                                <h4>[Business Name]</h4><br>
-                                [Business Address]<br>
-
-                                <span class="d-flex">
-                                    <span>[City], </span>
-                                    <span>[State],</span>
-                                    <span>[Postal Code]</span><br>
-                                </span><br>
-                                [Business Phone Number]<br>
-                                [Business Email Address]
-
+                        <div class="row w-100">
+                            <div class="col-sm-12 col-md-5">
+                                <div id="work-title" >
+                                    <div id="ck4" class="contents text-left">
+                                        <h3 class="m-0 " id="editor_title_t2" >
+                                            Invoice
+                                        </h3>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="px-0 col-sm-12 ml-auto col-md-7 pt-3">
-                            <div class="px-0">
-                                <div class="form-group img_wrapper" style="">
-                                    <label id="img_label" data-toggle="tooltip" data-placement="right" title="Click to add image" for="vmimg"><i class="far fa-plus-square print_hide"></i></label>
-                                    <input required id="vmimg" name="image" type="file" onchange="readURL(this);" />
-                                    <img  data-toggle="tooltip" data-placement="right" title="Click center toggle to add image" style="display: none" class="blah" id="image" src="static/No-Image-Available.jpg" alt="your image" />
-                                    <img  data-toggle="tooltip" data-placement="right" title="Click center toggle to add image " style="" class="blah3 print_hide myimagew" id="image22" src="static/No-Image-Available.jpg" alt="your image" />
-                                    <small id="emailHelp" style="font-size: 22px;" class="form-text text-muted"></small>
+                            <div class="col-sm-12 col-md-7 p-0">
+                                <div class="px-0 col-sm-12 ml-auto col-md-12 pt-3 h-auto">
+<!--                                    <div class="px-0">-->
+                                        <div class="form-group img_wrapper ml-auto" style="width: 200px; height: 200px;">
+                                            <span class="img_label dropdown dropdown-keep-open" id="img_label22" data-toggle="tooltip" data-placement="right" title="Click to add image" for="vmimg">
+                                                <i data-toggle="dropdown"  class="far fa-plus-square print_hide"></i>
+                                                <div id="mydropdown" class="dropdown-menu dropdown-menu-left" style="background: beige; padding: 3px; !important; left: -62px !important;">
+                                                    <div class="col-sm-12 p-0">
+                                                        <label for="width">Width</label>
+                                                        <span class="result-wrapper">
+                                                            <em> 0 </em>
+                                                            <span>pixels</span>
+                                                        </span>
+                                                        <input type="range" data-filter="width" class="custom-range iii" step="1" value="0" min="-200"  max="200" id="width">
+                                                    </div>
+                                                    <div class="col-sm-12 p-0">
+                                                        <label for="Height">Height</label>
+                                                        <span class="result-wrapper">
+                                                            <em> 0 </em>
+                                                            <span> pixels</span>
+                                                        </span>
+                                                        <input type="range" data-filter="height" class="custom-range iii" step="1" value="0" min="-200"  max="200" id="Height">
+                                                    </div>
+                                                    <label for="vmimg" class="btn btn-success btn-sm w-100 ">Upload Image</label>
+
+                                                </div>
+
+                                            </span>
+                                            <input required id="vmimg" name="image" type="file" onchange="readURL(this);" />
+                                            <img  data-toggle="tooltip" data-placement="right" title="The image is draggable" style="display: none; width: 100%;height: 100%;" class="blah" id="image" src="static/No-Image-Available.jpg" alt="your image" />
+                                            <img  data-toggle="tooltip" data-placement="right" title="Click center toggle to add image " style="width: 100%;height: 100%;" class="blah3 print_hide myimagew" id="image22" src="static/No-Image-Available.jpg" alt="your image" />
+                                            <small id="emailHelp" style="font-size: 22px;" class="form-text text-muted"></small>
+                                        </div>
+<!--                                    </div>-->
+                                </div>
+                                <div class="col-sm-12 col-md-12 px-0 pb-0 pt-3  " >
+                                    <div id="ck1" class="contents text-right">
+                                        <h4>[Business Name]</h4><br>
+                                        [Business Address]<br>
+
+                                        <span class="d-flex justify-content-end">
+                                            <span>[City], </span>
+                                            <span>[State],</span>
+                                            <span>[Postal Code]</span><br>
+                                        </span><br>
+                                        [Business Phone Number]<br>
+                                        [Business Email Address]
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -233,13 +261,7 @@
                         </div>
                     </div>
                     <div class="col-sm-12 row mx-auto ">
-                        <div id="work-title" class="col-sm-12 mb-3">
-                            <div id="ck4" class="contents text-right">
-                                <h3 class="m-0 " id="editor_title_t2" >
-                                    Invoice
-                                </h3>
-                            </div>
-                        </div>
+
                         <div class="col-sm-12 col-md-7 row">
                             <div class="col-sm-12 px-0 col-md-3" >
                                 <div id="ck6" class="contents text-left font-weight-bolder">
@@ -286,32 +308,47 @@
                         </div>
                     </div>
                     <div class="col-sm-12 row mx-auto py-4">
-                         <table style="width: 100%"  class="table table-bordered main-table resizable" id="table">
+                         <table style="width: 100%; margin-top: 5px;" rules="none"  class="table table-bordered main-table resizable" id="table">
                             <thead >
                                 <tr style="background-color: #f6f6f6">
-                                    <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
-                                        <input onkeyup="this.style.width = ((this.value.length + 1) * 8) + 'px';"  style="background-color: #f6f6f6" aria-label="l" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Description" placeholder="Description">
+                                    <th style="border-right: none; padding:0 9px !important;vertical-align: initial !important;" scope="col">
+<!--                                        <input onkeyup="this.style.width = ((this.value.length + 1) * 8) + 'px';"  style="background-color: #f6f6f6" aria-label="l" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Description" placeholder="Description">-->
+                                        <div style=" padding: 3px 2px;" id="ckdes">
+                                            <p style="font-weight: bold;">Description</p>
+                                        </div>
                                     </th>
-                                    <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
-                                        <input onkeyup="this.style.width = ((this.value.length + 1) * 8) + 'px';" style="background-color: #f6f6f6" aria-label="e" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Quantity" placeholder="Quantity">
+                                    <th style="border-right: none;border-left: none; padding:0 9px !important;vertical-align: initial !important;" scope="col">
+<!--                                        <input onkeyup="this.style.width = ((this.value.length + 1) * 8) + 'px';" style="background-color: #f6f6f6" aria-label="e" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Quantity" placeholder="Quantity">-->
+                                        <div style=" padding: 3px 2px;" id="ckqty">
+                                            <p style="font-weight: bold;">Quantity</p>
+                                        </div>
                                     </th>
-                                    <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col">
-                                        <input onkeyup="this.style.width = ((this.value.length + 1) * 8) + 'px';" style="background-color: #f6f6f6" aria-label="f" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Unit Price" placeholder="Unit Price">
+                                    <th style="border-right: none;border-left: none; padding:0 9px !important;vertical-align: initial !important;" scope="col">
+<!--                                        <input onkeyup="this.style.width = ((this.value.length + 1) * 8) + 'px';" style="background-color: #f6f6f6" aria-label="f" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Unit Price" placeholder="Unit Price">-->
+                                        <div style=" padding: 3px 2px;" id="ckunt">
+                                            <p style="font-weight: bold;">Unit Price</p>
+                                        </div>
                                     </th>
-                                    <th  class="no-tax-hide print_hide2" style="width: 90px; padding:0 9px !important;vertical-align: initial !important;" scope="col">
-                                        <input style="background-color: #f6f6f6; width: 70px;" aria-label="dd" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Tax" placeholder="Tax">
+                                    <th  class="no-tax-hide print_hide2" style="border-right: none;border-left: none; width: 90px; padding:0 9px !important;vertical-align: initial !important;" scope="col">
+<!--                                        <input style="background-color: #f6f6f6; width: 70px;" aria-label="dd" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Tax" placeholder="Tax">-->
+                                        <div style=" padding: 3px 2px;" id="cktax">
+                                            <p style="font-weight: bold;">Tax</p>
+                                        </div>
                                     </th>
 
-                                    <th style=" padding:0 9px !important;vertical-align: initial !important; min-width:143px;" class="ccd" scope="col">
-                                        <input style="background-color: #f6f6f6" aria-label="v" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Amount" placeholder="Amount">
+                                    <th style="border-left: none; padding:0 9px !important;vertical-align: initial !important; min-width:143px; border-right-color: #3e3e3e !important;" class="ccd" scope="col">
+<!--                                        <input style="background-color: #f6f6f6" aria-label="v" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Amount" placeholder="Amount">-->
+                                        <div style=" padding: 3px 2px;" id="ckamtt">
+                                            <p style="font-weight: bold;">Amount</p>
+                                        </div>
                                     </th>
-                                    <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="col" class="print_hide">
+                                    <th style=" padding:0 9px !important;vertical-align: initial !important; " scope="col" class="print_hide">
 
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr style=" padding:0 9px !important;vertical-align: initial !important;" id="t_row1" class="tab_row">
+                                <tr style=" padding:0 9px !important;vertical-align: initial !important; " id="t_row1" class="tab_row">
                                     <th style=" padding:0 9px !important;vertical-align: initial !important;" scope="row">
                                         <div id="ckk1" class="table_contents text-left">
                                             <p>Product 1</p>
@@ -624,13 +661,57 @@
 <script src="static/ck.js" type="text/javascript" ></script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script type="text/javascript" src="static/jquery351.js"></script>
+<script type="text/javascript" src="static/jquery.ui.min.js"></script>
 <script type="text/javascript" src="static/popper.js"></script>
 <script type="text/javascript" src="static/bootstrap.min.js"></script>
 <script type="text/javascript" src="static/html2pdf.js"></script>
 <script type="text/javascript" src="static/resize.js"></script>
 <script type="text/javascript" src="static/db.js" ></script>
 
+
 <script type="text/javascript" src="static/main.js" ></script>
+<script>
+    $('.custom-range').each(function () {
+        var $indicator = $(this).parent().find('em');
+        $(this).change(function () {
+            $indicator.text(this.value);
+        });
+        $(this).mousedown( function () {
+            $(this).mousemove( function(){
+                var valu = this.value;
+                var filter = this.dataset.filter;
+                $indicator.text(this.value);
+                // $(this).parent().siblings().css('visibility', 'hidden');
+                changeImage(valu, filter);
+            });
+        });
+        $(this).mouseup( function(){
+            $(this).mousemove( function() {
+                // $(this).parent().siblings().css('visibility', 'visible');
+            });
+        });
+    });
+
+    var imagewidth = $('.img_wrapper').innerWidth();
+    var imageHeight= $('.img_wrapper').innerHeight();
+    $('.iii').change(function () {
+        $(this).each(function (e) {
+            var valuee = $(this).val();
+            var datafilter = $(this).attr('data-filter');
+            console.log(imagewidth,imageHeight,valuee,datafilter);
+            if(datafilter === 'height'){
+                var h = Number(imageHeight) + Number(valuee);
+                // console.log(imagewidth,imageHeight,valuee,datafilter);
+                $('.img_wrapper').css('height',h)
+            }else if (datafilter === 'width'){
+                var w = Number(imagewidth) + Number(valuee);
+                $('.img_wrapper').css('width', w)
+            }
+
+        });
+    });
+    // $("#image").resizable();
+</script>
 
 </body>
 </html>

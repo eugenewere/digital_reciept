@@ -61,14 +61,14 @@ input,textarea,select{
     border-radius: 4px;
     width: auto;
     height: 200px;
-    overflow: hidden;
+    /*overflow: hidden;*/
     margin-bottom: 0;
 }
 .img_wrapper img{
-    object-fit: contain;
-    height: 200px;
+    /*object-fit: contain;*/
+    height: auto;
 }
-#img_label{
+.img_label{
     position: absolute;
     top: 54%;
     right: 8%;
@@ -189,23 +189,6 @@ input::-webkit-inner-spin-button {
 .text-bold-custom{
     font-weight: 600;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .custom-switch{
     float: right;
     top: 40px;
