@@ -311,38 +311,37 @@
                          <table style="width: 100%; margin-top: 5px; font-size: 18px !important;" rules="none"  class="table table-bordered main-table resizable" id="table">
                             <thead >
                                 <tr style="background-color: #f6f6f6">
-                                    <th style="border-right: none; padding:0 9px !important;vertical-align: initial !important;" scope="col">
+                                    <th data-resizable-column-id="descriptionn" style="border-right: none; padding:0 9px !important;vertical-align: initial !important;" scope="col">
 <!--                                        <input onkeyup="this.style.width = ((this.value.length + 1) * 8) + 'px';"  style="background-color: #f6f6f6" aria-label="l" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Description" placeholder="Description">-->
                                         <div style=" padding: 3px 2px;" id="ckdes">
                                             <p style="font-weight: bold;">Description</p>
                                         </div>
                                     </th>
-                                    <th style="border-right: none;border-left: none; padding:0 9px !important;vertical-align: initial !important;" scope="col">
+                                    <th data-resizable-column-id="untprice" style="border-right: none;border-left: none; padding:0 9px !important;vertical-align: initial !important;" scope="col">
 <!--                                        <input onkeyup="this.style.width = ((this.value.length + 1) * 8) + 'px';" style="background-color: #f6f6f6" aria-label="e" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Quantity" placeholder="Quantity">-->
                                         <div style=" padding: 3px 2px;" id="ckqty">
                                             <p style="font-weight: bold;">Quantity</p>
                                         </div>
                                     </th>
-                                    <th style="border-right: none;border-left: none; padding:0 9px !important;vertical-align: initial !important;" scope="col">
+                                    <th data-resizable-column-id="qttyy" style="border-right: none;border-left: none; padding:0 9px !important;vertical-align: initial !important;" scope="col">
 <!--                                        <input onkeyup="this.style.width = ((this.value.length + 1) * 8) + 'px';" style="background-color: #f6f6f6" aria-label="f" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Unit Price" placeholder="Unit Price">-->
                                         <div style=" padding: 3px 2px;" id="ckunt">
                                             <p style="font-weight: bold;">Unit Price</p>
                                         </div>
                                     </th>
-                                    <th  class="no-tax-hide print_hide2" style="border-right: none;border-left: none; width: 90px; padding:0 9px !important;vertical-align: initial !important;" scope="col">
+                                    <th data-resizable-column-id="taxsx"  class="no-tax-hide print_hide2" style="border-right: none;border-left: none; width: 90px; padding:0 9px !important;vertical-align: initial !important;" scope="col">
 <!--                                        <input style="background-color: #f6f6f6; width: 70px;" aria-label="dd" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Tax" placeholder="Tax">-->
                                         <div style=" padding: 3px 2px;" id="cktax">
                                             <p style="font-weight: bold;">Tax</p>
                                         </div>
                                     </th>
-
-                                    <th style="border-left: none; padding:0 9px !important;vertical-align: initial !important; min-width:143px; border-right-color: #3e3e3e !important;" class="ccd" scope="col">
+                                    <th data-resizable-column-id="amouuntt" style="border-left: none; padding:0 9px !important;vertical-align: initial !important; min-width:143px; border-right-color: #3e3e3e !important;" class="ccd" scope="col">
 <!--                                        <input style="background-color: #f6f6f6" aria-label="v" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Amount" placeholder="Amount">-->
                                         <div style=" padding: 3px 2px;" id="ckamtt">
                                             <p style="font-weight: bold;">Amount</p>
                                         </div>
                                     </th>
-                                    <th style=" padding:0 9px !important;vertical-align: initial !important; " scope="col" class="print_hide">
+                                    <th data-resizable-column-id="deleeee" style=" padding:0 9px !important;vertical-align: initial !important; max-width: 50px; " scope="col" class="print_hide">
 
                                     </th>
                                 </tr>
@@ -662,6 +661,7 @@
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script type="text/javascript" src="static/jquery351.js"></script>
 <script type="text/javascript" src="static/jquery.ui.min.js"></script>
+<script type="text/javascript" src="static/store.js"></script>
 <script type="text/javascript" src="static/popper.js"></script>
 <script type="text/javascript" src="static/bootstrap.min.js"></script>
 <script type="text/javascript" src="static/html2pdf.js"></script>

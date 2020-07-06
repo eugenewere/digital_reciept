@@ -4,8 +4,13 @@ refreshDiscount();
 displayTax();
 
 $(function(){
-    $('table.resizable').resizableColumns();
+    $('table.resizable').resizableColumns({
+        store: window.store
+    });
 });
+// $(function(){
+//     $("table.resizable").colResizable();
+// });
 
 var monthes =['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sept','Oct','Nov','Dec'];
 var today = new Date();
@@ -15,7 +20,7 @@ var yyyy = today.getFullYear();
 today =monthes[Number(mm)]+ '/' + dd + '/' + yyyy;
 $('#bs_date_no_text').attr('placeholder', today);
 $('#bs_date_no_text').attr('value', today);
-console.log(today);
+// console.log(today);
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -752,7 +757,7 @@ function cvui() {
     for( v of xui ){
         itma.push(Number(v.innerText));
     }
-    console.log(xui);
+    // console.log(xui);
     if(xui.length > 0){
         $('#total_txt').text(
             Number($('#subtotal_txt').text())+eval(itma.join('+'))
