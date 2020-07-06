@@ -3,11 +3,7 @@ refreshTax();
 refreshDiscount();
 displayTax();
 
-$(function(){
-    $('table.resizable').resizableColumns({
-        store: window.store
-    });
-});
+
 // $(function(){
 //     $("table.resizable").colResizable();
 // });
