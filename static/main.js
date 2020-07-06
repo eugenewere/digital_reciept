@@ -44,6 +44,7 @@ $('#invoice_add').click(function (e) {
             '<i style="margin-left: auto;" onclick="deleteRow2(this)" class="fas fa-trash text-danger print_hide" data-toggle="tooltip" data-placement="right" title="Delete top row"></i>'
         );
 
+
     $('[data-toggle="tooltip"]').tooltip();
 });
 
@@ -76,7 +77,13 @@ $('#addrow').click(function (e) {
             +'</button>'
         )
         .parent().attr('id', tr_id)
-        .find('.table_contents').attr('id', tbc);
+        .find('.table_contents').attr('id', tbc)
+        .parent().parent().find('th:first p').text('New Product')
+        .parent().parent().parent().find('th:nth-child(2) input').val(1)
+        .parent().parent().find('th:nth-child(3) input').val(100);
+
+
+
     $('#'+new_id).parent().parent().find('.seltx').text(0);
     $('#'+new_id).parent().parent().find('.seltx').attr('data-seltax', '');
     addItems();
@@ -260,7 +267,7 @@ function generatePDF() {
         filename:     pdf_name,
         image:        { type: 'png' },
         html2canvas:  { scale: 4,  },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait', floatPrecision:'smart' }
+        jsPDF:        { unit: 'in', format: [8.5, 16.6], orientation: 'portrait', floatPrecision:'smart' }
     };
     html2pdf()
         .from(element)
