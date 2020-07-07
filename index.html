@@ -386,7 +386,7 @@
                                     </td>
                                     <td class="" style="padding: 6px 6px !important;">
                                         <label for="bs_subTotal" class="no-label"></label>
-                                        <input style="width: 85px;" type="text" class=" no-border input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="SubTotal: ">
+                                        <input  style="width: 92px;" type="text" class=" no-border input_title_smn text-bold-placehoder" value="SubTotal: " id="bs_subTotal" placeholder="SubTotal: ">
                                     </td>
                                     <td colspan="2" class="text-bold-custom">
                                         <span>Ksh </span><span class="" id="subtotal_txt"></span>
@@ -402,7 +402,7 @@
                                     </td>
                                     <td class="" style="padding: 6px 6px !important;" data-toggle="tooltip" title="Please add all items to the table before you make any tax and discount adjustments" data-placement="top">
                                         <label for="bs_Total" class="no-label"></label>
-                                        <input style="width: 85px;" type="text" class="no-border input_title_smn text-bold-placehoder" id="bs_Total" placeholder="Total: ">
+                                        <input  style="width: 92px;" type="text" class="no-border input_title_smn text-bold-placehoder" value="Total: " id="bs_Total" placeholder="Total: ">
                                     </td>
                                     <td colspan="2" class="text-bold-custom">
                                         <span>Ksh </span><span id="total_txt">0</span>
@@ -413,11 +413,11 @@
 
                                     </td>
                                     <td class="" style="padding: 6px 6px !important;">
-                                        <input style="width: 85px;" aria-label="ksaew"  type="text" class="no-border input_title_smn text-bold-placehoder" id="bs_paid_amount" placeholder="Paid Amount: ">
+                                        <input  style="width: 92px;" aria-label="ksaew"  type="text" value="Paid Amount: " class="no-border input_title_smn text-bold-placehoder" id="bs_paid_amount" placeholder="Paid Amount: ">
                                     </td>
                                     <td colspan="2" class="text-bold-custom">
                                         <div class="" style="display: flex; align-items: center;;">
-                                            Ksh <input onkeyup="this.style.width = ((this.value.length + 1) * 15) + 'px';" style="" aria-label="ksa"  value="0" type="number" class=" no-border ml-1 font-weight-bolder" id="paid_amount_input" placeholder="00">
+                                            Ksh <input onkeyup="this.style.width = ((this.value.length + 1) * 15) + 'px';" style="" aria-label="ksa"  value="0" type="number" class=" no-border ml-1 font-weight-bolder" id="paid_amount_input" placeholder="0">
 <!--                                            <span style="display: none; vertical-align: center;" class="paidamm font-weight-bolder"></span>-->
                                         </div>
                                     </td>
@@ -428,7 +428,7 @@
                                     </td>
                                     <td class="" style="padding: 6px 6px !important;">
                                         <label for="bs_paid_balance" class="no-label"></label>
-                                        <input style="width: 85px;" type="text" class=" no-border input_title_smn text-bold-placehoder" id="bs_paid_balance" placeholder="Balance Due: ">
+                                        <input style="width: 92px;" type="text" class=" no-border input_title_smn text-bold-placehoder" value="Balance Due: " id="bs_paid_balance" placeholder="Balance Due: ">
                                     </td>
                                     <td colspan="2" class="text-bold-custom">
                                         Ksh <span id="balance_duee">0</span>
@@ -440,7 +440,7 @@
                     </div>
                     <div class="col-sm-12 row mx-auto py-2">
                         <span id="cknotes" class="text-left w-100 border-bottom " style="font-size: 18px !important;">Notes / Terms</span>
-                        <div style="min-height: 400px; border-top:  1px solid #00000060 !important; font-size: 18px !important;" class="w-100 text-left" id="validationTextarea">
+                        <div style="min-height: 200px; border-top:  1px solid #00000060 !important; font-size: 18px !important;" class="w-100 text-left" id="validationTextarea">
                            <span> Notes</span>
                         </div>
                     </div>
@@ -665,6 +665,9 @@
 <script type="text/javascript" src="static/store.js"></script>
 <script type="text/javascript" src="static/popper.js"></script>
 <script type="text/javascript" src="static/bootstrap.min.js"></script>
+<script type="text/javascript" src="static/es6-promise.auto.min.js"></script>
+<script type="text/javascript" src="static/jspdf.js"></script>
+<script type="text/javascript" src="static/html2canvas.min.js"></script>
 <script type="text/javascript" src="static/html2pdf.js"></script>
 <script type="text/javascript" src="static/resize.js"></script>
 <script type="text/javascript" src="static/db.js" ></script>

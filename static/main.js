@@ -265,8 +265,8 @@ function generatePDF() {
     var opt = {
         margin:       0.12,
         filename:     pdf_name,
-        image:        { type: 'png' },
-        html2canvas:  { scale: 4,  },
+        image:        {type: 'jpeg', quality: 1},
+        html2canvas:  { scale: 8,  imageTimeout:0,  },
         jsPDF:        { unit: 'in', format: [8.5, 16.6], orientation: 'portrait', floatPrecision:'smart' }
     };
     html2pdf()
