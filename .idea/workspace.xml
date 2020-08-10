@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="264753fe-9beb-4802-82ce-ff431a05d361" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/es6-promise.auto.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/html2canvas.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/jspdf.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +34,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../OnlinePhotoshop" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -114,7 +108,12 @@
       <workItem from="1593807777426" duration="621000" />
       <workItem from="1593813114038" duration="133000" />
       <workItem from="1593948921533" duration="41027000" />
-      <workItem from="1594068907870" duration="10974000" />
+      <workItem from="1594068907870" duration="12070000" />
+      <workItem from="1594145859508" duration="1683000" />
+      <workItem from="1594760293899" duration="72000" />
+      <workItem from="1595003079052" duration="740000" />
+      <workItem from="1595011972120" duration="107000" />
+      <workItem from="1595012246419" duration="57000" />
     </task>
     <servers />
   </component>
@@ -141,10 +140,10 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="567" y="237" width="396" height="324" key="#Notifications/0.30.1366.738@0.30.1366.738" timestamp="1592479897175" />
-    <state x="463" y="154" key="FileChooserDialogImpl" timestamp="1594042669970">
+    <state x="463" y="154" key="FileChooserDialogImpl" timestamp="1595012037685">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state x="463" y="154" key="FileChooserDialogImpl/0.30.1366.738@0.30.1366.738" timestamp="1594042669970" />
+    <state x="463" y="154" key="FileChooserDialogImpl/0.30.1366.738@0.30.1366.738" timestamp="1595012037685" />
     <state x="251" y="60" key="SettingsEditor" timestamp="1592848682326">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
