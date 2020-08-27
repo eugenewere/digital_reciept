@@ -222,6 +222,7 @@ function checkImage(){
     }
 }
 function retunObje(){
+    $('#downloading-loder').fadeOut('slow');
     $('.returnPage').fadeOut();
     $('#navb').slideDown();
     $('.print_hide').fadeIn();
@@ -263,19 +264,31 @@ function generatePDF() {
     }
     const element =document.getElementById('print_doc');
     var opt = {
-        margin:       0.12,
+        margin:       0.21,
         filename:     pdf_name,
         image:        {type: 'jpeg', quality: 1},
-        html2canvas:  { scale: 8,  imageTimeout:0,  },
-        jsPDF:        { unit: 'in', format: [8.5, 16.6], orientation: 'portrait', floatPrecision:'smart' }
+        html2canvas:  {
+            scale: 13,
+            imageTimeout:0,
+            logging: true,
+            letterRendering: true,
+            useCORS: true
+        },
+        jsPDF:  { unit: 'in', format: [8.5, 16.6], orientation: 'portrait', floatPrecision:'smart' }
     };
+
+
     html2pdf()
-        .from(element)
         .set(opt)
+        .from(element)
+        .toContainer()
+        .toCanvas()
+        .toImg()
+        .toPdf()
         .save();
 
     setTimeout(retunObje, 7000);
-    $('#downloading-loder').fadeOut('slow');
+
 }
 
 $('input[type="checkbox"]').on('click', function(){

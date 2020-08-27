@@ -80,6 +80,27 @@
             border-top-color: #ffffff !important;
         }
 
+        .page-break {
+            page-break-after: always;
+            page-break-inside: avoid;
+            clear:both;
+        }
+        .page-break-before {
+            page-break-before: always;
+            page-break-inside: avoid;
+            clear:both;
+        }
+        #html-2-pdfwrapper{
+            position: absolute;
+            left: 20px;
+            top: 50px;
+            bottom: 0;
+            overflow: auto;
+            width: 600px;
+        }
+        .ck-editor__editable_inline{
+            line-height: 20px !important;
+        }
     </style>
     <link rel="stylesheet" href="static/animate.css">
 
@@ -162,13 +183,13 @@
         <div class="row py-4">
 
             <div style="padding: 31px !important;" class="col-sm-12 col-md-12 col-lg-7 col-xl-7 p-3 mx-auto bg-whitee receipt_wrapper animate__animated  animate__rubberBand">
-                <div id="print_doc" class="row" style="padding: 0 14px;">
+                <div id="print_doc" class="row" style="padding: 18px 39px;">
                     <div id="right" class="col-sm-12 row mx-auto header_bottom_boder pb-2">
                         <div class="row w-100">
                             <div class="col-sm-12 col-md-5">
                                 <div id="work-title" >
                                     <div id="ck4" class="contents text-left">
-                                        <h3 class="m-0 " id="editor_title_t2" >
+                                        <h3 class="m-0 " style="font:message-box;" id="editor_title_t2" >
                                             Invoice
                                         </h3>
                                     </div>
@@ -202,14 +223,14 @@
                                                 </div>
 
                                             </span>
-                                            <input required id="vmimg" name="image" type="file" onchange="readURL(this);" />
+                                            <input accept=".jpg,.jpeg,.png" required id="vmimg" name="image" type="file" onchange="readURL(this);" />
                                             <img  data-toggle="tooltip" data-placement="right" title="The image is draggable" style="display: none; width: 100%;height: 100%;" class="blah" id="image" src="static/No-Image-Available.jpg" alt="your image" />
                                             <img  data-toggle="tooltip" data-placement="right" title="Click center toggle to add image " style="width: 100%;height: 100%;" class="blah3 print_hide myimagew" id="image22" src="static/No-Image-Available.jpg" alt="your image" />
                                             <small id="emailHelp" style="font-size: 22px;" class="form-text text-muted"></small>
                                         </div>
 <!--                                    </div>-->
                                 </div>
-                                <div class="col-sm-12 col-md-12 px-0 pb-0 pt-3  " style="font-size: 14px !important;">
+                                <div class="col-sm-12 col-md-12 px-0 pb-0 pt-3  " style="font-size: 14px !important;font:message-box;">
                                     <div id="ck1" class="contents text-right">
                                         <h4>[Business Name]</h4><br>
                                         [Business Address]<br>
@@ -219,6 +240,7 @@
                                             <span>[State],</span>
                                             <span>[Postal Code]</span><br>
                                         </span><br>
+
                                         [Business Phone Number]<br>
                                         [Business Email Address]
 
@@ -270,14 +292,14 @@
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-8 p-0">
-                                <div id="ck5" class="contents text-left p-0" style="font-size: 14px !important;">
-                                    [Client Name]<br>
-                                    [Client Address Line 1]<br>
+                                <div id="ck5" class="contents text-left p-0" style="font-size: 14px !important;font:message-box; display: flex; flex-direction: column;">
+
+                                    <span>[Client Name]</span> <br>
+                                    <span>[Client Address Line 1]</span><br>
                                     <span class="d-flex">
                                         [City]
                                         [State]
                                         [Postal Code]
-
                                     </span>
                                 </div>
                             </div>
@@ -290,7 +312,7 @@
                                 </div>
                                 <div class="col-sm-4 text-right pr-0 pl-0">
                                     <label for="bs_invoice_no_text" class="no-label"></label>
-                                    <input type="text" class=" no-border input_title_sm22 text-right" id="bs_invoice_no_text" placeholder="Invoice Number">
+                                    <input type="text" style="font:message-box; font-size: 14px;" class=" no-border input_title_sm22 text-left" id="bs_invoice_no_text" placeholder="Invoice Number">
                                 </div>
                             </div>
                             <div class="row cloned">
@@ -300,7 +322,7 @@
                                 </div>
                                 <div class="col-sm-4 text-right pr-0 pl-0">
                                     <label for="bs_date_no_text" class="no-label"></label>
-                                    <input value="" type="text" class=" no-border input_title_sm22 text-right" id="bs_date_no_text"  placeholder="">
+                                    <input value="" style="font:message-box; font-size: 14px;" type="text" class=" no-border input_title_sm22 text-left" id="bs_date_no_text"  placeholder="">
                                 </div>
                             </div>
                             <span id="invoice_add" style="margin-left: 100px;">
@@ -309,37 +331,37 @@
                         </div>
                     </div>
                     <div class="col-sm-12 row mx-auto py-4">
-                         <table data-resizable-columns-id="demo-table1" style="width: 100%; margin-top: 5px; font-size: 14px !important;" rules="none"  class="table table-bordered  main-table resizable" id="table">
+                         <table data-resizable-columns-id="demo-table1" style="width: 100%; margin-top: 5px; font-size: 14px !important; font:message-box;" rules="none"  class="table table-bordered  main-table resizable" id="table">
                             <thead >
                                 <tr style="background-color: #f6f6f6">
                                     <th data-resizable-column-id="descriptionn" style="border-right: none; padding:0 9px !important;vertical-align: initial !important;" scope="col">
 <!--                                        <input onkeyup="this.style.width = ((this.value.length + 1) * 8) + 'px';"  style="background-color: #f6f6f6" aria-label="l" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Description" placeholder="Description">-->
                                         <div style=" padding: 3px 2px;" id="ckdes">
-                                            <p style="font-weight: bold;">Description</p>
+                                            <p style="">Description</p>
                                         </div>
                                     </th>
                                     <th data-resizable-column-id="untprice" style="border-right: none;border-left: none; padding:0 9px !important;vertical-align: initial !important;" scope="col">
 <!--                                        <input onkeyup="this.style.width = ((this.value.length + 1) * 8) + 'px';" style="background-color: #f6f6f6" aria-label="e" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Quantity" placeholder="Quantity">-->
                                         <div style=" padding: 3px 2px;" id="ckqty">
-                                            <p style="font-weight: bold;">Quantity</p>
+                                            <p style="">Quantity</p>
                                         </div>
                                     </th>
                                     <th data-resizable-column-id="qttyy" style="border-right: none;border-left: none; padding:0 9px !important;vertical-align: initial !important;" scope="col">
 <!--                                        <input onkeyup="this.style.width = ((this.value.length + 1) * 8) + 'px';" style="background-color: #f6f6f6" aria-label="f" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Unit Price" placeholder="Unit Price">-->
                                         <div style=" padding: 3px 2px;" id="ckunt">
-                                            <p style="font-weight: bold;">Unit Price</p>
+                                            <p style="">Unit Price</p>
                                         </div>
                                     </th>
                                     <th data-resizable-column-id="taxsx"  class="no-tax-hide print_hide2" style="border-right: none;border-left: none; width: 90px; padding:0 9px !important;vertical-align: initial !important;" scope="col">
 <!--                                        <input style="background-color: #f6f6f6; width: 70px;" aria-label="dd" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Tax" placeholder="Tax">-->
                                         <div style=" padding: 3px 2px;" id="cktax">
-                                            <p style="font-weight: bold;">Tax</p>
+                                            <p style="">Tax</p>
                                         </div>
                                     </th>
                                     <th data-resizable-column-id="amouuntt" style="border-left: none; padding:0 9px !important;vertical-align: initial !important; min-width:143px; border-right-color: #3e3e3e !important;" class="ccd" scope="col">
 <!--                                        <input style="background-color: #f6f6f6" aria-label="v" class="form-control no-border input_title_sm font-weight-bolder" type="text" value="Amount" placeholder="Amount">-->
                                         <div style=" padding: 3px 2px;" id="ckamtt">
-                                            <p style="font-weight: bold;">Amount</p>
+                                            <p style="">Amount</p>
                                         </div>
                                     </th>
                                     <th data-resizable-column-id="deleeee" style=" padding:0 9px !important;vertical-align: initial !important; max-width: 50px; " scope="col" class="print_hide">
@@ -356,11 +378,11 @@
                                     </th>
                                     <th style=" width:110px; padding:0 9px !important;vertical-align: initial !important;" scope="row">
                                         <label for="bs_quantity" class="no-label"></label>
-                                        <input style="width: 100px;" onchange="calculat(this)" value="5" type="number" class="no-border" id="bs_quantity" placeholder="1">
+                                        <input style="width: 100px; " onchange="calculat(this)" value="5" type="number" class="no-border" id="bs_quantity" placeholder="1">
                                     </th>
                                     <th style=" width:110px; padding:0 9px !important;vertical-align: initial !important;" scope="row">
                                         <label for="bs_unit_price" class="no-label"></label>
-                                        <input style="width: 100px;" onchange="calculat(this)" value="100" type="number" class="no-border" id="bs_unit_price" placeholder="20">
+                                        <input style="width: 100px; " onchange="calculat(this)" value="100" type="number" class="no-border" id="bs_unit_price" placeholder="20">
                                     </th>
                                     <th class="no-tax-hide print_hide2" style="display: none; padding:3px 1px !important;vertical-align: initial !important;" scope="row">
                                         <div class="form-group mb-0">
@@ -381,56 +403,56 @@
 
 
                                 <tr class="tax-sub" id="subtotal_row">
-                                    <td style="" class="py-0 rrr r-border" colspan="3">
+                                    <td  style="border-right: none !important;" class="py-0 rrr r-border" colspan="3">
 
                                     </td>
-                                    <td class="" style="padding: 6px 6px !important;">
+                                    <td class="" style="padding: 6px 6px !important;border-left: none !important; border-right: none !important;">
                                         <label for="bs_subTotal" class="no-label"></label>
                                         <input  style="width: 92px;" type="text" class=" no-border input_title_smn text-bold-placehoder" value="SubTotal: " id="bs_subTotal" placeholder="SubTotal: ">
                                     </td>
-                                    <td colspan="2" class="text-bold-custom">
+                                    <td colspan="2" style="border-right: none !important;border-left: none !important;" class="text-bold-custom">
                                         <span>Ksh </span><span class="" id="subtotal_txt"></span>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="" id="total_border" class=" r-border2 rrr" colspan="3" >
+                                    <td style="border-right: none !important;" id="total_border" class=" r-border2 rrr" colspan="3" >
                                         <button id="addrow" class="btn btn-success btn-sm print_hide" data-toggle="tooltip" data-placement="left" title="Add another row"><i class="fas fa-plus-square" ></i> Add row</button>
                                         <div class="custom-control custom-switch print_hide">
                                             <input checked="checked" name="ttt" value="off"  type="checkbox" class="custom-control-input" id="customSwitch1">
                                             <label id="labellll" class="custom-control-label" for="customSwitch1">on</label>
                                         </div>
                                     </td>
-                                    <td class="" style="padding: 6px 6px !important;" data-toggle="tooltip" title="Please add all items to the table before you make any tax and discount adjustments" data-placement="top">
+                                    <td class="" style="padding: 6px 6px !important; border-left: none !important; border-right: none !important;" data-toggle="tooltip" title="Please add all items to the table before you make any tax and discount adjustments" data-placement="top">
                                         <label for="bs_Total" class="no-label"></label>
-                                        <input  style="width: 92px;" type="text" class="no-border input_title_smn text-bold-placehoder" value="Total: " id="bs_Total" placeholder="Total: ">
+                                        <input  style="width: 105px;" type="text" class="no-border input_title_smn text-bold-placehoder" value="Total: " id="bs_Total" placeholder="Total: ">
                                     </td>
-                                    <td colspan="2" class="text-bold-custom">
+                                    <td colspan="2" style="border-right: none !important;border-left: none !important;" class="text-bold-custom">
                                         <span>Ksh </span><span id="total_txt">0</span>
                                     </td>
                                 </tr>
                                 <tr class="checkbox-click-hide">
-                                    <td style="" class="py-0 rrr r-border2" colspan="3">
+                                    <td style="border-right: none !important;" class="py-0 rrr r-border2" colspan="3">
 
                                     </td>
-                                    <td class="" style="padding: 6px 6px !important;">
-                                        <input  style="width: 92px;" aria-label="ksaew"  type="text" value="Paid Amount: " class="no-border input_title_smn text-bold-placehoder" id="bs_paid_amount" placeholder="Paid Amount: ">
+                                    <td class="" style="padding: 6px 6px !important; border-left: none !important; border-right: none !important;">
+                                        <input  style="width: 105px;" aria-label="ksaew"  type="text" value="Paid Amount: " class="no-border input_title_smn text-bold-placehoder" id="bs_paid_amount" placeholder="Paid Amount: ">
                                     </td>
-                                    <td colspan="2" class="text-bold-custom">
-                                        <div class="" style="display: flex; align-items: center;;">
-                                            Ksh <input onkeyup="this.style.width = ((this.value.length + 1) * 15) + 'px';" style="" aria-label="ksa"  value="0" type="number" class=" no-border ml-1 font-weight-bolder" id="paid_amount_input" placeholder="0">
+                                    <td colspan="2" class="text-bold-custom" style="border-right: none !important;border-left: none !important;">
+                                        <div class="" style="display: flex; align-items: center; ">
+                                            Ksh <input onkeyup="this.style.width = ((this.value.length + 1) * 15) + 'px';" style="font-weight: normal !important; " aria-label="ksa"  value="0" type="number" class=" no-border ml-1 font-weight-bolder" id="paid_amount_input" placeholder="0">
 <!--                                            <span style="display: none; vertical-align: center;" class="paidamm font-weight-bolder"></span>-->
                                         </div>
                                     </td>
                                 </tr>
                                 <tr class="checkbox-click-hide">
-                                    <td style="" class="py-0 rrr r-border2" colspan="3">
+                                    <td style="border-right: none !important;" class="py-0 rrr r-border2" colspan="3">
 
                                     </td>
-                                    <td class="" style="padding: 6px 6px !important;">
+                                    <td class="" style="padding: 6px 6px !important; border-left: none !important; border-right: none !important;">
                                         <label for="bs_paid_balance" class="no-label"></label>
-                                        <input style="width: 92px;" type="text" class=" no-border input_title_smn text-bold-placehoder" value="Balance Due: " id="bs_paid_balance" placeholder="Balance Due: ">
+                                        <input style="width: 105px;" type="text" class=" no-border input_title_smn text-bold-placehoder" value="Balance Due: " id="bs_paid_balance" placeholder="Balance Due: ">
                                     </td>
-                                    <td colspan="2" class="text-bold-custom">
+                                    <td colspan="2" style="border-right: none !important;border-left: none !important;" class="text-bold-custom">
                                         Ksh <span id="balance_duee">0</span>
                                     </td>
                                 </tr>
@@ -439,8 +461,8 @@
                          </table>
                     </div>
                     <div class="col-sm-12 row mx-auto py-2">
-                        <span id="cknotes" class="text-left w-100 border-bottom " style="font-size: 14px !important;">Notes / Terms</span>
-                        <div style="min-height: 200px; border-top:  1px solid #00000060 !important; font-size: 14px !important;" class="w-100 text-left" id="validationTextarea">
+                        <span id="cknotes" class="text-left w-100 border-bottom " style="font-size: 14px !important; font: message-box;">Notes / Terms</span>
+                        <div style="min-height: 200px; border-top:  1px solid #00000060 !important; font-size: 14px !important; font: message-box;" class="w-100 text-left" id="validationTextarea">
                            <span> Notes</span>
                         </div>
                     </div>
