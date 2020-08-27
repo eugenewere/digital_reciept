@@ -269,6 +269,7 @@ function generatePDF() {
         image:        {type: 'jpeg', quality: 1},
         html2canvas:  {
             scale: 13,
+            quality: 4,
             imageTimeout:0,
             logging: true,
             letterRendering: true,
