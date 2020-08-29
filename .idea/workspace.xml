@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="264753fe-9beb-4802-82ce-ff431a05d361" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/open-sans-condensed/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/open-sans-condensed/OpenSans-CondBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/open-sans-condensed/OpenSans-CondLight.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/open-sans-condensed/OpenSans-CondLightItalic.ttf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.js" afterDir="false" />
     </list>
@@ -119,7 +123,7 @@
       <workItem from="1595012246419" duration="57000" />
       <workItem from="1597076301980" duration="1880000" />
       <workItem from="1598473104757" duration="20516000" />
-      <workItem from="1598701166078" duration="3926000" />
+      <workItem from="1598701166078" duration="4596000" />
     </task>
     <servers />
   </component>
@@ -154,10 +158,10 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="251" y="60" key="SettingsEditor/0.30.1366.738@0.30.1366.738" timestamp="1592848682326" />
-    <state x="420" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1598705823856">
+    <state x="420" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1598706092738">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state x="420" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.30.1366.738@0.30.1366.738" timestamp="1598705823856" />
+    <state x="420" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.30.1366.738@0.30.1366.738" timestamp="1598706092738" />
     <state x="339" y="180" key="run.anything.popup" timestamp="1593375716522">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
