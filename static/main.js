@@ -570,12 +570,12 @@ function calculateTaxOne(e) {
                 if(! $('.'+ kkk).length !== 0 ) {
                     if (e.options[e.selectedIndex].text !== 'Choose') {
                         var html = '<tr data-taxsub="'+ kkk +'" class="tax-sub ' +kkk+ '">' +
-                                        '<td style="border-bottom-color: #ffffff !important;border-left-color: #ffffff !important; border-top-color: #ffffff !important;" class="py-0 rrr" colspan="3"></td>' +
-                                        '<td class="" style="padding: 6px 6px !important;">' +
-                                        '<label for="bs_subTotal" class="no-label"></label>' +
-                                        '<input style="width: 85px;" type="text" value="' + kkk.toUpperCase().replace(/_/g," ") + ':" class="no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="' + kkk.toUpperCase() + ':">' +
+                                        '<td style="border-bottom-color: #ffffff !important;border-left-color: #ffffff !important; border-top-color: #ffffff !important; border-right: none !important;" class="py-0 rrr" colspan="3"></td>' +
+                                        '<td class="" style="padding: 6px 6px !important;border-left: none !important; border-right: none !important;">' +
+                                            '<label for="bs_subTotal" class="no-label"></label>' +
+                                            '<input style="width: 85px;" type="text" value="' + kkk.toUpperCase().replace(/_/g," ") + ':" class="no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="' + kkk.toUpperCase() + ':">' +
                                         '</td>' +
-                                        ' <td colspan="2" class="text-bold-custom">' +
+                                        ' <td colspan="2" style="border-left: none !important; border-right: none !important;" class="text-bold-custom">' +
                                             '<span>'+
                                                 '<span>Ksh </span>' +
                                                 '<span data-taxx="'+ kkk +'"  class="xui tax_txt_'+ kkk +'">' + e.value + '</span>' +
@@ -599,12 +599,12 @@ function calculateTaxOne(e) {
     else {
         console.log('first');
         var html =  '<tr data-taxsub="'+ kkk +'" class="tax-sub ' + kkk + '">' +
-            '<td style="border-bottom-color: #ffffff !important; border-left-color: #ffffff !important;  border-top-color: #ffffff !important; " class="py-0 rrr" colspan="4"></td>'+
-            '<td class="" style="padding: 6px 6px !important;">'+
+            '<td style="border-bottom-color: #ffffff !important; border-left-color: #ffffff !important;  border-top-color: #ffffff !important; border-right: none !important; " class="py-0 rrr" colspan="4"></td>'+
+            '<td class="" style="padding: 6px 6px !important;border-left: none !important; border-right: none !important;">'+
             ' <label for="bs_subTotal" class="no-label"></label>'+
             '<input style="width: 85px;" type="text" value="'+ kkk.toUpperCase() +':" class=" no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotal" placeholder="'+ kkk.toUpperCase() +':">'+
             '</td>'+
-            ' <td colspan="2" class="text-bold-custom">' +
+            ' <td style="border-left: none !important; border-right: none !important;" colspan="2" class="text-bold-custom">' +
                 '<span>'+
                     '<span>Ksh </span>' +
                     '<span data-taxx="'+ kkk +'"  class="xui tax_txt_'+ kkk +'">' + e.value + '</span>' +
@@ -642,12 +642,12 @@ $('#discount_form_submit').click(function (e) {
         // console.log('else');
         if(discount_value > 0) {
             var htmll = '<tr class="discountclass tax_sub">' +
-                '<td style="border-bottom-color: #ffffff !important; border-left-color: #ffffff !important; border-top-color: #ffffff !important;" class="py-0 disco" colspan="4"></td>' +
-                '<td class="" style="padding: 6px 6px !important;">' +
+                '<td style="border-bottom-color: #ffffff !important; border-left-color: #ffffff !important; border-top-color: #ffffff !important; border-right: none !important;" class="py-0 disco" colspan="4"></td>' +
+                '<td class="" style="padding: 6px 6px !important;border-left: none !important; border-right: none !important;">' +
                 '<label for="bs_subTotall" class="no-label"></label>' +
                 '<input style="width: 85px;" type="text" value="Discount:" class=" no-border tax-input input_title_smn text-bold-placehoder" id="bs_subTotall" placeholder="Discount:">' +
                 '</td>' +
-                '<td colspan="2" class="text-bold-custom">' +
+                '<td colspan="2" style="border-left: none !important; border-right: none !important;" class="text-bold-custom">' +
                 '<span>Ksh </span>' +
                 '<span class="xui doit">' + summ + '</span>' +
                 '</td>' +
@@ -725,7 +725,6 @@ function displayDiscounts() {
                             '<td>'+
                                 '<i onclick="makeDiscount(this)" data-name="'+results.rows.item(i).name+ '" data-value="'+results.rows.item(i).value+'"  id="'+"discount_delete_bb" + i +'" style="margin-left: auto; cursor: pointer" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Use Tax">Use This Discount</i>' +
                                 '<i onclick="undoDiscount(this)" data-name="'+results.rows.item(i).name+ '" data-value="'+results.rows.item(i).value+'"  id="'+"discount_delete_ud" + i +'" style="margin-left: auto; cursor: pointer; display: none;" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Undo">Undo</i>' +
-
                             '</td>'+
                         '</tr>')
                 }
